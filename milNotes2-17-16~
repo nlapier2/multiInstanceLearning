@@ -1,0 +1,27 @@
+- Multi Instance Learning problem in bioinformatics
+- We have a bunch of patients who are labeled as having a given disease or not
+- We have many sequence reads for each patient, but these are not labeled
+- Can we use bag/patient labels to determine label for each instance associated with that bag?
+- Then aggregate instance values to predict bag labels
+- Bag level prediction: predict whether or not new patients have the disease
+- Instance prediction: show which species are correlated with the disease? Maybe what causes disease / possible treatments...
+- This has been done before with short reviews on amazon/imdb/yelp
+- Given bag/review label, determine individual sentence values and use to predict new reviews and sentences
+- Problem: they had very man reviews/bags and few instances/sentences in each one
+- Whereas we have relatively few patients (maybe thousands) but many (maybe millions) reads per patient
+- So the main computational challenge here is that we need to find a way to allieviate this issue
+- One method could be to cluster similar reads --> fewer instances/clusters per patient
+- Another could be metagenome assembly: tie together reads that represent the same sequence --> fewer and longer sequences
+- Once we figure out how to do this, we need to represent these instances as feature vectors
+- Past literature has shown how to do this using convolutional neural nets
+- Then apply a simple classifier, i.e. logistic regression or SVM. This has been done extensively in literature.
+- The latter two parts are not the more innovative part
+- Main idea: make MIL work for bioinformatics because we deal with the problem of many instances
+
+Process:
+- create vector representations of the instances (done in literature with CNN); then combine for whole bag
+- optimize cost function with gradient descent (a good cost function has been proposed in literature)
+- predict labels for any instance using classifier (we can use logistic regression or SVM)
+- then we can predict group label by aggregating instance values
+
+Involves: clustering/hashing, classification with regression/SVM, regularization (part of cost function), feature generation
