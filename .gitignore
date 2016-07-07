@@ -1,0 +1,3 @@
+# exclude large data files that are not necessary for git to track
+/cirrhosisTests/vectors
+/cirrhosisTests/cirrhosis.*
