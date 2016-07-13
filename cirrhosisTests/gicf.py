@@ -4,7 +4,8 @@
 
 import argparse
 import math
-import random
+import numpy as np
+# import random
 import sys
 import time
 
@@ -34,7 +35,7 @@ def logistic(w, x):     # implementation of the classifier for the instances; cu
 def derivative_logistic(w, x):   # derivative of logistic regression function
     dot = 0.0     # dot product between weights and x, computed in for loop below
     for i in range(len(x)):
-        dot += w[i]*x[i]
+        dot += w[i] * x[i]
     if dot > 20 or dot < -20:    # prevent math overflows
         return 0
     e = math.exp(dot)   # e ^ (dot product of w and x)
@@ -88,8 +89,7 @@ def cost(num_instances, w, data, l, group_labels):
             for j in range(len(data[group])):
                 instance_cost += similarity(data[group][i], data[group][j]) * \
                     instance_penalty(instance_labels[group][i], instance_labels[group][j])
-    # print instance_cost
-    # print group_cost
+
     instance_cost /= (num_instances ** 2)   # average out instance cost across all instance pairs
     group_cost *= (l / float(len(data)))    # balance group cost using lambda parameter
 
@@ -122,24 +122,45 @@ def derivative_cost(num_instances, w, data, l, group_labels):      # derivative 
     return instance_cost + group_cost
 
 
-def descent(verbose, rate, l, batch_size, iterations, w, count, data):
+def descent(verbose, rate, l, batch_size, iterations, w, data):
     # mini-batch stochastic gradient descent to learn weights for classifier
     # randomly select a small subset of instances from data to be used as mini batch
     if verbose:
         print "Entering gradient descent..."
-    per_group = batch_size / count    # amount of instances to use per group
-    threshold = 1    # when slope crosses this threshold, stop
+    # per_group = batch_size / count    # amount of instances to use per group
+    threshold = 0    # when slope crosses this threshold, stop
     final_cost = 0  # the cost function value when gradient descent has finished
     update_vector = []  # this is used to track the previous update vector, used for momentum
     momentum = 0.5      # constance multiplied by the previous update vector for momentum
     for i in range(len(w) - 1):
         update_vector.append(0)  # initialize to same length as instance, with all 0s
+    cost_data = []  # the data to be given to the cost function
+    average_instance = []   # the average value of the instances in cost_data, used for weight adjustment
+    labels = []     # group labels
+    instances = 0.0       # total number of instances used
     for num in range(iterations):
         if verbose:
             print "Gradient descent, instance " + str(num + 1)
-        cost_data = []  # the data to be given to the cost function
-        average_instance = []   # the average value of the instances in cost_data, used for weight adjustment
-        labels = []     # group labels
+        d = open(data, 'r')
+        if not cost_data:
+            for i in range(len(w) - 1):
+                average_instance.append(0)  # initialize to same length as instance, with all 0s
+            for line in d:
+                if len(line) < 5:   # deals with blank lines in files
+                    continue
+                cost_data.append([])
+                splits = line.split(':')
+                labels.append(int(float(splits[0])))
+                group = listify(splits[1])
+                cutoff = int(batch_size * len(group))     # use only top (100 * (1 - batch_size))% of reads
+                for i in range(cutoff, len(group)):
+                    cost_data[len(labels)-1].append(group[i])   # append appropriate instance to mini batch dataset
+                    instances += 1.0
+                    for k in range(len(group[i])):
+                        average_instance[k] += group[i][k]      # add this instance to our total
+            for i in range(len(average_instance)):
+                average_instance[i] /= instances  # take the average of the instance totals
+        '''
         for i in range(len(w) - 1):
             average_instance.append(0)  # initialize to same length as instance, with all 0s
         d = open(data, 'r')
@@ -152,10 +173,10 @@ def descent(verbose, rate, l, batch_size, iterations, w, count, data):
             labels.append(int(float(splits[0])))
             group = listify(splits[1])
             for i in range(int(per_group)):
-                num = int(random.random() * (len(group) - 1))     # randomly select index of instance from group
-                while num in instances:     # make sure we're picking a unique instance
-                    num = int(random.random() * (len(group) - 1))
-                instances.append(num)
+                number = int(random.random() * (len(group) - 1))     # randomly select index of instance from group
+                while number in instances:     # make sure we're picking a unique instance
+                    number = int(random.random() * (len(group) - 1))
+                instances.append(number)
             for j in range(len(group)):
                 if j in instances:
                     cost_data[len(labels)-1].append(group[j])   # append appropriate instance to mini batch dataset
@@ -163,16 +184,20 @@ def descent(verbose, rate, l, batch_size, iterations, w, count, data):
                         average_instance[k] += group[j][k]      # add this instance to our total
         for i in range(len(average_instance)):
             average_instance[i] /= (per_group * count)  # take the average of the instance totals
+        '''
         d.close()
 
         # find value of derivative of cost function using weights w, then use learning rate to find adjustment amount
-        delta_j = rate * derivative_cost(per_group * count, w, cost_data, l, labels)
-        # delta_j = rate * cost(per_group * count, w, cost_data, l, labels)
+        delta_j = rate * derivative_cost(instances, w, cost_data, l, labels)
+        # delta_j = rate * cost(instances, w, cost_data, l, labels)
         # once slope becomes non-negative (or barely negative), stop; or if we exceed number of iterations
         if verbose:
             print "Slope of cost function calculated: " + str(delta_j / rate)
+        print "\nDelta J: " + str(delta_j)
+        print "\nRate: " + str(rate)
+        print "\nThreshold: " + str(threshold)
         if math.fabs(delta_j / rate) <= threshold:
-            final_cost = cost(per_group * count, w, cost_data, l, labels)
+            final_cost = cost(instances, w, cost_data, l, labels)
             break
         # adjust weights according to slope of cost function
         w[0] -= delta_j
@@ -183,7 +208,7 @@ def descent(verbose, rate, l, batch_size, iterations, w, count, data):
             update_vector[i] = adjustment   # update the update vector for future momentum
         # for [w0 w1 w2] & [x1 x2], w0 = w0 - rate*deltaJ; w1 = w1 - rate*x1*deltaJ; w2 = w2 - rate*x2*deltaJ
         if num == iterations - 1:   # we are at the end of the loop
-            final_cost = cost(per_group * count, w, cost_data, l, labels)
+            final_cost = cost(instances, w, cost_data, l, labels)
 
     if verbose:
         print "Final cost calculated: " + str(final_cost)
@@ -278,10 +303,10 @@ def grid_search(verbose, w, data, train, test, res, limit):
     tr.close()
     te.close()
 
-    rate = [0.01]  # [0.0001, 0.01, 0.1]
-    l = [float(num) * 0.5]  # [float(num) * 0.5, float(num), float(num) * 2]
-    batch_size = [num * 4]  # [num * 4, num * 10, num * 100]
-    iterations = [100]  # [10, 100, 1000]
+    rate = [0.0001, 0.001]  # , 0.01, 0.1]
+    l = [float(num)]  # [float(num) * 0.5, float(num), float(num) * 2]
+    batch_size = [0.98]  # [num * 4]  # [num * 4, num * 10, num * 100]
+    iterations = [3, 10]  # , 100, 1000]
     accuracy = -1.0             # best accuracy on test data
     parameters = [0, 0, 0, 0]   # best parameter settings
     results = []                # best results
@@ -293,7 +318,7 @@ def grid_search(verbose, w, data, train, test, res, limit):
                     if verbose:
                         print "Linear grid search with rate = " + str(i) + ", lambda = " + str(j) + \
                               ", mini batch size = " + str(k) + ", number of gradient descent iterations = " + str(h)
-                    d = descent(verbose, i, j, k, h, w, num, train)
+                    d = descent(verbose, i, j, k, h, w, train)
                     v = validate(verbose, d[1], test)
                     if v[0] > accuracy:
                         accuracy = v[0]

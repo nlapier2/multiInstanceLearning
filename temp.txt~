@@ -5,20 +5,26 @@ python gicf.py -v -i /home/nathan/school/research/multiInstanceLearning/cirrhosi
 
 --------------------------------
 
+K = 41 or K = 51 with read size limited to 100 seemed to work best. I chose K = 51.
 
--rw-r--r-- 1 nlapier2 root        491 Jun  9 20:12 Log
--rw-r--r-- 1 nlapier2 root  458715748 Jun  9 20:26 Roadmaps
--rw-r--r-- 1 nlapier2 root 1485184463 Jun  9 20:13 Sequences
+--------------------------------
 
+- Same data as paper
+	- Easiest way is to get 12 hour limit revoked, then use bulk downloader to get fastq files
+	- Then perform rest of pipeline (Assembly --> Combine --> UCLUST --> Feature Extraction --> Classification)
 
--rw-r--r-- 1 nlapier2 root  285368869 Jun  9 21:11 contigs.fa
--rw-r--r-- 1 nlapier2 root 2397783396 Jun  9 21:07 Graph2
--rw-r--r-- 1 nlapier2 root 2397782119 Jun  9 21:14 LastGraph
--rw-r--r-- 1 nlapier2 root  748842919 Jun  9 21:18 meta-velvetg.Graph2-stats.txt
--rw-r--r-- 1 nlapier2 root        251 Jun  9 21:18 meta-velvetg.split-stats.txt
--rw-r--r-- 1 nlapier2 root 1433294738 Jun  9 20:33 PreGraph
--rw-r--r-- 1 nlapier2 root  748842253 Jun  9 21:12 stats.txt
+- GeneMark
+	- Install
+	- Run on combined assembled file
+	- Then run rest of pipeline
 
+- SVM-light with k-mers?
+	-Not sure if this can be done
 
+- Group to instance cost function (GICF)
+	- Precompute pairwise similarities
+	- Try without pairwise similarities
+	- Just try normally and see if it will finish (can also request time limit to be removed)
+	- Use numpy vector and matrix computation methods
+	- Fix issue with entire group label prediction being derived from mini batch reads
 
--rw-r--r-- 1 nlapier2 argo-user-s  285368869 Jun 29 12:39 contigs.fa

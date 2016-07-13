@@ -5,115 +5,25 @@ python gicf.py -v -i /home/nathan/school/research/multiInstanceLearning/cirrhosi
 
 --------------------------------
 
+K = 41 or K = 51 with read size limited to 100 seemed to work best. I chose K = 51.
 
-K = 41 (using SOAPdenovo-63mer), using cutoff at read length 100
-Size_withoutN   51760822
-Scaffold_Num    148636
-Mean_Size       348
-Median_Size     188
-Longest_Seq     24397
-Shortest_Seq    100
-Singleton_Num   148636
-Average_length_of_break(N)_in_scaffold  0
-scaffolds>100   148541  99.94%
-scaffolds>500   19564   13.16%
-scaffolds>1K    7899    5.31%
-scaffolds>10K   98      0.07%
-N10     3866    797
-N20     1969    2752
-N30     1184    6208
-N40     746     11781
-N50     482     20495
-N60     325     33770
-N70     236     52654
-N80     182     77783
-N90     147     109567
+--------------------------------
 
+- Same data as paper
+	- Easiest way is to get 12 hour limit revoked, then use bulk downloader to get fastq files
+	- Then perform rest of pipeline (Assembly --> Combine --> UCLUST --> Feature Extraction --> Classification)
 
-K = 51 (using SOAPdenovo-63mer), using cutoff at read length 100
--rw-r--r-- 1 nlapier2 argo-user-s 42164494 Jun 27 23:14 graph_prefix.contig
--rw-r--r-- 1 nlapier2 argo-user-s 39637600 Jun 27 23:14 graph_prefix.scafSeq
-Size_includeN   37807914
-Size_withoutN   37807914
-Scaffold_Num    103428
-Mean_Size       365
-Median_Size     235
-Longest_Seq     22063
-Shortest_Seq    100
-Singleton_Num   103428
-Average_length_of_break(N)_in_scaffold  0
-scaffolds>100   103350  99.92%
-scaffolds>500   17022   16.46%
-scaffolds>1K    5039    4.87%
-scaffolds>10K   6       0.01%
-N10     1967    1216
-N20     1155    3816
-N30     789     7833
-N40     578     13481
-N50     436     21042
-N60     335     30983
-N70     263     43781
-N80     213     59826
-N90     177     79394
-Number_of_contigs_in_scaffolds  0
-Number_of_contigs_not_in_scaffolds(Singleton)   103428
-Average_number_of_contigs_per_scaffold  -nan
+- GeneMark
+	- Install
+	- Run on combined assembled file
+	- Then run rest of pipeline
 
+- SVM-light with k-mers?
+	-Not sure if this can be done
 
-K = 63 (using SOAPdenovo-63mer), using no read cutoff
--rw-r--r-- 1 nlapier2 argo-user-s  87145836 Jun 27 17:08 graph_prefix.contig
--rw-r--r-- 1 nlapier2 argo-user-s  80029837 Jun 27 17:08 graph_prefix.scafSeq
-Size_includeN   75395443
-Size_withoutN   75395443
-Scaffold_Num    269654
-Mean_Size       279
-Median_Size     248
-Longest_Seq     4852
-Shortest_Seq    100
-Singleton_Num   269654
-Average_length_of_break(N)_in_scaffold  0
-scaffolds>100   269428  99.92%
-scaffolds>500   13773   5.11%
-scaffolds>1K    2192    0.81%
-N10     607     8153
-N20     411     23682
-N30     344     43967
-N40     293     67969
-N50     271     94803
-N60     254     123571
-N70     239     154185
-N80     221     187004
-N90     199     222918
-Number_of_contigs_in_scaffolds  0
-Number_of_contigs_not_in_scaffolds(Singleton)   269654
-Average_number_of_contigs_per_scaffold  -nan
-
-
-K = 71 (using SOAPdenovo-127mer), no cutoff
--rw-r--r-- 1 nlapier2 argo-user-s  66913905 Jun 27 18:37 graph_prefix.contig
--rw-r--r-- 1 nlapier2 argo-user-s  61923814 Jun 27 18:37 graph_prefix.scafSeq
-Size_includeN   58357906
-Size_withoutN   58357906
-Scaffold_Num    208902
-Mean_Size       279
-Median_Size     261
-Longest_Seq     2601
-Shortest_Seq    100
-Singleton_Num   208902
-Average_length_of_break(N)_in_scaffold  0
-Contig>100      208773  99.94%
-Contig>500      5479    2.62%
-Contig>1K       195     0.09%
-N10     437     10615
-N20     358     25679
-N30     304     43353
-N40     280     63522
-N50     269     84811
-N60     260     106872
-N70     252     129671
-N80     242     153270
-N90     229     177968
-Number_of_contigs_in_scaffolds  0
-Number_of_contigs_not_in_scaffolds(Singleton)   208902
-Average_number_of_contigs_per_scaffold  -nan
+- Group to instance cost function (GICF)
+	- Precompute pairwise similarities
+	- Try without pairwise similarities
+	- Use numpy vector and matrix computation methods
+	- Fix issue with entire group label prediction being derived from mini batch reads
 

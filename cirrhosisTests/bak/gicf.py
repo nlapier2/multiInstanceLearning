@@ -152,10 +152,10 @@ def descent(verbose, rate, l, batch_size, iterations, w, count, data):
             labels.append(int(float(splits[0])))
             group = listify(splits[1])
             for i in range(int(per_group)):
-                num = int(random.random() * (len(group) - 1))     # randomly select index of instance from group
-                while num in instances:     # make sure we're picking a unique instance
-                    num = int(random.random() * (len(group) - 1))
-                instances.append(num)
+                number = int(random.random() * (len(group) - 1))     # randomly select index of instance from group
+                while number in instances:     # make sure we're picking a unique instance
+                    number = int(random.random() * (len(group) - 1))
+                instances.append(number)
             for j in range(len(group)):
                 if j in instances:
                     cost_data[len(labels)-1].append(group[j])   # append appropriate instance to mini batch dataset
