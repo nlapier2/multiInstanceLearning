@@ -50,13 +50,21 @@ def label_penalty(predicted, actual):   # non-negative penalty on difference bet
     return (predicted - actual) ** 2     # using squared loss as penalty, as described in GICF paper
 
 
-def predict_label(group, instance_labels):
+def predict_label_bk(group, instance_labels):
     # real scalar representing predicted label for group based on aggregation of instance labels
     total = 0.0     # combined value of all labels in group, computed in for loop below
     for i in range(len(group)):
         total += instance_labels[i]
     return total / len(group)   # return average label value in the group
 
+def predict_label (group, instance_labels):
+    # k = 0.2
+    k = 0.2
+    total = 0.0
+    x = sort (instance_labels).desc()
+    for i in range(0.2 * len (instance_labels)):
+        total += instance_labels[i]
+    return total / (0.2 * len (instance_labels))
 
 def d_group_penalty(group, instance_labels, d_instance_labels, group_label):
     # calculate group penalty in derivative of cost function
