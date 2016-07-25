@@ -9,18 +9,7 @@ K = 41 or K = 51 with read size limited to 100 seemed to work best. I chose K = 
 
 --------------------------------
 
-GeneMark
-- in progress for both all and out1
-
-One read per cluster GICF
-- write script to go through uclust file and fasta file, writing necessary lines to a new file
-- iterate through each line in uclust and fasta files
-- for each line in clustering file:
-	- if the patient is new, create a list for that patient
-	- if the cluster number is longer than length of list, or that list index is 0, write the fasta line to the new file
-		- if list length was shorter than cluster number, lengthen list to that length
-		- set value of that list index to 1
-	- otherwise, list index value was 1, thus do not write the FASTA line to the file
+GeneMark: done, not sure how to use yet
 
 Explicit association of clusters to labels with SVM-light
 - take the prediction file and augment with explicit association with cluster labels and an example
@@ -34,4 +23,54 @@ Start writing my paper
 Same data as MGWAS paper?
 - can start downloading other patients with bulk downloader, but still not all data is available
 - may have to ask paper authors where to find all data
+
+--------------------------------
+
+k=4, out1
+Best parameter settings [learn rate, lambda, mini batch size, descent iterations]: [0.0001, 60.0, 0.9, 10]
+Average prediction: 0.762984045957
+Best results: 
+Accuracy: 0.633333333333
+Precision and recall: 0.590909090909 and 0.866666666667
+F1 Score: 0.702702702703
+True Positive Rate and False Positive Rate: 0.866666666667 and 0.6
+
+
+k=3, out1
+Best parameter settings [rate, lambda, top_k, mini batch size, iterations]:
+[0.0001, 60.0, 0.9, 0.01, 30]
+Best results: 
+Accuracy: 0.6
+Precision and recall: 0.555555555556 and 1.0
+F1 Score: 0.714285714286
+True Positive Rate and False Positive Rate: 1.0 and 0.8
+
+
+k=3, out1
+Best parameter settings [rate, lambda, top_k, mini batch size, iterations]:
+[5e-05, 60.0, 0.9, 0.01, 30]
+Best results: 
+Accuracy: 0.633333333333
+Precision and recall: 0.583333333333 and 0.933333333333
+F1 Score: 0.717948717949
+True Positive Rate and False Positive Rate: 0.933333333333 and 0.666666666667
+
+
+k=3, out1
+Best parameter settings [rate, lambda, top_k, mini batch size, iterations]:
+[0.0001, 60.0, 0.9, 0.01, 3]
+Best results: 
+Accuracy: 0.7
+Precision and recall: 0.6875 and 0.733333333333
+F1 Score: 0.709677419355
+True Positive Rate and False Positive Rate: 0.733333333333 and 0.333333333333
+
+k=3, out1
+Best parameter settings [rate, lambda, top_k, mini batch size, iterations]:
+[0.0001, 60.0, 0.9, 0.01, 30]
+Best results: 
+Accuracy: 0.566666666667
+Precision and recall: 0.535714285714 and 1.0
+F1 Score: 0.697674418605
+True Positive Rate and False Positive Rate: 1.0 and 0.866666666667
 

@@ -339,9 +339,9 @@ def grid_search(verbose, w, data, train, test, res, limit):
 
     rate = [0.0001]  # , 0.001]  # , 0.01, 0.1]
     l = [float(num)]  # [float(num) * 0.1, float(num), float(num) * 10]
-    top_k = [0.9]
-    batch_size = [0.01]  # [num * 4]  # [num * 4, num * 10, num * 100]
-    iterations = [3]  # , 10, 100, 1000]
+    top_k = [0.8]
+    batch_size = [0.1]  # [num * 4]  # [num * 4, num * 10, num * 100]
+    iterations = [30]  # , 10, 100, 1000]
     accuracy = -1.0             # best accuracy on test data
     parameters = [0, 0, 0, 0, 0]   # best parameter settings
     results = []                # best results
