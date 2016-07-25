@@ -1,0 +1,105 @@
+%EXP
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{./diagrams/PreFeatEng}
+\caption{This diagram shows the results for the comparison between UCLUST and Kraken when classifying "Encephalopathy" versus all other classes. UCLUST had an accuracy and F1-Score of 84.53\% and 67.44\% respectively. Kraken didn't perform as well, with an accuracy of 79.56\% and an F1-Score of 43.08\%. \label{prefeature}}
+\end{figure}
+
+
+
+\begin{table*}[t]
+\begin{center}
+\caption{Comparative Performance of UCLUST and Kraken Representations. \label{tab:comp}}
+\begin{tabular}{|c|cccc|cccc|}\hline
+Representation & Accuracy & Precision & Recall & F1-Score & LOOCV Accuracy & LOOCV Precision & LOOCV Recall & LOOCV F1-Score\\\hline
+UCLUST & 84.53 & 78.38 & 59.18 & 67.44 & 88.26 & 83.22 & 67.39 & 74.47\\\hline
+Kraken & 79.56 & 87.5 & 28.57 & 43.08 & 78.18 & 70.31 & 24.46 & 36.29\\\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+
+\begin{table*}[t]
+\begin{center}
+\caption{Comparative Run Time of UCLUST and Kraken Representations. \label{tab:time}}
+\begin{tabular}{|c|c|}\hline
+Representation & Time\\\hline
+UCLUST & 180s\\\hline
+Kraken & 120s\\\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+
+\begin{table*}[t]
+\begin{center}
+\caption{Three Pairwise Comparisons Using UCLUST. \label{tab:pair}}
+\begin{tabular}{|c|cccc|cccc|}\hline
+Comparison & Accuracy & Precision & Recall & F1-Score & LOOCV Accuracy & LOOCV Precision & LOOCV Recall & LOOCV F1-Score\\\hline
+Encephalopathy vs. No Encephalopathy & 88.68 & 90 & 86.54 & 88.23 & 84.47 & 81.77 & 81.77 & 81.77\\\hline
+Encephalopathy vs. Control & 96.72 & 95.35 & 100 & 97.62 & 94.26 & 93.2 & 100 & 96.48\\\hline
+No Encephalopathy vs. Control & 83.78 & 82.61 & 100 & 90.48 & 87.5 & 86.96 & 99.59 & 92.85\\\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+
+\begin{table*}[t]
+\begin{center}
+\caption{Results After Feature Engineering. \label{tab:pfe}}
+\begin{tabular}{|c|cccc|cccc|}\hline
+Representation & Accuracy & Precision & Recall & F1-Score & LOOCV Accuracy & LOOCV Precision & LOOCV Recall & LOOCV F1-Score\\\hline
+UCLUST & 85.64 & 79.49 & 63.27 & 70.46 & 88.54 & 82.58 & 69.57 & 75.52\\\hline
+Kraken & 80.66 & 76.92 & 40.82 & 53.34 & 80.8 & 75.86 & 35.87 & 48.93\\\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+Figure \ref{prefeature} and Table \ref{tab:comp} show 
+the classification performance of UCLUST and 
+Kraken in distinguishing patients in the "Encephalopathy" class versus 
+the other classes. UCLUST correctly predicted the clinical 
+phenotype 84.53\% of the time, and had a precision of 78.38\% on the held-out set. LOOCV results were 
+slightly better for each metric than results on the test 
+set by about 4-8\%. Kraken had an accuracy of 79.56\% with an even 
+larger disparity between precision and recall (87.5\% for the former and 
+28.57\% for the latter), which led to a relatively poor F1-score of 43.08\%. LOOCV results for Kraken 
+were worse by 1.38\% for accuracy, 17.19\% for precision, 4.11\% for recall, and 6.79\% for F1-Score. As 
+the results show, UCLUST generally performed better as a feature 
+representation, with 4.97\% higher accuracy and 24.36\% higher F1-score.
+
+Table \ref{tab:time} shows 
+the runtime of each representation in seconds. We had total of 1.3 million sequence reads. UCLUST unsupervised clustering 
+took 180 seconds, while Kraken's OTU database lookups took 120 seconds.
+
+Table \ref{tab:pair} displays the performance of UCLUST-based classification 
+with regards to training three one-versus-one clincal phenotypic classifiers.  The first comparison 
+distinguished between the "Encephalopathy" class and the "No Encephalopathy" class, effectively determining whether or not a patient who had liver cirrhosis also had encephalopathy. Results were much improved when compared with the findings in table \ref{tab:comp}. The accuracy, precision, recall, and F1-score were all  86-90\%. LOOCV
+results were worse by about 4-8\% per metric. The 
+second comparison distinguished between the "Encephalopathy" class and 
+the "Control" class, effectively determining whether a 
+patient had encephalopathy caused by liver cirrhosis or had neither disease. This comparison had the best results of the ones we examined, with greater than 95\% performance in all metrics and 100\% recall. The cross validation
+results were about 1-2\% worse for each metric except recall, which was still 100\%. The 
+third comparison distinguished between the "No Encephalopathy and liver cirrhosis" class and the "Control" class, effectively determining which among the patients lacking encephalopathy had liver cirrhosis. This comparison had an accuracy of 83.78\% and precision of 82.61\%, but had a 100\% recall which led to a high F1-score of 90.48\%. Cross validation results were better by 3.72\% for accuracy, 4.35\% for precision, and 2.37\% better for F1-Score, with essentially the same recall.  Apart from the accuracy and precision of the third comparison, these three pairwise comparisons generally performed better across the board than the results in Table \ref{tab:comp}, with the second pairwise comparison having the best performance.
+
+Table \ref{tab:pfe} shows the results for the same setup as 
+in Table \ref{tab:comp} after we performed feature engineering. For both representations in Table \ref{tab:comp}, the recall was significantly lower than the precision, indicating that there were many more false negatives than false positives. We thus engineered the features in the training set. We applied a positive multiplier (0.9)   
+to the values of each feature of every positive patient in the 
+training set. This caused the SVM model to 
+correlate certain features that were only present in positive 
+training examples more strongly with a positive phenotype.  Attempts to use a multiplier of 
+less than 0.9 did not appear to further 
+improve the results. With the multiplier of 0.9 applied to the 
+feature values for positive training examples, the recall 
+increased by 4.09\% for UCLUST and by 12.25\% for Kraken. This was confirmed in the 
+cross validation results as well, 
+in which UCLUST's recall increased by 2.18\% and 
+Kraken's recall increased by 11.41\%. Because of the improvement 
+in recall, both representations also had similarly improved F1-Scores after feature engineering. Accuracy and precision remained generally consistent. 
+%
+Kraken's LOOCV precision 
+increased by 5.55\%. This suggests that Kraken's very high precision was tied to its lack of many positive phenotype predictions in general, resulting in a very low number of false positives. While Kraken improved more than UCLUST did due to feature engineering, UCLUST still performed better in all metrics.
+
+

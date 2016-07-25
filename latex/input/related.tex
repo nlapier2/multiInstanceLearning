@@ -1,0 +1,142 @@
+%RELATED
+
+\subsection{Human Microbiome and Metagenomics}
+
+The combination of human host cells and microbial 
+cells that govern several facets of human health and pathology are referred 
+to as collectively by the term \emph{human microbiome} \cite{hugenholtz2008microbiology}. 
+%
+Using today's sequencing technologies we have the capacity to determine 
+the DNA sequences of these co-existing microbial communities. 
+However, 
+current  genomic  technologies 
+do not provide the complete genome for each individual microbe, but 
+  short, contiguous subsequences from random positions of the genome. These 
+  short subsequences are referred by ``reads''. 
+%
+Metagenome sequence assembly is defined as the process of taking the different 
+sequence reads from the various microbial organisms to produce long contiguous 
+sequence of DNA for each individual organism within the community mixture. 
+%
+The assembly process involves identifying overlapping parts of different reads 
+to order them and separate them in organism-specific larger sequences.
+%
+
+
+The metagenome assembly problem is known to be challenging due 
+  to the similarity of genomes from the different microbes, 
+differing 
+  abundance, diversity, complexity and varying
+  genome lengths of never-sequenced before microbes within 
+  the different microbiome samples. DNA sequencing machines  
+  are very high throughput and produce Terabytes of data per run and 
+  also produce reads with poor quality  \cite{hugenholtz2008microbiology}. Several studies 
+  have highlighted the challenges associated with the metagenome analysis and assembly problem by performing a simulation study to determine the feasibility of solving the metagenome assembly problem \cite{charuvaka2011evaluation}.
+
+  %
+  Targeted metagenomics or 16S rRNA gene sequencing provides
+  a
+  first step for the quick and accurate characterization of
+  microbial communities. 16S sequences are marker genes, which
+  exists in most microbial genomes and
+  have a conserved portion
+  for detection (primer development) and a variable portion that allows for
+    categorization within  different  taxonomic groups \cite{petrosino2009metagenomic}.
+        %
+        Targeted metagenomics are also effective in detecting species with low 
+        abundances. However, they may not be good at discovering 
+        unique species (orphans) that have never been sequenced before. % ones that are considered to be orphan (i.e., never sequenced before).
+
+
+\subsection{Microbiome Informatics}
+
+
+Since the human microbiome project \footnote{http://hmpdacc.org/} and 
+release of publicly available metagenomic datasets began, a host 
+of methods have been developed for the analysis of 
+assembled metagenomes and  input  sequence reads (before assembly)
+obtained from 16S rRNA genes and whole metagenomes.  
+%
+%
+The relationship between microbiome and human health can be characterized by first
+identifying the content, abundance, and functionality of the microbes within the samples. Several
+computational approaches (surveyed here \cite{:mo}) have been developed for handling the vast
+amount of metagenomic data to solve two related problems: (i) clustering or binning, and (ii) taxonomy profiling methods.
+%
+
+\subsubsection{Binning Methods}
+
+The ``binning'' problem  involves grouping input short reads  such that reads within a group are 
+similar to each other. This process may lead to groups that are organism-specific and is 
+unsupervised in nature, being referred by clustering in the data mining community. 
+%
+The binning process does not attempt to provide an automated labeling of the input reads. 
+%
+The clusters/bins/groups obtained from an input metagenome sample 
+is referred to as  Operational Taxonomic Units (OTUs), and the number of 
+OTUs gives an approximation of species diversity in a sample \cite{schloss2009introducing,schloss2005introducing,sun2009esprit}.
+%
+These  approaches are not constrained due to the absence of a complete coverage in taxonomic databases. Some 
+environmental samples contain microbial organisms that have never been cultured in a laboratory, and thus those organisms do not exist in genomic databases.
+As such,  binning of 
+sequence reads has several advantages: (i)
+        it can lead to an improved  metagenome assembly, (ii) it can be used 
+        for computing species diversity metrics \cite{bibm2012} 
+        and (iii)
+        the  reduced computational
+        complexity within several work-flows that analyze only
+        cluster representatives, instead of individual sequences
+        within a sample.
+
+CD-HIT \cite{Li01072006}, UCLUST \cite{Edgar10}, CROP \cite{Hao01032011}, MC-MinH \cite{sdm2013a} and 
+MC-LSH \cite{bibm2012}
+are some of the popular 
+metagenome/sequence clustering approaches used for binning. 
+%
+UCLUST, MC-MinH and MC-LSH  are
+greedy approaches that achieve computational efficiency 
+by using either hash-based indexing or matching of gap-less sequences called seeds (instead 
+of expensive sequence alignment) and followup with an incremental clustering approach 
+that does not involve comparing all pairs of input sequences. In Section \ref{uclustmethods} we discuss 
+in detail the UCLUST \cite{Edgar10}  sequence clustering approach. We use UCLUST within 
+our study, known to be a state-of-the-art metagenome clustering approach in terms of 
+computational performance and accuracy of results. 
+
+
+\subsubsection{Taxonomy Profiling Methods}
+\label{sec:tax}
+
+
+The taxonomy profiling problem involves 
+assigning a specific label (i.e., a phylogenetic group label) to sequence 
+reads or assembled metagenome contigs~\cite{phymm}. A traditional 
+approach for taxonomy profiling is to formulate  a 
+classification problem (supervised) that uses marker genes for
+  identification of source organism of a sequence read or fragment~\cite{Woese97}. Marker
+  genes are highly conserved and provide accurate identification
+  of the taxonomy class~\cite{ZongzhiLiu10012008}. These approaches 
+  rely on a previously annotated 
+  reference dataset like RDP~\cite{Cole2005,Cole2007,Cole2008} or GreenGenes~\cite{greengenes}. These methods
+  provide
+  valuable community estimates but are limited to specific 
+  reads or contigs (marker genes constitute a small fraction of a metagenomic
+  sequence set) and have low sensitivity due to reliance
+  on an incomplete and taxon-biased reference genome database.The RDP database
+  implements a naive Bayes classifier 
+  that uses DNA-composition features to classify 16S RNA sequence reads into taxonomic classes as defined
+  by Bergey's taxonomy~\cite{ZongzhiLiu10012008}.
+
+  Several comparative methods have been developed for the assignment of phylogenetic class based on principles of homology. Such methods  align
+  reads or contigs using BLAST~\cite{altschul90a}, and assign taxonomy based on the best match with a reference database~\cite{Tringe04222005}. MEGAN~\cite{megan} and MARTA~\cite{marta} are
+  metagenomic analysis and visualization programs that  make the assignment based on multiple BLAST hits and optimized parameters.  The MG-RAST~\cite{mgrast}  web server
+  provides taxonomic and functional annotation by comparative searches performed across multiple reference databases. GAAS~\cite{gaas} is a novel BLAST-based tool
+  that includes genome length normalization along with a similarity weighting for multiple BLAST hits to provide improved estimates.
+
+  Composition-based methods have also been developed. They extract key sequence features such as GC composition and $k$-mer frequencies and build supervised
+  classification models using those features. PhyloPythia~\cite{McHardy2007} uses a support vector machine framework~\cite{vap95} to classify long reads into taxonomic groups
+  using a $k$-mer based kernel function. TETRA~\cite{tetra} correlates the $k$-mer pattern feature to different taxonomic groups. Kraken, which is used in this paper, searches a taxonomic database for the lowest common ancestor (LCA) of the genomes that contain $k$-mers from a sequence read. Phymm~\cite{phymm} trains an interpolated Markov model
+  to characterize variable length subsequences  specific to different taxonomic subgroups. In combination with BLAST, Phymm shows improved classification
+  accuracy for short reads of 100 base pair (bp) length. Such Markovian models have been very successful in gene finding algorithms like Glimmer~\cite{delc98nucl}.
+
+
+

@@ -1,0 +1,70 @@
+%Intro
+
+The human body is one of the 
+most densely populated microbial 
+environments in the world, with human host cells interacting 
+with  more than $10^{14}$ microbial cells. Collectively, the human 
+and microbial cells are referred to as the 
+\emph{human microbiome} \cite{turnbaugh_human_2007,backhed_host-bacterial_2005}. 
+%
+%
+%
+Biotechnological  advances 
+can 
+interrogate the microbial 
+communities present across three primary dimensions: (i) clinically different
+patients like those suffering from liver disease versus healthy controls (ii) different
+patient sites and tissues like skin and the gastrointestinal tract 
+and (iii) across different patient visits~\cite{Costello12182009,Qin:2010fk} and before/after treatment. 
+%
+Methods to query this  microbial
+data include DNA sequencing of 
+specific marker genes such as the 16S rRNA marker genes~\cite{Woese97}, 
+sequencing
+the entire pool of microbial genomes at once (metagenomics), or 
+sequencing the mixture of 
+expressed gene transcripts (metatranscriptomes).
+%
+These sequencing methods along 
+with proteomics and mass spectrometry
+allow us to study the
+biotransformations caused by the microbial communities. 
+%
+Several researchers and clinicians have embarked on
+studies of the pathogenic and clinical 
+role played by the microbiome with respect to
+human health and disease conditions.
+
+
+In this study, we specifically developed
+a computational method to predict the clinical phenotype
+of a patient i.e., a pipeline to 
+predict whether or not the patient has a specific type and level of  a disease.  This 
+pipeline
+is able to make the phenotypic
+predictions from input metagenomic sequences using post-processing 
+with unsupervised binning approaches (clustering) or  supervised search based 
+taxa profiling approaches.  This method is designed to 
+run quickly and produce accurate and sensitive 
+results. We  compare and evaluate two state-of-the-art 
+approaches, one for binning (UCLUST \cite{Edgar10}) and one for taxonomic profiling (KRAKEN \cite{Wood14}) 
+to represent the input metagenome sequences as features for classification. The classification
+formulation uses a binary support vector machine based classifier \cite{vap95}. We also 
+evaluate the performance of preliminary 
+feature scaling and engineering  for classification purposes. 
+
+We specifically evaluated our approach on 
+microbiome samples of patients suffering from hepatic encephalopathy due 
+to liver cirrhosis. 
+%
+We found that 
+UCLUST performed better than Kraken on our data 
+set, although Kraken was faster. We were also able to 
+engineer the data to improve the accuracy of the classifier. Our 
+pipeline had 85.64\% accuracy using UCLUST and 80.66\% accuracy 
+using Kraken. 
+
+%For our data set with 1.3 million reads, UCLUST took 
+%180 seconds to run and Kraken took 120 seconds. 
+%
+

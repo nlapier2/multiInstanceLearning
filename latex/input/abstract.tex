@@ -1,0 +1,20 @@
+%abs
+
+We demonstrate a computational method to predict the clinical
+phenotypes of a patient from raw metagenomic sequence read data. We  compared 
+two state of the art programs for annotating the sequence data, 
+UCLUST and Kraken, and using their output for feature generation. 
+We apply these programs 
+to a set of over 1.3 million reads from 
+904 patients, some of whom have liver cirrhosis, encephalopathy due to liver cirrhosis, or 
+neither disease. Once the reads have been processed by UCLUST or 
+Kraken, we use  Support Vector Machines to setup the 
+clinical phenotype prediction problem.  
+%
+We find that too many false negatives are being predicted by 
+the classifier. In order to address the issue, we scale features to
+improve the classification model and evaluate the 
+end results on a held-out test set. We
+demonstrate our approach works quickly and 
+accurately with an 85.64\% success rate when we use the 
+UCLUST representation. We also find that UCLUST generally performs better than Kraken, with the latter having an 80.66\% success rate. We also test our classifier on several subsets of the data, with success rates ranging from 69.81\% to 96.72\%.

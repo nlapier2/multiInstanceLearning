@@ -1,0 +1,110 @@
+\subsection{Dataset Description}
+
+We obtained 904
+clinical microbiome samples from a study by Dr. Patrick Gillevet 
+that relates to patients who suffered from hepatic encephalopathy due 
+to liver cirrhosis. Specifically, the classification formulation 
+was setup to distinguish between patients suffering with a specific 
+clinical phenotype or not. There were a total of 239 
+patients with Encephalopathy   due to liver cirrhosis (denoted 
+by the ``Encephalopathy'' class), 590 patients with liver cirrhosis 
+but no Encephalopathy (denoted by ``No Encephalopathy'') 
+and 75 patients who were considered as 
+control and did not have either of the clinical conditions (denoted by ``Control'').
+%
+16S rRNA metagenomic sequence read data was 
+obtained from patient stool samples. On average 
+there were a total of 1,464  sequence reads of length 200-400 obtained per 
+patient, with 1,323,016 total reads across all patients in our dataset.
+
+
+
+\subsection{Evaluation Metrics}
+We assess the performance of our classification pipeline 
+in terms of correctness and execution time.
+%
+Given the imbalanced nature of class distributions,  the 
+performance of  binary classifiers was measured by 
+F1 score, precision and recall, along with
+the standard accuracy metric. We discuss 
+these standard metrics in brief.
+
+Accuracy measures the percentage of instances 
+that are classified correctly and can 
+be represented by 
+\begin{equation}
+Accuracy = (TP + TN)/ (TP + TN + FP + FN)  \label{eqn:acc} 
+\end{equation}
+where TP, TN, FP and FN represents true positives, true negatives, false positives and false negatives respectively.
+
+Accuracy as an evaluation metric can be biased if one of the classes 
+(positive or negative)  has a larger number of examples than the other.   
+Precision measures the percentage of positive predictions that 
+were correct, 
+whereas recall measures the percentage of positive 
+examples that were correctly predicted (or retrieved). 
+We can represent Precision and Recall by \cite{Goutte}:
+
+\begin{equation}
+Precision = TP / (TP + FP). \label{eqn:prec}
+\end{equation}
+\begin{equation}
+Recall = TP / (TP +FN). \label{eqn:roc}
+\end{equation}
+
+The F1 score captures the trade offs between precision and recall in a
+single metric and is the harmonic mean of precision and recall \cite{Goutte}, given 
+by:
+\begin{equation}
+F1-Score = 2 * (Precision * Recall)/ (Precision + Recall). \label{eqn:f1}
+\end{equation}
+
+\subsection{Software and Hardware Details}
+We used the Argo computing cluster available at George Mason University. 
+%
+The representation generation phase using UCLUST and Kraken and and the classification phase
+were 
+run on one of the  compute nodes available on the cluster. The cluster is configured with 
+35 Dell C8220 Compute Nodes, each with dual 
+Intel Xeon E5-2670 (2.60GHz) 8 core CPUs, with 64 GB RAM. (Total Cores – 
+528 and 1056 total threads, RAM \textgreater 2TB)\cite{ORC}.
+
+Source codes for UCLUST \cite{Edgar10} and KRAKEN \cite{Wood14} were downloaded from 
+their respective websites\footnote{UCLUST: http://www.drive5.com/uclust/downloads1\_{}2\_{}22q.html     
+Kraken: https://ccb.jhu.edu/software/kraken/} and compiled on the Argo platform. 
+%
+Kraken aligns reads to an OTU database. The standard Kraken database is 160GB in size. Due to 
+computational limitations we used the custom, small sized 4GB
+database  in this feasibility study \cite{Kraken}.
+
+For the  SVM-based classification\cite{Joachims08}  we used the popular 
+SVM-Light \cite{Joachims08}  source code, which is publicly 
+available \footnote{http://svmlight.joachims.org/}.  The linear kernel was used
+and the regularization parameters were set to their default values. 
+
+
+
+\subsection{Experimental Protocol}
+
+For evaluating the performance of our binary phenotypic classifiers, we 
+split the patient samples into a training set containing 80\% of the 
+patients and the test set containing 20\% of the patient samples. Every fifth sample was placed in the test set, so the relative class sizes were roughly consistent between the training and test sets.
+We also performed leave-one-out cross validation (LOOCV). 
+
+In the next section, we discuss the accuracy of our 
+classifier with regards to predicting the clinical 
+phenotype of a given patient using 
+either the unsupervised 
+clustering representation with UCLUST or 
+supervised OTU representation 
+with Kraken. We present results for classifiers 
+distinguishing patients  in the ``Encephalopathy'' class versus
+the other classes, effectively 
+determining whether or not a patient had Encephalopathy 
+regardless of whether they had liver cirrhosis. We also 
+present pairwise one-versus-one classification results that 
+compared two phenotypes within the dataset, i.e.  Encephalopathy versus
+No Encephalopathy, Encephalopathy versus
+Control and No Encephalopathy versus Control.
+
+

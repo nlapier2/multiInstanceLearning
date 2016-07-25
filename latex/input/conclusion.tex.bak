@@ -1,0 +1,42 @@
+%Conclusion
+
+We have developed a computational pipeline 
+to predict clinical phenotypes using metagenomic sequence data with intermediate 
+OTU representation using state-of-the-art binning and taxonomic profiling approaches. 
+%
+%
+Our results showed that 
+the UCLUST representation 
+achieved 85.64\% accuracy and 70.46\% F1-Score. Kraken performed less well, with 80.66\% accuracy and 53.34\% F1-Score. 
+For the 1.3 million sequence reads UCLUST ran in 180 seconds and Kraken for 120 seconds, indicating that both performed efficiently enough to feasibly use them with larger data sets.
+
+Based on UCLUST's superior performance, we used it to test three one-versus-one clinical phenotype classifiers,
+which generally produced stronger results than our original 
+comparison of the "Encephalopathy" class versus all other 
+classes. In particular, the classification of 
+"Encephalopathy" versus "Control" performed the best. This intuitively seems reasonable. Whereas, 
+the original comparison requires making distinctions between 
+those who have both encephalopathy and liver cirrhosis, those who have only the latter, and those who have neither, this pairwise comparison focuses on the simpler distinction 
+between patients who have both diseases and those who have neither. The other two pairwise comparisons also similarly simplify the classification problem.
+
+
+Based on our results demonstrating over 85\% accuracy, we believe the use of machine learning
+classification techniques to predict clinical phenotypes 
+merits continued research. There are many potential practical 
+uses of such technology for medical purposes, including 
+diagnostics and research into diseases and their 
+relationship with the human microbiome.
+
+\subsection{Future Work}
+
+Kraken is developed to be fast, accurate, and precise, all 
+of which we found to be true. However, it was not as accurate as a representation in comparison to 
+UCLUST. Kraken's poor performance was mostly due to  poor matching of $k$-mers in the reads to taxonomic classes in its database. Often, a read was only a one or two percent match to the class that Kraken labelled it as. This 
+may be due in part to database constraints. Kraken's full database is very computationally expensive to download and build. We 
+used a 4 GB custom subset of the full 160 GB database. It is 
+possible that the full database would have led to improved performance, and this is 
+a future research question.
+
+There is also an opportunity to use a much larger set of sequence reads. Having more training examples for the classifier would  lead to a stronger and more generalizable model for predicting clinical phenotypes. The use of other annotation and classification methods could also be explored. Finally, a limited set of feature selection and scaling techniques were explored, and future research could investigate further how such techniques could be used to improve predictions.
+
+

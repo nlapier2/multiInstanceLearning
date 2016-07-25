@@ -9,21 +9,29 @@ K = 41 or K = 51 with read size limited to 100 seemed to work best. I chose K = 
 
 --------------------------------
 
-- Same data as paper
-	- Easiest way is to get 12 hour limit revoked, then use bulk downloader to get fastq files
-	- Then perform rest of pipeline (Assembly --> Combine --> UCLUST --> Feature Extraction --> Classification)
+GeneMark
+- in progress for both all and out1
 
-- GeneMark
-	- Install
-	- Run on combined assembled file
-	- Then run rest of pipeline
+One read per cluster GICF
+- write script to go through uclust file and fasta file, writing necessary lines to a new file
+- iterate through each line in uclust and fasta files
+- for each line in clustering file:
+	- if the patient is new, create a list for that patient
+	- if the cluster number is longer than length of list, or that list index is 0, write the fasta line to the new file
+		- if list length was shorter than cluster number, lengthen list to that length
+		- set value of that list index to 1
+	- otherwise, list index value was 1, thus do not write the FASTA line to the file
 
-- SVM-light with k-mers?
-	-Not sure if this can be done
+Explicit association of clusters to labels with SVM-light
+- take the prediction file and augment with explicit association with cluster labels and an example
+- maybe augment with genemark results to predict genes that are most indicative of having or not having disease
 
-- Group to instance cost function (GICF)
-	- Precompute pairwise similarities
-	- Try without pairwise similarities
-	- Use numpy vector and matrix computation methods
-	- Fix issue with entire group label prediction being derived from mini batch reads
+Start writing my paper
+- clarify direction of paper with rangwala
+- start with parts of introduction and related work sections from class paper, maybe some of methods (UCLUST, SVM-light, etc)
+- remember matplotlib for charts: http://matplotlib.org/
+
+Same data as MGWAS paper?
+- can start downloading other patients with bulk downloader, but still not all data is available
+- may have to ask paper authors where to find all data
 

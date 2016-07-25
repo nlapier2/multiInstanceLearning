@@ -1,0 +1,178 @@
+This is BibTeX, Version 0.99d (TeX Live 2014)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: paper.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: ./bib/HadoopClustering.bib
+Database file #2: ./bib/all.bib
+Database file #3: ./bib/RangwalaRefs.bib
+Database file #4: ./bib/Rangwala_CV.bib
+Database file #5: ./bib/anveshi.bib
+Repeated entry---line 1288 of file ./bib/anveshi.bib
+ : @article{Qin:2010fk
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 2291 of file ./bib/anveshi.bib
+ : @article{:mo
+ :             ,
+I'm skipping whatever remains of this entry
+Database file #6: ./bib/disease_state_classifier.bib
+Database file #7: ./bib/hmp.bib
+Repeated entry---line 249 of file ./bib/hmp.bib
+ : @article{Costello12182009
+ :                          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 286 of file ./bib/hmp.bib
+ : @article{Cole2005
+ :                  ,
+I'm skipping whatever remains of this entry
+"}" immediately follows an entry type---line 307 of file ./bib/hmp.bib
+ :  is rdpstaff@msu.edu.
+ :                      },
+I'm skipping whatever remains of this entry
+"}" immediately follows an entry type---line 310 of file ./bib/hmp.bib
+ :  MI 48824-4320, USA. rdpstaff@msu.edu
+ :                                      },
+I'm skipping whatever remains of this entry
+Repeated entry---line 321 of file ./bib/hmp.bib
+ : @article{Cole2007
+ :                  ,
+I'm skipping whatever remains of this entry
+"}" immediately follows an entry type---line 345 of file ./bib/hmp.bib
+ :  State University, East Lansing, MI 48824-4320, USA. colej@msu.edu
+ :                                                                   },
+I'm skipping whatever remains of this entry
+Repeated entry---line 355 of file ./bib/hmp.bib
+ : @article{Cole2008
+ :                  ,
+I'm skipping whatever remains of this entry
+Database file #8: ./bib/lsh.bib
+Repeated entry---line 751 of file ./bib/lsh.bib
+ : @article{Li01072006
+ :                    ,
+I'm skipping whatever remains of this entry
+"}" immediately follows an entry type---line 767 of file ./bib/lsh.bib
+ : abstract ={Motivation: In 2001 and 2002, we published two papers (Bioinformatics, 17, 282–283, Bioinformatics, 18, 77–82) describing an ultrafast protein sequence clustering program called cd-hit. This program can efficiently cluster a huge protein database with millions of sequences. However, the applications of the underlying algorithm are not limited to only protein sequences clustering, here we present several new programs using the same algorithm including cd-hit-2d, cd-hit-est and cd-hit-est-2d. Cd-hit-2d compares two protein datasets and reports similar matches between them; cd-hit-est clusters a DNA/RNA sequence database and cd-hit-est-2d compares two nucleotide datasets. All these programs can handle huge datasets with millions of sequences and can be hundreds of times faster than methods based on the popular sequence comparison and database search tools, such as BLAST.Availability:http://cd-hit.orgContact:liwz@sdsc.edu
+ :                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               },
+I'm skipping whatever remains of this entry
+Repeated entry---line 779 of file ./bib/lsh.bib
+ : @article{Hao01032011
+ :                     ,
+I'm skipping whatever remains of this entry
+I was expecting a `{' or a `('---line 795 of file ./bib/lsh.bib
+ : abstract ={Motivation: With the advancements of next-generation sequencing technology, it is now possible to study samples directly obtained from the environment. Particularly, 16S rRNA gene sequences have been frequently used to profile the diversity of organisms in a sample. However, such studies are still taxed to determine both the number of operational taxonomic units (OTUs) and their relative abundance in a sample.Results: To address these challenges, we propose an unsupervised Bayesian clustering method termed Clustering 16S rRNA for OTU Prediction (CROP). CROP can find clusters based on the natural organization of data without setting a hard cut-off threshold (3%/5%) as required by hierarchical clustering methods. By applying our method to several datasets, we demonstrate that CROP is robust against sequencing errors and that it produces more accurate results than conventional hierarchical clustering methods.Availability and Implementation: Source code freely available at the following URL: http://code.google.com/p/crop-tingchenlab/, implemented in C++ and supported on Linux and MS Windows.Contact: tingchen@usc.edusupplementary 
+ :                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   information: Supplementary data are available at Bioinformatics online.},
+I'm skipping whatever remains of this entry
+Database file #9: ./bib/mgenomics.bib
+Repeated entry---line 323 of file ./bib/mgenomics.bib
+ : @article{backhed_host-bacterial_2005
+ :                                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 336 of file ./bib/mgenomics.bib
+ : @article{turnbaugh_human_2007
+ :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 352 of file ./bib/mgenomics.bib
+ : @article{phymm
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 788 of file ./bib/mgenomics.bib
+ : @article{Woese97
+ :                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 801 of file ./bib/mgenomics.bib
+ : @article{ZongzhiLiu10012008
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 818 of file ./bib/mgenomics.bib
+ : @article{greengenes
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 835 of file ./bib/mgenomics.bib
+ : @article{gaas
+ :              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 865 of file ./bib/mgenomics.bib
+ :  @article{marta
+ :                ,
+I'm skipping whatever remains of this entry
+"," immediately follows an entry type---line 874 of file ./bib/mgenomics.bib
+ :  abstract = {Motivation: We have created a suite of Java-based software to better provide taxonomic assignments to DNA sequences. We anticipate that the program will be useful for protistologists, virologists, mycologists and other microbial ecologists. The program relies on NCBI utilities including the BLAST software and Taxonomy database and is easily manipulated at the command-line to specify a BLAST candidate's query-coverage or percent-identity requirements; other options include the ability to set minimal consensus-requirements (%) for each of the eight major taxonomic ranks (Domain, Kingdom, Phylum, ...) and whether to consider lower scoring candidates when the top-hit lacks taxonomic classification.  Availability: http://bergelson.uchicago.edu/software/marta  Contact: mhorton@uchicago.edu
+ :                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        , jbergels@midway.uchicago.edu
+I'm skipping whatever remains of this entry
+I was expecting a `{' or a `('---line 875 of file ./bib/mgenomics.bib
+ :  
+ :  },
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 913 of file ./bib/mgenomics.bib
+ : @article{mgrast
+ :                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 937 of file ./bib/mgenomics.bib
+ : @article{megan
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 949 of file ./bib/mgenomics.bib
+ : @article{tetra
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 961 of file ./bib/mgenomics.bib
+ : @article{McHardy2007
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1002 of file ./bib/mgenomics.bib
+ :  @article{Tringe04222005
+ :                         ,
+I'm skipping whatever remains of this entry
+-- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+
+Done.
+You've used 39 entries,
+            4039 wiz_defined-function locations,
+            1187 strings with 18876 characters,
+and the built_in function-call counts, 34206 in all, are:
+= -- 2776
+> -- 1010
+< -- 307
++ -- 552
+- -- 189
+* -- 1711
+:= -- 5036
+add.period$ -- 75
+call.type$ -- 39
+change.case$ -- 39
+chr.to.int$ -- 660
+cite$ -- 39
+duplicate$ -- 2387
+empty$ -- 2453
+format.name$ -- 219
+if$ -- 7874
+int.to.chr$ -- 0
+int.to.str$ -- 39
+missing$ -- 451
+newline$ -- 176
+num.names$ -- 34
+pop$ -- 1018
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 2619
+stack$ -- 0
+substring$ -- 1611
+swap$ -- 2121
+text.length$ -- 87
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 39
+warning$ -- 0
+while$ -- 136
+width$ -- 41
+write$ -- 460
+(There were 28 error messages)
