@@ -29,36 +29,7 @@ def logistic(w, x):     # implementation of the classifier for the instances; cu
         return 1
     if dot < -709:   # prevent math overflows
         return -1
-    # print 1 / (1 + math.exp(-dot))
     return 1 / (1 + math.exp(-dot))
-    # print ((1 / (1 + math.exp(-dot))) - 0.5) * 2
-    # return ((1 / (1 + math.exp(-dot))) - 0.5) * 2  # return logistic regression, except from -1 to 1
-
-
-def derivative_logistic(w, x):   # derivative of logistic regression function
-    dot = w[0]     # dot product between weights and x, computed in for loop below
-    for i in range(len(x)):
-        dot += w[i+1] * x[i]
-    if dot > 20 or dot < -20:    # prevent math overflows
-        return 0
-    e = math.exp(dot)   # e ^ (dot product of w and x)
-    norm = 0.0        # norm of vector x times scalar e, calculated below
-    for k in range(len(x)):
-        norm += (x[k] * e) ** 2
-    norm = math.sqrt(norm)
-    value = math.fabs(norm / ((1 + e) ** 2))    # value for derivative of logistic function
-    return ((1 / (value + 1)) - 0.5) * 2    # normalized result
-
-
-def validate_logistic(w, x):
-    dot = w[0]     # dot product between weights and x, computed in for loop below
-    for i in range(len(x)):
-        dot += w[i+1]*x[i]
-    if dot > 20:    # prevent math overflows
-        return 1
-    if dot < -20:   # prevent math overflows
-        return 0
-    return ((1 / (1 + math.exp(-dot))) - 0.5) * 2  # return logistic regression, except from -1 to 1
 
 
 def label_penalty(predicted, actual):   # non-negative penalty on difference between prediction & true label for group
@@ -73,18 +44,6 @@ def predict_label(group, instance_labels):
     return total / len(group)   # return average label value in the group
 
 
-'''
-def predict_label (group, instance_labels):  # predict label, top-K version
-    # k = 0.2
-    k = 0.2
-    total = 0.0
-    x = sort (instance_labels).desc()
-    for i in range(0.2 * len (instance_labels)):
-        total += instance_labels[i]
-    return total / (0.2 * len (instance_labels))
-'''
-
-
 def d_group_penalty(group, instance_labels, d_instance_labels, group_label):
     # calculate group penalty in derivative of cost function
     total1 = 0.0    # the part of the group penalty using the actual group labels
@@ -92,8 +51,6 @@ def d_group_penalty(group, instance_labels, d_instance_labels, group_label):
     for i in range(len(group)):
         total1 += instance_labels[i]
         total2 += d_instance_labels[i]
-        # print instance_labels[i]
-        # print d_instance_labels[i]
     total1 = 2.0 * ((total1 / len(group)) - group_label)
     total2 /= len(group)
     return total1 * total2
@@ -103,7 +60,6 @@ def cost(num_instances, w, data, l, group_labels):
     # calculate cost function as defined in GICF paper
     instance_cost = 0.0     # first part of cost function, based on instance differences
     group_cost = 0.0    # second part of cost function, based on group labels
-    # l = float(len(data))  # "lambda" in GICF cost function, to be changed later
 
     instance_labels = []
     for i in range(len(data)):
@@ -133,7 +89,6 @@ def derivative_cost(num_instances, w, data, l, group_labels):      # derivative 
         for j in range(len(data[i])):
             instance_labels[i].append(logistic(w, data[i][j]))
             d_instance_labels[i].append(logistic(w, data[i][j]) * (1 - logistic(w, data[i][j])) * np.array(data[i][j]))
-            # d_instance_labels[i].append(derivative_logistic(w, data[i][j]))
 
     instance_cost = np.array([0.0 for i in range(1, len(w))])  # 1st part of cost function: instance differences
     group_cost = 0      # second part of cost function, based on group labels
@@ -150,8 +105,6 @@ def derivative_cost(num_instances, w, data, l, group_labels):      # derivative 
     instance_cost /= (float(num_instances) ** 2)   # average out instance cost across all instance pairs
     group_cost *= (l / float(len(data)))    # balance group cost using lambda parameter
     return instance_cost + group_cost
-    #     d_cost.append(instance_cost + group_cost)
-    # return d_cost
 
 
 def descent(verbose, rate, l, top_k, batch_size, iterations, w, data):
@@ -159,17 +112,14 @@ def descent(verbose, rate, l, top_k, batch_size, iterations, w, data):
     # randomly select a small subset of instances from data to be used as mini batch
     if verbose:
         print "Entering gradient descent..."
-    threshold = 0    # when slope crosses this threshold, stop
-    # final_cost = 0  # the cost function value when gradient descent has finished
     update_vector = []  # this is used to track the previous update vector, used for momentum
-    momentum = 0.9      # constance multiplied by the previous update vector for momentum
+    momentum = 0.5      # constance multiplied by the previous update vector for momentum
     for i in range(len(w)):
         update_vector.append(0)  # initialize to same length as weight vector, with all 0s
     for num in range(iterations):
         if verbose:
             print "Gradient descent, instance " + str(num + 1)
         cost_data = []  # the data to be given to the cost function
-        # average_instance = []   # the average value of the instances in cost_data, used for weight adjustment
         labels = []     # group labels
         instances = 0.0       # total number of instances used
         if top_k >= 0.99:
@@ -177,8 +127,6 @@ def descent(verbose, rate, l, top_k, batch_size, iterations, w, data):
         else:  # randomly select batch_size% of reads for mini batch, from top_k
             chance = 1 - ((1 / (100 * (1 - top_k))) * (batch_size / 0.01))
         d = open(data, 'r')
-        # for i in range(len(w) - 1):
-        #     average_instance.append(0)  # initialize to same length as instance, with all 0s
         for line in d:
             if len(line) < 5:   # deals with blank lines in files
                 continue
@@ -195,45 +143,20 @@ def descent(verbose, rate, l, top_k, batch_size, iterations, w, data):
                 if random.random() > chance:
                     cost_data[len(labels)-1].append(group[i])   # append appropriate instance to mini batch dataset
                     instances += 1.0
-        #             for k in range(len(group[i])):
-        #                 average_instance[k] += group[i][k]      # add this instance to our total
-        # for i in range(len(average_instance)):
-        #     average_instance[i] /= instances  # take the average of the instance totals
         d.close()
 
         # find value of derivative of cost function using weights w, then use learning rate to find adjustment amount
         delta_j = rate * derivative_cost(instances, w, cost_data, l, labels)
-        # delta_j = derivative_cost(instances, w, cost_data, l, labels)
-        # delta_j = rate * cost(instances, w, cost_data, l, labels)
         # once slope becomes non-negative (or barely negative), stop; or if we exceed number of iterations
         print "\nDelta J: " + str(delta_j / rate)
         print "\nRate: " + str(rate)
-        print "\nThreshold: " + str(threshold)
-        # if verbose:
-        #     print "Slopes of cost function calculated: " + str(delta_j)
 
-        '''if math.fabs(delta_j / rate) <= threshold:
-            final_cost = cost(instances, w, cost_data, l, labels)
-            break'''
         # adjust weights according to slope of cost function
         for i in range(1, len(w)):
             adjustment = delta_j[i-1] + (update_vector[i] * momentum)
             w[i] -= adjustment
             update_vector[i] = adjustment
         print "\nCost: " + str(cost(instances, w, cost_data, l, labels)) + '\n'
-        '''w[0] -= delta_j + (update_vector[0] * momentum)
-        for i in range(1, len(w)):
-            # adjust weights using delta_j, instance values, momentum
-            adjustment = delta_j + (update_vector[i] * momentum)
-            w[i+1] -= adjustment
-            update_vector[i] = adjustment   # update the update vector for future momentum'''
-        # for [w0 w1 w2] & [x1 x2], w0 = w0 - rate*deltaJ; w1 = w1 - rate*x1*deltaJ; w2 = w2 - rate*x2*deltaJ
-        '''if num == iterations - 1:   # we are at the end of the loop
-            final_cost = cost(instances, w, cost_data, l, labels)
-
-    if verbose:
-        print "Final cost calculated: " + str(final_cost)
-        # print "With weights: " + str(w)'''
     if verbose:
         print "Gradient descent final weights: "
         print w
@@ -261,10 +184,6 @@ def validate(verbose, w, data, k):     # apply the weights determined by gradien
         for i in range(top_k, len(group)):
             total += logistic(w, group[i])
         total /= (len(group) - top_k)
-        # for instance in group:
-        #     total += logistic(w, instance)
-        #     total += validate_logistic(w, instance)
-        # total /= len(group)     # group label prediction is average of instance label predictions
         predicted_actual.append([total, label])     # predicted vs actual label
     d.close()
 
@@ -304,9 +223,6 @@ def validate(verbose, w, data, k):     # apply the weights determined by gradien
     else:
         f1_score = 2.0 * precision * tpr_recall / (precision + tpr_recall)
     if verbose:
-        '''print "[Predicted, Actual]"
-        for line in predicted_actual:
-            print str(line)'''
         print "Accuracy: " + str(accuracy)
         print "Precision and recall: " + str(precision) + " and " + str(tpr_recall)
         print "F1 Score: " + str(f1_score)
@@ -442,8 +358,6 @@ def main():
     infile.close()
 
     grid_search(args.verbose, w, args.infile, args.train, args.test, args.results, limit)
-    # grid_search(args.verbose, w, labels, data)
-
     print "Program execution time: " + str(time.time() - start) + " seconds"
 
 

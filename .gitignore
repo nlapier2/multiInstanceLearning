@@ -2,4 +2,5 @@
 /cirrhosisTests/vectors
 /cirrhosisTests/cirrhosis.*
 /cirrhosisTests/uclust
-/cirrhosisTests/src/misvm
+/cirrhosisTests/src
+/temp.txt~
