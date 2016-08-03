@@ -1,70 +1,11 @@
 %Intro
 
-The human body is one of the 
-most densely populated microbial 
-environments in the world, with human host cells interacting 
-with  more than $10^{14}$ microbial cells. Collectively, the human 
-and microbial cells are referred to as the 
-\emph{human microbiome} \cite{turnbaugh_human_2007,backhed_host-bacterial_2005}. 
-%
-%
-%
-Biotechnological  advances 
-can 
-interrogate the microbial 
-communities present across three primary dimensions: (i) clinically different
-patients like those suffering from liver disease versus healthy controls (ii) different
-patient sites and tissues like skin and the gastrointestinal tract 
-and (iii) across different patient visits~\cite{Costello12182009,Qin:2010fk} and before/after treatment. 
-%
-Methods to query this  microbial
-data include DNA sequencing of 
-specific marker genes such as the 16S rRNA marker genes~\cite{Woese97}, 
-sequencing
-the entire pool of microbial genomes at once (metagenomics), or 
-sequencing the mixture of 
-expressed gene transcripts (metatranscriptomes).
-%
-These sequencing methods along 
-with proteomics and mass spectrometry
-allow us to study the
-biotransformations caused by the microbial communities. 
-%
-Several researchers and clinicians have embarked on
-studies of the pathogenic and clinical 
-role played by the microbiome with respect to
-human health and disease conditions.
+The human body contains one of the most dense and diverse microbial environments in the world. The human and microbial cells are collectively referred to as the \emph{human microbiome} \cite{turnbaugh_human_2007,backhed_host-bacterial_2005}. Advances in biotechnology have allowed scientists to directly interrogate the human microbiome, particularly the development of high throughput sequencing technologies, which generate massive amounts of biological data. In recent years, improving capabilities in data science have allowed for the study of \emph{metagenomics}, which involves sequencing the entire pool of microbial genomes at once. This data is usually gathered via \emph{shotgun sequencing}, which generates a number of short \emph{reads} containing bits of genomic data from the microbes of the host environment \cite{messing81}. These reads, represented as strings of nucleotides, represent only small parts of the microbe's full genome, and are not ordered in any way, which presents several challenges that will be discussed further in the paper. Metagenomics has several advantages: (i) microbes are now understood to be the underlying cause of many human diseases and are also critical to many chemical processes and overall health; (ii) it is believed that most microbes have not been laboratory-cultured and thus remain unknown; (iii) whereas other methods such as 16S rRNA analysis are mainly useful for predicting the species of microbes (phylogeny), metagenomics contains other critical information from the microbial genomes that determine how these microbes function and affect diseases and chemical processes \cite{handelsman04}. Thus, studying microbial metagenomics is an effective way to predict and model human disease, also known as clinical \emph{phenotype}.
 
+In this study, we develop an efficient classifier that predicts whether or not a patient has a disease based on their microbiome. This can be viewed as a Multiple Instance Learning (MIL) problem, in which we have several \emph{bags} of instances, and we have labels for the bags, but not for each instance within them. In this case, we have a patient (bag) and a label for each patient (whether or not they have a disease), but no labels for each patient's sequence reads (instances). Specifically, we use a Distance-based Bag of Words (D-BoW) method, discussed further in the Background section, which has been shown to be among the most effective and efficient MIL methods \cite{amores13}. MIL has been studied in many contexts, but it has rarely if ever been studied in the context of predicting clinical phenotype based on metagenomic data from the microbiome. However, since datasets in this domains frequently have patient-level labels but almost never have instance-level labels, this is a well-suited domain for multiple instance learning. 
 
-In this study, we specifically developed
-a computational method to predict the clinical phenotype
-of a patient i.e., a pipeline to 
-predict whether or not the patient has a specific type and level of  a disease.  This 
-pipeline
-is able to make the phenotypic
-predictions from input metagenomic sequences using post-processing 
-with unsupervised binning approaches (clustering) or  supervised search based 
-taxa profiling approaches.  This method is designed to 
-run quickly and produce accurate and sensitive 
-results. We  compare and evaluate two state-of-the-art 
-approaches, one for binning (UCLUST \cite{Edgar10}) and one for taxonomic profiling (KRAKEN \cite{Wood14}) 
-to represent the input metagenome sequences as features for classification. The classification
-formulation uses a binary support vector machine based classifier \cite{vap95}. We also 
-evaluate the performance of preliminary 
-feature scaling and engineering  for classification purposes. 
+We used data from a Metagenome-Wide Association Study (MGWAS), which compares microbial metagenomic data between many patients with or without a given phenotype. This data is very large (hundreds of gigabytes) and high-dimensional (thousands of dimensions). Additionally, due to the nature of shotgun sequencing, most of the reads are not useful by themselves, and must first be assembled. \emph{Assembly} is the process of finding pairs of reads in which the end of one read overlaps with the beginning of another, signifying that they are probably contiguous reads from the same genome, and combining them. This process is repeated as much as possible to form long strings called \emph{contigs}. Assembly also reduces the size and dimensionality of the data by discarding reads that cannot be assembled successfully. Most of the discarded reads would not be particularly useful anyway, since the assembly process could not establish their relationship to other reads. The reduction in data size also allows for clustering, which is not feasible for massive datasets. Clustering uses string similarity measures to group similar reads into "clusters", which is a way of identifying which species of microbe each read corresponds to. The alternative, "aligning" the reads with known genomes, is both time-inefficient and impractical for metagenomics, since many of the involved microbes have not yet had their genomes sequenced. From the clustering output, we extract feature vectors, which are then fed into a standard Support Vector Machine (SVM) classifier. 
 
-We specifically evaluated our approach on 
-microbiome samples of patients suffering from hepatic encephalopathy due 
-to liver cirrhosis. 
-%
-We found that 
-UCLUST performed better than Kraken on our data 
-set, although Kraken was faster. We were also able to 
-engineer the data to improve the accuracy of the classifier. Our 
-pipeline had 85.64\% accuracy using UCLUST and 80.66\% accuracy 
-using Kraken. 
+Thus, the entire pipeline consists of assembling the reads of each patient, combining the resulting contigs from each patient into a single file, clustering the contigs, extracting features from the clustering output, and performing classification with the SVM. This process is explained in further detail in the methods section. We then compare the results of our classifier against the classifier used in the MGWAS study from which we derived our data. We show that our classifier shows significantly improved performance. This is discusses further in the Experimental Results section.
 
-%For our data set with 1.3 million reads, UCLUST took 
-%180 seconds to run and Kraken took 120 seconds. 
-%
-
+The rest of the paper is organized as follows. Section 2 presents relevant Background information on  Multiple Instance Learning. Section 3 presents the methods we used in the creation of our pipeline. Section 4 presents Materials, such as dataset, hardware, and software descriptions. Section 5 presents our results, and Section 6 presents our conclusions.

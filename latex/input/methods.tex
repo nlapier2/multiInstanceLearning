@@ -1,124 +1,64 @@
 %methods
 
-\subsection{Overview}
-
-Figure \ref{fig1} provides an overview of the 
-developed computational pipeline. 
-%
-We obtain 16S metagenomic sequence reads from patients who 
-had encephalopathy and liver cirrhosis, no encephalopathy but liver cirrhosis, and controls (with neither phenotype). The input sequence 
-reads are annotated using a taxonomic profiling approach (Kraken) or 
-an unsupervised binning approach (UCLUST). The output of this annotation phase 
-features are generated, which are passed on the binary support vector machine 
-classifier (SVMs).  We used the  svm-light implementation \cite{Joachims08}  
-to perform the classification of whether or not a patient 
-had a clinical phenotype. We compared the classification performance of the 
-SVM classifier with the two intermediate sequence representations obtained from 
-UCLUST and Kraken. We also applied feature scaling and 
-selection techniques to improve the classification results.
-
 \begin{figure*}[t]
-\begin{center}
-\caption{Pipeline Overview. \label{fig1}}
-\includegraphics[scale=0.7]{./diagrams/concept}
-\end{center}
+\centering
+\includegraphics[scale=0.5]{./mil-metagenomics-pipeline.png}
+\caption{This diagram illustrates the entire pipeline. Patient files with FASTQ metagenomic reads are individually assembled using SOAPdenovo2, then combined into one file and clustered with UCLUST. We extract features according to the D-BoW method, and classify the patients using the feature vectors with svm-light.} \label{pipeline}
 \end{figure*}
 
-\subsection{Unsupervised Clustering using UCLUST}
-\label{uclustmethods}
+\subsection{Overview}
 
-In this work we evaluate the use of an unsupervised approach 
-for representing our input metagenome sequence reads. Specifically, we 
-  use UCLUST \cite{edgar2010search} due to its superior performance in terms 
-  of run time and accuracy.
-%
-%
-%
-UCLUST \cite{edgar2010search} follows a greedy, iterative clustering approach. As a first 
-step, this approach identifies exact matches of fixed length between sequence pairs known 
-as seeds. These seeds are then extended by allowing for a few mismatches and/or gaps between 
-the aligned pairs. Seeds scoring above a certain threshold are chosen as high segment pairs (HSPs)  and 
-used for further processing. As such, the step eliminates a lot of pairwise comparisons. 
+As mentioned in the Introduction, our pipeline involves a number of steps, which serve a variety of purposes. For each patient file, we assembled the sequence reads, which served the dual purpose of generating larger contigs that contain more functional biological information and reducing the dataset size by discarding reads that could not be assembled. The reads that could not be assembled were unlikely to be useful anyway, since they could not be assembled with other reads into useful contigs. The clustering step assigns the contigs to certain clusters, which represent functionally similar microbes, and thus establish classes of instances that can be used as features for the classifier. We  applied our feature extraction method, which uses the D-BoW method of measuring the closest distance from a patient's reads to each cluster center. Finally, we used a standard SVM classifier to predict patient phenotype, and used several metrics to assess its accuracy. We used the SVM's decision boundary to infer information about which clusters of instances were most or least indicative of the phenotype, discussed further in the results section. Aside from the patient labels, this process is entirely de novo, and does not consult any external databases. An illustration of this pipeline can be seen in Figure \ref{pipeline} on page \pageref{pipeline}.
 
-Then UCLUST follows an 
-incremental approach for assigning the input sequences to the different bins. 
-%
-%
-The clustering solution is initialized as an empty list. Sequences are then 
-incrementally added to the clusters existing within the list. 
-%
-Each unassigned input sequence is compared to the cluster representatives within the list using 
-the fast indexing search technique that uses the HSPs. If a match is found with one of the 
-cluster representatives, then that sequence is assigned to that particular cluster or the 
-input sequence forms a new cluster. 
-%
-UCLUST ensures
-that the cluster representatives are sequences with the largest length. 
+\subsection{Assembly with SOAPdenovo2}
 
-\subsection{Supervised Taxonomic Identification using Kraken}
+For our assembly step, we used SOAPdenovo2 \cite{luo12}, which is a de novo metagenome assembly tool. This tool was also used for assembly in the MGWAS study that our data came from. We use this method in order to compare ourselves with the MGWAS study, and because Soapdenovo2 has been proven to be one of the fastest assemblers\cite{peng12}. We tested a number of different combinations of parameters, and found that the best results came when we cut reads off after 100 base pairs (reads were 180 base pairs long originally) and used a k-mer size of 51. The patient files needed to be assembled separately, in order to avoid assembling reads from different patients together. Conversely, all contigs need to be in one file for clustering, to avoid inconsistent cluster assignments between different patients. Thus, we combined the contigs from each assembled patient file into a single for clustering.
 
-We also evaluate the use of a search based 
-approach to taxonomically label our sequence reads. We use 
-Kraken for this, due to its strong performance in terms of run time 
-and precision. Kraken finds $k$-mers in an input 
-sequence read and queries a database of OTUs. It then associates the 
-read with the lowest common ancestor (LCA) of the genomes that contains $k$-mers from the read \cite{Kraken}. In order to reduce 
-the number of false positives, Kraken does not classify reads for 
-which it does not find sufficient evidence of any match.
+\subsection{Clustering with UCLUST}
+
+We used UCLUST \cite{Edgar10}, which has been shown to be among the simplest, fastest, and most effective clustering methods \cite{bonder090112, sun042711}. Since our contigs were not ordered, we used the usersort option, and we set the sequence match id to 40\%, which means that two reads needed to have 40\% of the same nucleotides to be in the same cluster. For instance, between two strings of length 100, at least 40 places in each of those strings would have to contain the same nucleotide (represented as A, T, G, or C). New contigs that did not match at least 40\% to any of the existing contigs would form the seed of a new cluster. Again, this value of 40\% was found to be the best value based on our experiments with this dataset.
+
+\subsection{Feature Extraction}
+
+Our feature extraction operation followed the D-BoW method. For each patient, we initialized a vector with length equal to the number of clusters. The value for each place in that patient's feature vector would then be set to the closest percentage match (0.4 to 1) of the reads from that patient to the relevant cluster seed. For instance, if there are three clusters of reads, and patient A has the cluster seed for cluster 1, no reads from cluster 2, and a read with 70\% match to cluster 3, their feature vector would be~~A = [1.0~~~0.0~~~0.7]. This is illustrated in Figure \ref{pipeline}.
+
+\subsection{Classification and Evaluation Metrics}
+
+We performed classification with a standard SVM classifier using the generated feature vectors; in this case, we used svm-light \cite{joachims08}. The choice of classifier is not very important for D-BoW methods \cite{amores13}.
 
 
-This approach is designed to perform quickly and with 
-high precision. However, it also involves downloading and building 
-a large database to query. It is often infeasible to download and 
-build the database in its entirety, so a smaller custom  
-subset of the database is available for testing 
-purposes. We used this 
-subset of the entire database in this study (referred to as kraken-light).
+We can assess the success of our classifier in several ways. The simplest measure, accuracy, measures the percentage of instances 
+that are classified correctly, represented by 
+\begin{equation}
+Accuracy = (TP + TN)/ (TP + TN + FP + FN)  \label{eqn:acc} 
+\end{equation}
+where TP, TN, FP and FN represents true positives, true negatives, false positives and false negatives respectively.
 
+Accuracy as an evaluation metric can be biased if one of the classes 
+(positive or negative)  has a larger number of examples than the other.   
+Precision measures the percentage of positive predictions that 
+were correct, 
+whereas recall measures the percentage of positive 
+examples that were correctly predicted (or retrieved). 
+We can represent Precision and Recall as:
 
-\subsection{Classification using Support Vector Machines (SVMs)}
+\begin{equation}
+Precision = TP / (TP + FP). \label{eqn:prec}
+\end{equation}
+\begin{equation}
+Recall = TP / (TP +FN). \label{eqn:roc}
+\end{equation}
 
-Support Vector Machines (SVMs) \cite{vap95} are 
-one of the most powerful and versatile binary classifiers used 
-in myriad applications. 
-%
-For a  binary classification problem, the support 
-vector machine (SVM) \cite{vap95} framework 
-maximizes the separation between the two classes.
-%
+The F1 score captures the trade-offs between precision and recall in a
+single metric and is the harmonic mean of precision and recall, given by:
+\begin{equation}
+F1-Score = 2 * (Precision * Recall)/ (Precision + Recall). \label{eqn:f1}
+\end{equation}
 
-Given an input set of positive training instances and 
-negative training instances, the SVM classifier learns a 
-mathematical function $f$  that maximizes the separation between 
-the given positive and negative training instances. The function $f$ will then be able to predict whether a new instance (considered a test instance) should have a positive or negative class label.
-%
-For our formulation we use SVMs to make clinical phenotype prediction for each 
-patient sample 
-based on their  input metagenome sequence samples represented with their 
-clustering or taxa membership features. 
-
-For all the available microbiome samples,  we have a set of reads processed via UCLUST or Kraken. 
-%
-Each patient is associated with a vector that is used by the SVM to help build $f$. Each row in the vector, called a feature, corresponds to a certain species, and the value for that row corresponds to how closely the read from the patient matched what the species was expected to look like. The exact process of assembling a feature vector for a 
-patient depends on which data representation is being used. For 
-UCLUST, we use each cluster seed 
-as a feature. For each input 
-sequence, we use the percentage match to its cluster seed as 
-the value for that feature and average the 
-sequence match if multiple reads from the metagenome samples 
-are assigned to the same cluster by UCLUST. 
-%
-For Kraken, we use the taxonomic label associated 
-with the read as the feature for the SVM. The percentage match of the 
-read to that label is used as the feature value. Similar 
-to UCLUST, we average the similarity score if multiple reads align to the 
-same taxonomic class label. 
-%
-Our feature selection process involves discarding Kraken's unlabeled 
-reads and UCLUST's clusters with only one read (singletons). 
-
-We used cross-validation and a held out set procedure (discussed in the next 
-Section) to assess the performance of SVM classification using UCLUST and Kraken
-as intermediate representations.
-
-
+Finally, we also use the Area Under Curve of the Receiver Operating Characteristic (AUC-ROC), which measures the performance of the classifier as the decision boundary threshold is moved. The SVM classifier generally predicts a group label to be negative if the predicted label for that group was less than 0 and predicts a group label to be positive otherwise. The AUC-ROC measures the performance of the classifier as the threshold is varied to more or less than 0. In effect, it measures how far off incorrect predictions were from being correct. AUC-ROC plots True Positive Rate versus False Positive Rate, given by:
+\begin{equation}
+True Positive Rate = Recall = TP / (TP + FN). \label{eqn:roc}
+\end{equation}
+\begin{equation}
+False Positive Rate = FP / (FP + TN). \label{eqn:prec}
+\end{equation}

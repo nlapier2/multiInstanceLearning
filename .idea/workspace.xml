@@ -24,37 +24,55 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="pipeline11.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test11/pipeline11.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.049113233" vertical-offset="0" max-vertical-offset="3798">
-              <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-              <folding>
-                <element signature="e#64#79#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="clusterRep.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/clusterRep.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
-              <caret line="12" column="113" selection-start-line="12" selection-start-column="113" selection-end-line="12" selection-end-column="113" />
-              <folding>
-                <element signature="e#50#65#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bulkNCBIDownload.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="bulkNCBIDownload.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bulkNCBIDownload.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="1188">
+            <state vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="1242">
               <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding>
                 <element signature="e#50#65#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bulkAssembler.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bulkAssembler.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2052">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pipelineT2D.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pipelineT2D.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5904">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gicf.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gicf.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.967742" vertical-offset="6274" max-vertical-offset="6948">
+              <caret line="369" column="0" selection-start-line="369" selection-start-column="0" selection-end-line="369" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="plotter.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plotter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="478" max-vertical-offset="3078">
+              <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+              <folding>
+                <element signature="e#49#64#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -70,13 +88,15 @@
         <option value="$PROJECT_DIR$/bBitMinwiseHashingSequenceClustering.py" />
         <option value="$PROJECT_DIR$/bulkNCBIDownload.py" />
         <option value="$PROJECT_DIR$/clusterRep.py" />
+        <option value="$PROJECT_DIR$/gicf.py" />
+        <option value="$PROJECT_DIR$/plotter.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="126" />
+    <option name="x" value="108" />
     <option name="y" value="64" />
-    <option name="width" value="1401" />
+    <option name="width" value="1402" />
     <option name="height" value="836" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -102,7 +122,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -121,40 +140,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="multiInstanceLearning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="multiInstanceLearning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test11" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="multiInstanceLearning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="multiInstanceLearning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ncbiData" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../miscResearchCode" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -292,11 +284,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="126" y="64" width="1401" height="836" extended-state="0" />
+    <frame x="108" y="64" width="1402" height="836" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24982156" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24964337" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -339,30 +331,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test11/pipeline11.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3798">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#64#79#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bulkNCBIDownload.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="954">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="e#50#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clusterRep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
-          <caret line="12" column="113" selection-start-line="12" selection-start-column="113" selection-end-line="12" selection-end-column="113" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1242">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#50#65#0" expanded="true" />
           </folding>
@@ -373,18 +345,49 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17189632" vertical-offset="1782" max-vertical-offset="3276">
           <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="109" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bulkAssembler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2052">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pipelineT2D.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5904">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plotter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="478" max-vertical-offset="3078">
+          <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
           <folding>
-            <element signature="e#47#62#0" expanded="false" />
+            <element signature="e#49#64#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test11/pipeline11.py">
+    <entry file="file://$PROJECT_DIR$/gicf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.049113233" vertical-offset="0" max-vertical-offset="3798">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+        <state vertical-scroll-proportion="-8.967742" vertical-offset="6274" max-vertical-offset="6948">
+          <caret line="369" column="0" selection-start-line="369" selection-start-column="0" selection-end-line="369" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bulkNCBIDownload.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="954">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
-            <element signature="e#64#79#0" expanded="true" />
+            <element signature="e#50#65#0" expanded="true" />
           </folding>
         </state>
       </provider>

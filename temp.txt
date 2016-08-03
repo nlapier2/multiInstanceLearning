@@ -1,7 +1,10 @@
+Original 60: SRR413*, where * is 556-557, 646-664, 666-682, 684-702, 757-759
+
+--------------------------------
+
 python pipelineT2D.py -v --dir /home/nathan/school/research/multiInstanceLearning/cirrhosisTests --input cirrhosis.fasta --map cirrhosis.map --positive Encephalopathy --negative 'No Encephalopathy' --cluster uclust --svm misvm --result_dir results/option4-misvm-encVSno/ --output resultFile --split -1 --kmer 4 --write small_vectors
 
 python gicf.py -v -i /home/nathan/school/research/multiInstanceLearning/cirrhosisTests/results/option4-misvm-encVSno/vectors
-
 
 --------------------------------
 
@@ -31,7 +34,7 @@ EXPERIMENTS for GICF (accuracy and F1 [maybe also runtime])
 Number of iterations: 1, 3, 5, 10, 20
 Mini-batch size: 0.01, 0.05, 0.1, 0.25, 1
 Selected from: Top 2%, Top 10%, Top 20%, Top 50%, All
-Learning Rate: 0.00005, 0.0001, 0.001
+Learning Rate: 0.00001, 0.00005, 0.0001, 0.0005, 0.001
 Top-K: Yes or No
 Kernel (Similarity): Yes or No
 Part of Dataset: 1% or All
@@ -105,4 +108,38 @@ Accuracy: 0.566666666667
 Precision and recall: 0.535714285714 and 1.0
 F1 Score: 0.697674418605
 True Positive Rate and False Positive Rate: 1.0 and 0.866666666667
+
+
+
+
+--------------------------------
+
+558-567
+568-577
+578-587
+588-597
+598-607
+608-617
+618-627
+628-637
+638-645
+665
+683
+703-712
+713-722
+723-732
+733-742
+743-756
+760-773
+
+
+572-577
+624-627
+738-742
+755-756
+763-767
+768-773
+
+
+--768
 

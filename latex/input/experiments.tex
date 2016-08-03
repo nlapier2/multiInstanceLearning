@@ -1,144 +1,33 @@
 %EXP
 
+\subsection{Data, Software, and Hardware Used}
 
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.5]{./diagrams/PreFeatEng}
-\caption{This diagram shows the results for the comparison between UCLUST and Kraken when classifying "Encephalopathy" versus all other classes. UCLUST had an accuracy and F1-Score of 84.53\% and 67.44\% respectively. Kraken didn't perform as well, with an accuracy of 79.56\% and an F1-Score of 43.08\%. \label{prefeature}}
-\end{figure}
+Our main dataset comes from a GWAS of Type 2 Diabetes (T2D) in Chinese adults, published by Qin et al \cite{qin041012}. The data is publicly available on the National Center for Biotechnology Information (NCBI) \cite{ncbi} website using the accession number SRP011011. The full dataset contains over 200 patients, but for our study we used a subset of 60 patients due to lengthy download and format conversion times. Of these 60 patients, 30 had T2D and 30 were controls. For the purpose of testing our cluster sampling methods, we also used a smaller dataset obtained from Dr. Patrick Gillevet of GMU, which is not publicly available. It contains 904 patients, 239 of whom have encephalopathy and 665 of whom are controls, but is much smaller because it uses 16S rRNA instead of whole genome data. The encephalopathy dataset contains about 1.3 million reads, while the T2D dataset contains about 1.3 billion reads.
 
-\begin{table*}[t]
-\begin{center}
-\caption{Comparative Run Time of UCLUST and Kraken Representations. \label{tab:time}}
-\begin{tabular}{|c|c|}\hline
-Representation & Time\\\hline
-UCLUST & 180s\\\hline
-Kraken & 120s\\\hline
-\end{tabular}
-\end{center}
-\end{table*}
-
-
-\begin{table*}[t]
-\begin{center}
-\caption{Comparative Performance of UCLUST and Kraken Representations. 
-\label{tab:comp}}
-\begin{tabular}{|c|cccc|cccc|}\hline
-Representation & Accuracy & Precision & Recall & F1-Score & LOOCV Accuracy & LOOCV Precision & LOOCV Recall & LOOCV F1-Score\\\hline
-UCLUST & 84.53 & 78.38 & 59.18 & 67.44 & 88.26 & 83.22 & 67.39 & 74.47\\\hline
-Kraken & 79.56 & 87.5 & 28.57 & 43.08 & 78.18 & 70.31 & 24.46 & 36.29\\\hline
-\end{tabular}
-\end{center}
-\end{table*}
-
-
-\begin{table*}[t]
-\begin{center}
-\caption{Three Pairwise Comparisons Using UCLUST. \label{tab:pairuclust}}
-\begin{tabular}{|c|cccc|cccc|}\hline
-Comparison & Accuracy & Precision & Recall & F1-Score & LOOCV Accuracy & LOOCV Precision & LOOCV Recall & LOOCV F1-Score\\\hline
-Encephalopathy vs. No Encephalopathy & 88.68 & 90 & 86.54 & 88.23 & 84.47 & 81.77 & 81.77 & 81.77\\\hline
-Encephalopathy vs. Control & 96.72 & 95.35 & 100 & 97.62 & 94.26 & 93.2 & 100 & 96.48\\\hline
-No Encephalopathy vs. Control & 83.78 & 82.61 & 100 & 90.48 & 87.5 & 86.96 & 99.59 & 92.85\\\hline
-\end{tabular}
-\end{center}
-\end{table*}
-
-
-\begin{table*}[t]
-\begin{center}
-\caption{Three Pairwise Comparisons Using Kraken. \label{tab:pairkraken}}
-\begin{tabular}{|c|cccc|cccc|}\hline
-Comparison & Accuracy & Precision & Recall & F1-Score & LOOCV Accuracy & LOOCV Precision & LOOCV Recall & LOOCV F1-Score\\\hline
-Encephalopathy vs. No Encephalopathy & 67.92 & 82.14 & 44.23 & 57.50 & 68.94 & 72.07 & 44.20 & 54.79\\\hline
-Encephalopathy vs. Control & 78.69 & 76.92 & 97.56 & 86.02 & 79.51 & 81.14 & 96.35 & 88.09\\\hline
-No Encephalopathy vs. Control & 77.03 & 77.03 & 100 & 87.02 & 81.42 & 81.42 & 100 & 89.76\\\hline
-\end{tabular}
-\end{center}
-\end{table*}
-
-
-\begin{table*}[t]
-\begin{center}
-\caption{Comparative Performance After Feature Engineering. \label{tab:pfe}}
-\begin{tabular}{|c|cccc|cccc|}\hline
-Representation & Accuracy & Precision & Recall & F1-Score & LOOCV Accuracy & LOOCV Precision & LOOCV Recall & LOOCV F1-Score\\\hline
-UCLUST & 85.64 & 79.49 & 63.27 & 70.46 & 88.54 & 82.58 & 69.57 & 75.52\\\hline
-Kraken & 80.66 & 76.92 & 40.82 & 53.34 & 80.8 & 75.86 & 35.87 & 48.93\\\hline
-\end{tabular}
-\end{center}
-\end{table*}
-
-
-\begin{table*}[t]
-\begin{center}
-\caption{Three Pairwise Comparisons Using UCLUST After Feature Engineering. \label{tab:pairuclustfe}}
-\begin{tabular}{|c|cccc|cccc|}\hline
-Comparison & Accuracy & Precision & Recall & F1-Score & LOOCV Accuracy & LOOCV Precision & LOOCV Recall & LOOCV F1-Score\\\hline
-Encephalopathy vs. No Encephalopathy & 88.68 & 90 & 86.54 & 88.23 & 86.35 & 83.24 & 85.08 & 84.15\\\hline
-Encephalopathy vs. Control & 96.72 & 95.35 & 100 & 97.62 & 95.08 & 94.12 & 100 & 96.97\\\hline
-No Encephalopathy vs. Control & 87.84 & 86.36 & 100 & 92.68 & 91.22 & 90.57 & 99.59 & 95.05\\\hline
-\end{tabular}
-\end{center}
-\end{table*}
-
-
-\begin{table*}[t]
-\begin{center}
-\caption{Three Pairwise Comparisons Using Kraken After Feature Engineering. \label{tab:pairkrakenfe}}
-\begin{tabular}{|c|cccc|cccc|}\hline
-Comparison & Accuracy & Precision & Recall & F1-Score & LOOCV Accuracy & LOOCV Precision & LOOCV Recall & LOOCV F1-Score\\\hline
-Encephalopathy vs. No Encephalopathy & 69.81 & 83.33 & 48.08 & 60.98 & 77.18 & 80.88 & 60.77 & 69.40\\\hline
-Encephalopathy vs. Control & 86.89 & 86.67 & 95.12 & 90.70 & 87.30 & 88.15 & 96.88 & 92.31\\\hline
-No Encephalopathy vs. Control & 77.03 & 77.78 & 98.25 & 86.82 & 82.77 & 82.53 & 100 & 90.43\\\hline
-\end{tabular}
-\end{center}
-\end{table*}
-
-
-Table \ref{tab:time} shows 
-the run time of each representation in seconds. We had total of 1.3 million sequence reads. UCLUST unsupervised clustering 
-took 180 seconds, while Kraken's OTU database lookups took 120 seconds.
-
-Figure \ref{prefeature} and Table \ref{tab:comp} show 
-the classification performance of UCLUST and 
-Kraken in distinguishing patients in the "Encephalopathy" class versus 
-the other classes. UCLUST correctly predicted the clinical 
-phenotype 84.53\% of the time, and had a precision of 78.38\% and recall of 59.18\% on the held-out set. LOOCV results were 
-slightly better for each metric than results on the test 
-set by about 4-8\%. Kraken had an accuracy of 79.56\% with an even 
-larger disparity between precision and recall (87.5\% for the former and 
-28.57\% for the latter), which led to a relatively poor F1-score of 43.08\%. LOOCV results for Kraken 
-were worse by 1.38\% for accuracy, 17.19\% for precision, 4.11\% for recall, and 6.79\% for F1-Score. As 
-the results show, UCLUST generally performed better as a feature 
-representation, with 4.97\% higher accuracy and 24.36\% higher F1-score.
-
-Table \ref{tab:pairuclust} displays the performance of UCLUST-based classification 
-with regards to training three one-versus-one clinical phenotypic classifiers.  The first comparison 
-distinguished between the "Encephalopathy" class and the "No Encephalopathy" class, effectively determining whether or not a patient who had liver cirrhosis also had encephalopathy. Results were much improved when compared with the findings in table \ref{tab:comp}. The accuracy, precision, recall, and F1-score were all  86-90\%. LOOCV
-results were worse by about 4-8\% per metric. The 
-second comparison distinguished between the "Encephalopathy" class and 
-the "Control" class, effectively determining whether a 
-patient had encephalopathy caused by liver cirrhosis or had neither disease. This comparison had the best results of the ones we examined, with greater than 95\% performance in all metrics and 100\% recall. The cross validation
-results were about 1-2\% worse for each metric except recall, which was still 100\%. The 
-third comparison distinguished between the "No Encephalopathy and liver cirrhosis" class and the "Control" class, effectively determining which among the patients lacking encephalopathy had liver cirrhosis. This comparison had an accuracy of 83.78\% and precision of 82.61\%, but had a 100\% recall which led to a high F1-score of 90.48\%. Cross validation results were better by 3.72\% for accuracy, 4.35\% for precision, and 2.37\% better for F1-Score, with essentially the same recall.  Apart from the accuracy and precision of the third comparison, these three pairwise comparisons generally performed better across the board than the results in Table \ref{tab:comp}, with the second pairwise comparison having the best performance.
-
-Table \ref{tab:pairkraken} displays the performance of Kraken with regards to the same three pairwise comparisons described above. For the Encephalopathy vs. No Encephalopathy run, the accuracy was 67.92\%, with 82.14\% precision, 44.23\% recall, and 57.50\% F1-Score. Cross validation produced a precision that was 10.07\% lower but largely the same accuracy and recall. The Encephalopathy vs. Control run produced good results, with 78.69\% accuracy, 76.92\% precision, 97.56\% recall, and 86.02\% F1-Score. LOOCV results mostly confirmed those results, except the precision, which was 4.22\% higher. The No Encephalopathy vs. Control run had quite similar results to the Encephalopathy vs. Control run. The main pattern that appears to emerge from these results is that the recall for Kraken was generally far superior in the pairwise runs than in the original run, which increased the F1-Scores but resulted in similar accuracy and precision. The Encephalopathy vs. No Encephalopathy run was significantly worse than the other two.
-
-Table \ref{tab:pfe} shows the results for the same setup as 
-in Table \ref{tab:comp} after we performed feature engineering. For both representations in Table \ref{tab:comp}, the recall was significantly lower than the precision, indicating that there were many more false negatives than false positives. We thus engineered the features in the training set. Certain features in the training set were most strongly present in positive patients, and as such were correlated with positive examples. Some examples in the test set had slightly lower values for those features, and were thus labelled by the classifier as negative examples, when in reality they were positive. We aimed to influence some of these borderline false negative predictions by lowering the threshold for those positively correlated features that would lead to an example being predicted as positive. In order to reduce the threshold for those positively correlated features, we applied a multiplier of 0.9 to the values of each feature of every positive patient in the training set. This had the effect of causing some previously borderline negative predictions to become positive predictions, primarily reducing the number of false negatives and improving the recall scores, but also positively impacting most other metrics as well.  Attempts to use a multiplier of 
-less than 0.9 did not appear to further 
-improve the results.
-
-With the multiplier of 0.9 applied to the 
-feature values for positive training examples, the recall 
-increased by 4.09\% for UCLUST and by 12.25\% for Kraken. This was confirmed in the 
-cross validation results as well, 
-in which UCLUST's recall increased by 2.18\% and 
-Kraken's recall increased by 11.41\%. Because of the improvement 
-in recall, both representations also had similarly improved F1-Scores after feature engineering. Accuracy and precision remained generally consistent. 
+As previously mentioned, we use the publicly-available UCLUST \cite{Edgar10} software for clustering. For classification, we use Support Vector Machines (SVMs) \cite{vap95}, one of the most powerful and versatile binary classifiers used 
+in myriad applications. 
 %
-Kraken's LOOCV precision 
-increased by 5.55\%. This suggests that Kraken's very high precision was tied to its lack of many positive phenotype predictions in general, resulting in a very low number of false positives. While Kraken improved more than UCLUST did due to feature engineering, UCLUST still performed better in all metrics.
+For a  binary classification problem, the SVM framework 
+maximizes the separation between the two classes. In addition to the ubiquity and effectiveness of SVMs, they are well established in both supervised and multiple instance learning, making it easy to compare the two approaches. For our standard supervised SVM, we use svm-light \cite{joachims08}, a popular and publicly available implementation. For multiple instance learning, we use the python implementation by G. Doran and S. Ray ("MISVM") \cite{doran122013} for its ease of use and public availability.
 
-Tables \ref{tab:pairuclustfe} and \ref{tab:pairkrakenfe} display the results after the same feature engineering techniques were applied to the pairwise results in \ref{tab:pairuclust} and \ref{tab:pairkraken}, respectively. UCLUST's No Encephalopathy vs. Control run saw an increase of 4.06\% in accuracy, 3.75\% in precision, and similar gains in its cross validation results for accuracy and precision. UCLUST's other two runs were largely unaffected, albeit with slightly better cross validation results. Kraken's Encephalopathy vs. Control run was greatly improved after feature engineering, with an 8.20\% increase in accuracy and a 9.75\% increase in precision, with similar increases in cross validation results. This more than offset a slight decrease in recall. The Encephalopathy vs. No Encephalopathy run had mostly unchanged results, albeit with much improved cross validation scores, and the No Encephalopathy vs. Control run was not significantly affected.
+
+\subsection{Efficient Unsupervised Clustering using UCLUST}
+\label{uclustmethods}
+
+From early experimental results, UCLUST can still be computationally infeasible for very large datasets such as the one we will be using, despite its generally excellent speed. For our T2D dataset, UCLUST was only able to cluster 2.8\% of the reads within 12 hours, at which point ARGO killed the batch job. UCLUST slows down as more clusters are formed, as each new read needs to be compared to more existing clusters. Thus, as the number of clusters grows, the execution time of UCLUST increases rapidly. The only way to feasibly complete the clustering phase in a reasonable amount of time was to cluster the patients individually in parallel, instead of clustering the reads of all patients together. However, this leads to the problem of having mismatched clusterings between patients, that is, cluster X from patient A may represent the same OTU as cluster Y from patient B. The solution is to compare the clusters from different patients and map them to each other, and then to combine clusters from different patients that represent the same OTU and output a single clustering output file for all patients. However, comparing every read from each cluster to every read from all other clusters is also computationally infeasible. Thus, we developed methods to sample representative reads from each patient and use them to create the consensus clustering. We explored a number of different methods, but two of them in particular were able to achieve significant speed improvements without significantly harming classification results. For each of them, we used a parameter "alpha", which was used to select 1 out of every alpha reads. For instance, if alpha=10, 1/10 of reads would be used. 
+
+We refer to one of our methods as "seed re-clustering" (UCLUST refers to cluster centroids as "seeds"). In this method, the reads corresponding to the cluster seeds from each patient are copied into a temporary file, and then those reads are clustered. This runs quickly, since clusters in this setting tend to have hundreds to thousands of reads, so the number of cluster seeds is relatively small. We then construct a map, which maps each seed from its original cluster number to its new cluster number from the seed clustering. We go back to the individual patient clustering output, and select 1 out of every alpha lines to be placed in the consensus clustering file. As we write the lines to the consensus file, we use the map we developed to change the cluster number for the line from the original clustering number to the new consensus cluster number. We refer to the other method as "two round clustering". We select one out of every alpha reads from the clustering output of each patient, place them in a single file, and run UCLUST on this smaller subset to arrive at a consensus clustering. The main difference between two round clustering and seed re-clustering is that here we select a distribution of reads from the original clustering to determine the consensus clustering, instead of cluster seeds/centroids.
+
+We sought to empirically evaluate how these methods affected clustering runtime and classification accuracy, since feature vectors are generated from the clustering output and thus classification results are affected by the clustering methods. Without use of these sampling methods, UCLUST didn't finish within ARGO's 12 hour time limit on the T2D dataset, so we couldn't evaluate the classification results on that dataset and compare them to the classification results with the clustering sample methods. In order to evaluate these methods, we used the aforementioned Encephalopathy dataset, which is much smaller. We measured the time it took to perform UCLUST on all patients at once, as well as the time taken by each of our two sampling methods. We then used the respective clustering outputs to generate feature vectors and run svm-light classification (as described in the next section) and compared the results, which are discussed in the "Experimental Results" section. For UCLUST, default settings were used, except the threshold for placing two sequences in the same cluster was set to 40\% match (--id 0.40), and the --usersort option was used.
+
+
+\subsection{Supervised and Multiple Instance Classification using Support Vector Machines (SVMs)}
+\label{svm}
+
+For our formulation we use SVMs to make clinical phenotype prediction for each patient sample based on their  input metagenome sequence samples represented with their clustering or taxa membership features. With our clustering approach,  we have a set of reads that have been assigned to clusters based on UCLUST and our techniques. We now generate feature vectors from each patient from this clustering output. We follow a different process of feature vector generation for svm-light and MISVM. For each method, we read through the consensus clustering output from UCLUST line-by-line, forming feature vectors as we go. UCLUST output lines provide the cluster number, the percentage match to the cluster seed, and the patient that read comes from.
+
+For svm-light, we have one feature vector per patient. We use each cluster/OTU as a feature, meaning that the presence of various microbes are the features for the patient. Each number (feature) in the vector corresponds to a cluster/OTU, and the value for that number corresponds to how closely the read from the patient matched the cluster seed. For each input 
+sequence, we use the percentage match to its cluster seed as 
+the value for that feature and average the 
+sequence match if multiple reads from the metagenome samples 
+are assigned to the same cluster by UCLUST. Each sequence read includes a label for the patient that it came from, so each read only affects the feature vector corresponding to the patient that it came from. For example, say patient A has a read with 95\% match to OTU 2, a read that is the cluster seed of OTU 3, a read that is a 93\% match to OTU 2, a read that is a 97\% match to OTU 5, and no reads for OTU 1 or 4. Patient A's feature vector would then look like: [0 0.94 1 0 0.97]. We first initialize the patient feature vectors to all 0s and then iterate through the UCLUST output lines and update the feature vectors as we go. For MISVM, patients are bags, reads for patients are instances, and each read/instance has a feature vector. We iterate through the UCLUST output. For each read, we add that read as an instance to the relevant patient bag. The feature vector for that read contains one number: the cluster number that the read belongs to.  We compared the runtime and accuracy of the two implementations, which both used a linear kernel. In both cases, the training and test set each contained 30 patients, and each contained 15 patients with type 2 diabetes and 15 control (healthy) patients. The results are discussed in the "Experimental Results" section.

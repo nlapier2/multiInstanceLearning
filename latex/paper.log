@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.7.14)  27 JUL 2016 21:38
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.7.14)  2 AUG 2016 20:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -124,7 +124,14 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen117
 \Gin@req@width=\dimen118
 )
-(./paper.aux)
+(./paper.aux
+
+LaTeX Warning: Label `eqn:roc' multiply defined.
+
+
+LaTeX Warning: Label `eqn:prec' multiply defined.
+
+)
 \openout1 = `paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 351.
@@ -200,70 +207,48 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-(./input/abstract.tex) (./input/intro.tex
+(./input/abstract.tex) (./input/intro.tex [1{/var/lib/texmf/fonts/map/pdftex/up
+dmap/pdftex.map}
+
+
+]) (./input/related.tex) [2] (./input/methods.tex
+<./mil-metagenomics-pipeline.png, id=13, 1027.84pt x 250.9375pt>
+File: ./mil-metagenomics-pipeline.png Graphic file (type png)
+
+<use ./mil-metagenomics-pipeline.png>
+Package pdftex.def Info: ./mil-metagenomics-pipeline.png used on input line 5.
+(pdftex.def)             Requested size: 513.91875pt x 125.46843pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 6.
+(Font)              <7> on input line 32.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 6.
-) (./input/related.tex [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-
-]
+(Font)              <5> on input line 32.
+ [3]) (./input/materials.tex
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 54.
+(Font)              <8> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 54.
-
-Underfull \hbox (badness 10000) in paragraph at lines 91--104
-[]\OT1/ptm/m/n/10 CD-HIT [[]], UCLUST [[]], CROP [[]], MC-
- []
-
-) (./input/methods.tex [2]
-<./diagrams/concept.pdf, id=16, 511.9125pt x 442.65375pt>
-File: ./diagrams/concept.pdf Graphic file (type pdf)
-
-<use ./diagrams/concept.pdf>
-Package pdftex.def Info: ./diagrams/concept.pdf used on input line 23.
-(pdftex.def)             Requested size: 358.3363pt x 309.8555pt.
-) (./input/materials.tex [3]
+(Font)              <6> on input line 3.
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no “ in font ptmr7t!
-LaTeX Font Info:    Try loading font information for OML+ptm on input line 70.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlptm.fd
-File: omlptm.fd 
 )
-LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 70.
- [4 <./diagrams/concept.pdf>]) (./input/experiments.tex
-<./diagrams/PreFeatEng.png, id=79, 435.6275pt x 305.14pt>
-File: ./diagrams/PreFeatEng.png Graphic file (type png)
-
-<use ./diagrams/PreFeatEng.png>
-Package pdftex.def Info: ./diagrams/PreFeatEng.png used on input line 6.
-(pdftex.def)             Requested size: 217.81322pt x 152.56961pt.
- [5 <./diagrams/PreFeatEng.png>])
-(./input/conclusion.tex [6]) (./paper.bbl [7]
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no ˆ in font ptmr7t!
-Missing character: There is no š in font ptmr7t!
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no ‰ in font ptmr7t!
-Missing character: There is no ¥ in font ptmr7t!
-
-Overfull \hbox (21.67612pt too wide) in paragraph at lines 268--272
-\OT1/ptm/m/n/8 http://www.xrce.xerox.com/content/download/16594/118473/file/xrc
-e[]eval.pdf 
+(./input/experiments.tex [4 <./mil-metagenomics-pipeline.png>])
+(./input/conclusion.tex) [5] (./paper.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 193--195
+[]\OT1/ptm/m/n/8 Svmlight sup-port vec-tor ma-chine. [On-line]. Avail-able:
  []
 
 
-Underfull \hbox (badness 2913) in paragraph at lines 275--278
+Underfull \hbox (badness 10000) in paragraph at lines 197--198
+[]\OT1/ptm/m/n/8 Weka3: Data Min-ing Soft-ware in Java. [On-line]. Avail-able:
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
 []\OT1/ptm/m/n/8 On-campus re-search com-put-ing. [On-line]. Avail-able:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--278
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
 \OT1/ptm/m/n/8 http://orc.gmu.edu/research-computing/argo-cluster/argo-hardware
 -
  []
@@ -280,27 +265,32 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[8] (./paper.aux) ) 
+[7
+
+] (./paper.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 2290 strings out of 494985
- 36301 string characters out of 6180356
- 109627 words of memory out of 5000000
- 5472 multiletter control sequences out of 15000+600000
- 41460 words of font info for 75 fonts, out of 8000000 for 9000
+ 2257 strings out of 494985
+ 35747 string characters out of 6180356
+ 100595 words of memory out of 5000000
+ 5446 multiletter control sequences out of 15000+600000
+ 38629 words of font info for 72 fonts, out of 8000000 for 9000
  39 hyphenation exceptions out of 8191
- 37i,8n,23p,1327b,252s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}<
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr
-8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (8 pages, 207980 bytes).
+ 37i,8n,23p,1852b,220s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
+/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (7 pages, 155622 bytes).
 PDF statistics:
- 123 PDF objects out of 1000 (max. 8388607)
- 78 compressed objects within 1 object stream
+ 60 PDF objects out of 1000 (max. 8388607)
+ 41 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

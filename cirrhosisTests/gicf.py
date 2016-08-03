@@ -231,7 +231,7 @@ def validate(verbose, w, data, k):     # apply the weights determined by gradien
     return accuracy, precision, tpr_recall, fpr, f1_score, predicted_actual
 
 
-def grid_search(verbose, w, data, train, test, res, limit):
+def grid_search(verbose, w, data, train, test, res, limit, settings):
     # linear grid search to set learning rate, lambda, and mini batch size parameters
     if verbose:
         print "Entering grid search to select best parameters for gradient descent."
@@ -253,11 +253,18 @@ def grid_search(verbose, w, data, train, test, res, limit):
     tr.close()
     te.close()
 
-    rate = [0.0001]  # , 0.001]  # , 0.01, 0.1]
-    l = [float(num)]  # [float(num) * 0.1, float(num), float(num) * 10]
-    top_k = [0.8]
-    batch_size = [0.1]  # [num * 4]  # [num * 4, num * 10, num * 100]
-    iterations = [30]  # , 10, 100, 1000]
+    if settings == 'NONE':
+        rate = [0.0001]  # , 0.001]  # , 0.01, 0.1]
+        l = [float(num)]  # [float(num) * 0.1, float(num), float(num) * 10]
+        top_k = [0.8]
+        batch_size = [0.1]  # [num * 4]  # [num * 4, num * 10, num * 100]
+        iterations = [30]  # , 10, 100, 1000]
+    else:
+        rate = settings[0]
+        l = settings[1]
+        top_k = settings[2]
+        batch_size = settings[3]
+        iterations = settings[4]
     accuracy = -1.0             # best accuracy on test data
     parameters = [0, 0, 0, 0, 0]   # best parameter settings
     results = []                # best results
@@ -315,6 +322,7 @@ def parseargs():    # handle user arguments
     parser.add_argument('--limit', default=-1, help='Limit the number of bags to use. Default: No limit.')
     parser.add_argument('--out_dir', default='./', help='Directory to write files to.')
     parser.add_argument('--results', default='results', help='Where to write results to.')
+    parser.add_argument('--settings', default='NONE', help='Parameter settings can be input.')
     parser.add_argument('--test', default='test.dat', help='Where to write test data to.')
     parser.add_argument('--train', default='train.dat', help='Where to write training data to.')
     parser.add_argument('-v', '--verbose', default=False, action='store_true', help='Verbose output')
@@ -328,6 +336,14 @@ def main():
     if args.infile == 'NONE':
         print "Location of input file with data must be specified."
         sys.exit()
+    if args.settings != 'NONE':
+        try:
+            settings = listify(args.settings)
+        except ValueError:
+            "Error: settings input could not be parsed."
+            sys.exit()
+    else:
+        settings = 'NONE'
     try:
         limit = int(args.limit)
     except ValueError:
@@ -357,7 +373,7 @@ def main():
         break
     infile.close()
 
-    grid_search(args.verbose, w, args.infile, args.train, args.test, args.results, limit)
+    grid_search(args.verbose, w, args.infile, args.train, args.test, args.results, limit, settings)
     print "Program execution time: " + str(time.time() - start) + " seconds"
 
 
