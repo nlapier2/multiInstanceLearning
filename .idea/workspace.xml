@@ -24,10 +24,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="bulkNCBIDownload.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="bulkNCBIDownload.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bulkNCBIDownload.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="1242">
+            <state vertical-scroll-proportion="0.0" vertical-offset="72" max-vertical-offset="1242">
               <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding>
                 <element signature="e#50#65#0" expanded="true" />
@@ -56,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gicf.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="gicf.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gicf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.967742" vertical-offset="6274" max-vertical-offset="6948">
-              <caret line="369" column="0" selection-start-line="369" selection-start-column="0" selection-end-line="369" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.17210683" vertical-offset="6274" max-vertical-offset="6948">
+              <caret line="360" column="27" selection-start-line="360" selection-start-column="27" selection-end-line="360" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -374,14 +374,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gicf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.967742" vertical-offset="6274" max-vertical-offset="6948">
-          <caret line="369" column="0" selection-start-line="369" selection-start-column="0" selection-end-line="369" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bulkNCBIDownload.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="954">
@@ -389,6 +381,14 @@
           <folding>
             <element signature="e#50#65#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gicf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17210683" vertical-offset="6274" max-vertical-offset="6948">
+          <caret line="360" column="27" selection-start-line="360" selection-start-column="27" selection-end-line="360" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>

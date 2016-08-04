@@ -12,45 +12,31 @@ However, this method treats a group label simply as an aggregation of instance l
 
 \subsection{Assembly}
 
-The \emph{assembly} problem involves combining overlapping short reads into longer sequences called \emph{contigs}.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{./de-bruijn.png}
+\caption{This diagram illustrates a basic de Bruijn graph, as explained in the text. Notice the double arrow from TAT to ATT, allowing a path to go through that route twice. Thus, the longest contig that can be created by following a path is GTATTATTGGA, which is what we want.} \label{de-bruijn}
+\end{figure}
+
+The \emph{assembly} problem involves combining overlapping short reads (usually less than 1000 base pairs) into longer sequences called \emph{contigs} (often tens of thousands of base pairs). For instance, if one read ends with the same relatively large nucleotide string that another read starts with, the reads are likely to be overlapping fragments from the same genome, and can thus be combined into one contig. This can be done either \emph{de novo} (in an unsupervised manner) or by referencing sequences against known contigs. We focus on de novo assembly, because we wish to keep our pipeline as unsupervised as possible. 
+
+One of the main purposes of assembly is to determine the whole genomes of microbial species, the vast majority of which have not or cannot be laboratory cultured, from sequencing reads \cite{zerbino08}. Even if full genomes cannot be assembled, combining reads into larger contigs can still make them much more useful for clustering and classifiers, because the contigs will contain more phylogenetic and functional information than short reads. This is because short reads of less than 1000 base pairs constitute only a tiny fraction of microbial genomes, which are usually hundreds of thousands to millions of base pairs, making it difficult to ascertain much about the phylogeny of individual reads. Many modern sequence reads are produced by Next-Generation and High-Throughput Sequencers, which usually produce these short reads. Metagenomics additionally poses its own set of challenges, due to very large datasets and lack of knowledge about how many species are present and in what relative abundances \cite{namiki12}. Thus, metagenome assembly is a relatively new and challenging field.
+
+Some of the popular genome and metagenome assembly approaches include SOAPdenovo2 \cite{luo12}, IDBA-UD \cite{peng12}, Velvet \cite{zerbino08}, MetaVelvet \cite{namiki12}, ABySS \cite{simpson09}, and Ray Meta \cite{boisvert12}. We used SOAPdenovo2 in our study, because it was the assembler used in the original MGWAS study \cite{qin041012} and because it has been shown to be one of the fastest assembly algorithms \cite{peng12}. SOAPdenovo2 first constructs a type of directed graph called a \emph{de Bruijn} graph that represents the overlaps between different sequences \cite{li10}. Reads are divided into strings of length K called \emph{k-mers}; these k-mers are the nodes of the graph \cite{zerbino08}. The choice of K is up to the user, and is important for having good assembly results. The k-mer nodes in the graph have an edge between them if a read contains those k-mers in order with an overlap of K-1 nucleotides, and the direction of the edge indicates in which order the k-mers appear \cite{zerbino08}. SOAPdenovo2 then cleans this graph by removing nodes/sequences with few or no connections with other sequences, eliminating "tips" that represent likely sequencing machine errors, and removing redundant edges \cite{li10}. The contigs are then formed by combining reads according to the de Bruijn graph: each contig represents a directed path in the graph \cite{zerbino08}. There are variations on how exactly de Bruijn graphs are represented and implemented, but Figure \ref{de-bruijn} illustrates the general process.
 
 \subsection{Clustering}
 
-The \emph{clustering} problem in this context  involves grouping input short reads  such that reads within a group are 
-similar to each other. This process may lead to groups that are organism-specific and is 
-unsupervised in nature. 
-%
-The clustering process does not attempt to provide an automated labelling of the input reads. 
-%
-The clusters/groups obtained from an input metagenome sample 
-are referred to as  Operational Taxonomic Units (OTUs), and the number of 
-OTUs gives an approximation of species diversity in a sample \cite{schloss2009introducing,schloss2005introducing,sun2009esprit}.
-%
-These  approaches are not constrained due to the absence of a complete coverage in taxonomic databases. Some 
-environmental samples contain microbial organisms that have never been cultured in a laboratory, and thus those organisms do not exist in genomic databases.
-As such,  clustering of 
-sequence reads has several advantages: (i)
-        it can lead to an improved  metagenome assembly, (ii) it can be used 
-        for computing species diversity metrics \cite{bibm2012} 
-        and (iii)
-        the  reduced computational
-        complexity within several work-flows that analyze only
-        cluster representatives, instead of individual sequences
-        within a sample.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{./uclust-similarity.png}
+\caption{This diagram illustrates the similarity computation between two sequences in UCLUST. Terminal characters are excluded, so the length of the reads is 10. In the first 10 characters of each string, there are 5 matching characters that are in the same position in the string. Thus, the similarity is 5/10 = 50\%.} \label{uclust-similarity}
+\end{figure}
 
-CD-HIT \cite{Li01072006}, UCLUST \cite{Edgar10}, CROP \cite{Hao01032011}, MC-MinH \cite{sdm2013a} and 
-MC-LSH \cite{bibm2012}
-are some of the popular 
-metagenome sequence clustering approaches used for binning. 
-%
-UCLUST, MC-MinH and MC-LSH  are
-greedy approaches that achieve computational efficiency 
-by using either hash-based indexing or matching of gap-less sequences called seeds (instead 
-of expensive sequence alignment) and followup with an incremental clustering approach 
-that does not involve comparing all pairs of input sequences. We use UCLUST within our study, which is one of the most widely used and cited metagenome clustering methods and has been shown to be amongst the most effective in terms of speed and accuracy in benchmarking studies \cite{bonder090112, sun042711}. 
+The \emph{clustering} problem in this context  involves grouping input short reads  such that reads within a group are similar to each other. The clusters obtained from this process are referred to as Operational Taxonomic Units (OTUs). OTUs represent a group of equivalent or similar organisms. Accordingly, the number of OTUs in a sample gives an approximation of the species diversity in that sample  \cite{schloss2009introducing,schloss2005introducing,sun2009esprit}.
+In addition to approximating species diversity, clustering has several other key advantages. Because clustering is always de novo (unsupervised), it is not limited by the species that are covered in taxonomic databases. This detail is important, because it is believed that most microorganisms that reside in the human body have not been laboratory cultured \cite{handelsman04}. Clustering also reduces computational costs by allowing analyses to operate on entire clusters instead of on each read. Finally, clustering helps the classification process by allowing feature vectors to be built at the OTU level, instead of using individual short reads that contain little biological information.
+
+UCLUST \cite{Edgar10}, CD-HIT \cite{Li01072006}, mothur \cite{schloss2009introducing}, DOTUR \cite{schloss2005introducing}, CROP \cite{Hao01032011}, MC-MinH \cite{sdm2013a}, and 
+MC-LSH \cite{bibm2012} are some of the popular  nucleotide sequence clustering approaches. We use UCLUST within our study, which is one of the most widely used and cited metagenome clustering methods and has been shown to be amongst the most effective in terms of speed and accuracy in benchmarking studies \cite{bonder090112, sun042711}. 
 %
 
-UCLUST \cite{Edgar10} follows a greedy, iterative clustering approach. As a first 
-step, this approach identifies exact matches of fixed length between sequence pairs known 
-as seeds. These seeds are then extended by allowing for a few mismatches and/or gaps between 
-the aligned pairs. Seeds scoring above a certain threshold are chosen as high segment pairs (HSPs)  and used for further processing. As such, the step eliminates a lot of pairwise comparisons. Then UCLUST follows an incremental approach for assigning the input sequences to the different bins. The clustering solution is initialized as an empty list. Sequences are then incrementally added to the clusters existing within the list. Each unassigned input sequence is compared to the cluster representatives within the list using the fast indexing search technique that uses the HSPs. If a match is found with one of the cluster representatives, then that sequence is assigned to that particular cluster; otherwise, the input sequence forms a new cluster. Matches are computed by comparing two reads, character by character, and dividing the number of characters at the same position in both reads that match by the length of the longer of two reads. UCLUST ensures that the cluster representatives are sequences with the largest length. 
+UCLUST seeks to ensure that, for some similarity T, the following conditions hold: (i) all cluster centroids have a similarity of less than T to each other; and (ii) all points in a cluster have a similarity of greater than T to the cluster centroid \cite{Edgar10}. Thus, each \emph{centroid} defines the center of a cluster, and the distance T defines the radius of the cluster, such that any point that has a similarity of greater than T to the centroid is within the radius and is thus part of the cluster. UCLUST is a heuristic algorithm that has several optimizations to improve speed, thus condition (i) above is not always guaranteed \cite{Edgar10}. UCLUST proceeds in a greedy, iterative manner. The first sequence in the input file becomes a new cluster centroid. For each new sequence in the file, it is compared with each of the existing cluster centroids in order. As soon as it is compared with a centroid that it has a similarity of greater than T with, it becomes part of that cluster. If the read is not similar enough with any of the existing cluster centroids, it becomes the centroid of a new cluster. The similarity measure T is defined as a string similarity between the two nucleotide sequences that counts the number of character placements that they have in common and then divides that number by the length of the reads, with terminal characters excluded \cite{Edgar10}. This is illustrated in figure \ref{uclust-similarity}.

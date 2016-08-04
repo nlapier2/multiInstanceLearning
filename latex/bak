@@ -1,3 +1,49 @@
 \subsection{Classification}
 
 The problem of \emph{classification} involves grouping data points into two or more classes. In this case, this involves predicting whether or not a patient has a given disease. Since, in this study, we only worry about whether or not the patient has the disease (as opposed to, for instance, how severe their illness is), we have a two-class classification problem. Patients are sorted into the positive class (sick) or negative class (healthy). Common classification methods include logistic regression \cite{cox58} and Support Vector Machines (SVMs) \cite{vap95}, as well as numerous other methods. Here, we use a standard SVM implementation called svm-light \cite{joachims08}. The choice of classifier is not particularly important for D-BoW methods \cite{amores13}.
+
+
+--------------------------------
+
+\bibitem{li11}
+P.~Li, A.~Shrivastava, J.~Moore, and A.~Konig, "Hashing algorithms for large-scale learning," in \emph{Advances in neural information processing systems}. Granada, Spain: NIPS, December 2011.
+
+\bibitem{li10}
+P.~Li and C.~Konig, "b-Bit minwise hashing," in \emph{ACM International World Wide Web Conference (WWW)}. Raleigh, NC: WWW, April 2010.
+
+\bibitem{broder093097}
+A.~Broder, S.~Glassman, M.~Manasse, and G.~Zweig, "Syntactic clustering of the web," \emph{Computer Networks and ISDN Systems}, vol.~29, no.~8, pp. 1157--1166, 1997.
+
+\bibitem{broder061197}
+A.~Broder, "On the resemblance and containment of documents," in \emph{IEEE International Conference on Compression and Complexity of Sequences (SEQUENCES)}. Positano, Solerno, Italy: SEQUENCES, June 1997.
+
+\bibitem{cox58}
+D. R.~Cox, "The Regression Analysis of Binary Sequences," \emph{Journal of the Royal Statistical Society}, vol.~20, no.~2, pp. 215--242, 1958.
+
+\bibitem{weka}
+Weka3: Data Mining Software in Java. [Online]. Available: \url{http://www.cs.waikato.ac.nz/ml/weka/}
+
+\bibitem{ncbi}
+National Center for Biotechnology Information. [Online]. Available: \url{http://www.ncbi.nlm.nih.gov/}
+
+\bibitem{doran122013}
+G.~Doran and S.~Ray, "A theoretical and empirical analysis of support vector machine methods for multiple-instance classification," \emph{Machine Learning}, vol.~97, no.~1, pp. 79--102, 2013. Code available online at: \url{https://github.com/garydoranjr/misvm/}
+
+\bibitem{Costello12182009}
+\BIBentryALTinterwordspacing
+E.~K. Costello, C.~L. Lauber, M.~Hamady, N.~Fierer, J.~I. Gordon, and
+  R.~Knight, ``{Bacterial Community Variation in Human Body Habitats Across
+  Space and Time},'' \emph{Science}, vol. 326, no. 5960, pp. 1694--1697, 2009.
+  [Online]. Available:
+  \url{http://www.sciencemag.org/cgi/content/abstract/326/5960/1694}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Qin:2010fk}
+J.~Qin~et al., ``A human gut microbial gene catalogue established by
+  metagenomic sequencing,'' \emph{Nature}, vol. 464, no. 7285, pp. 59--65, Mar
+  2010.
+
+\bibitem{Woese97}
+C.~R. Woese and G.~E. Fox, ``Phylogenetic structure of the prokaryotic domain:
+  the primary kingdoms.'' \emph{Proc Natl Acad Sci U S A}, vol.~74, no.~11, pp.
+  5088--5090, 1977.

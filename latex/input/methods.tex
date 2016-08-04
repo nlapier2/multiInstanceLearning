@@ -12,7 +12,7 @@ As mentioned in the Introduction, our pipeline involves a number of steps, which
 
 \subsection{Assembly with SOAPdenovo2}
 
-For our assembly step, we used SOAPdenovo2 \cite{luo12}, which is a de novo metagenome assembly tool. This tool was also used for assembly in the MGWAS study that our data came from. We use this method in order to compare ourselves with the MGWAS study, and because Soapdenovo2 has been proven to be one of the fastest assemblers\cite{peng12}. We tested a number of different combinations of parameters, and found that the best results came when we cut reads off after 100 base pairs (reads were 180 base pairs long originally) and used a k-mer size of 51. The patient files needed to be assembled separately, in order to avoid assembling reads from different patients together. Conversely, all contigs need to be in one file for clustering, to avoid inconsistent cluster assignments between different patients. Thus, we combined the contigs from each assembled patient file into a single for clustering.
+For our assembly step, we used SOAPdenovo2 \cite{luo12}, which is a de novo metagenome assembly tool. This tool was also used for assembly in the MGWAS study that our data came from. We use this method in order to compare ourselves with the MGWAS study, and because Soapdenovo2 has been proven to be one of the fastest assemblers\cite{peng12}. We tested a number of different combinations of parameters, and found that the best results came when we cut reads off after 100 base pairs (reads were 180 base pairs long originally) and used a k-mer size of 51. The average insert size was set to 350, in accordance with the reported average insert size from the MGWAS study that we used data from \cite{qin041012}. The patient files needed to be assembled separately, in order to avoid assembling reads from different patients together. Conversely, all contigs need to be in one file for clustering, to avoid inconsistent cluster assignments between different patients. Thus, we combined the contigs from each assembled patient file into a single for clustering.
 
 \subsection{Clustering with UCLUST}
 
@@ -20,7 +20,7 @@ We used UCLUST \cite{Edgar10}, which has been shown to be among the simplest, fa
 
 \subsection{Feature Extraction}
 
-Our feature extraction operation followed the D-BoW method. For each patient, we initialized a vector with length equal to the number of clusters. The value for each place in that patient's feature vector would then be set to the closest percentage match (0.4 to 1) of the reads from that patient to the relevant cluster seed. For instance, if there are three clusters of reads, and patient A has the cluster seed for cluster 1, no reads from cluster 2, and a read with 70\% match to cluster 3, their feature vector would be~~A = [1.0~~~0.0~~~0.7]. This is illustrated in Figure \ref{pipeline}.
+Our feature extraction operation followed the D-BoW method. For each patient, we initialized a vector with length equal to the number of clusters. The value for each place in that patient's feature vector would then be set to the closest percentage match (0.4 to 1) of the reads from that patient to the relevant cluster seed. For instance, if there are three clusters of reads, and patient A has the cluster seed for cluster 1, no reads from cluster 2, and a read with 70\% match to cluster 3, their feature vector would be~~A = [1.0~~~0.0~~~0.7]. This is illustrated in Figure \ref{pipeline}. We implemented this feature extraction method in Python.
 
 \subsection{Classification and Evaluation Metrics}
 

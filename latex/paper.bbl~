@@ -21,128 +21,34 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-% keep this
+
+% INTRODUCTION / BIOLOGY
+
+
 \bibitem{turnbaugh_human_2007}
 \BIBentryALTinterwordspacing
-P.~J. Turnbaugh, R.~E. Ley, M.~Hamady, C.~M. {Fraser-Liggett}, R.~Knight, and
-  J.~I. Gordon, ``The human microbiome project.'' \emph{Nature}, vol. 449, no.
+P.~J. Turnbaugh et al., ``The human microbiome project.'' \emph{Nature}, vol. 449, no.
   7164, pp. 804--810, Oct. 2007. [Online]. Available:
   \url{http://dx.doi.org/10.1038/nature06244}
 \BIBentrySTDinterwordspacing
 
-% keep this
 \bibitem{backhed_host-bacterial_2005}
 \BIBentryALTinterwordspacing
-F.~Backhed, R.~E. Ley, J.~L. Sonnenburg, D.~A. Peterson, and J.~I. Gordon,
+F.~Backhed et al.,
   ``{Host-Bacterial} mutualism in the human intestine,'' \emph{Science}, vol.
   307, no. 5717, pp. 1915--1920, 2005. [Online]. Available:
   \url{http://www.sciencemag.org/cgi/content/abstract/307/5717/1915}
 \BIBentrySTDinterwordspacing
 
 \bibitem{messing81}
-J.~Messing, R.~Crea, and P. H.~Seeburg, "A system for shotgun DNA sequencing," \emph{Nucleic Acids Research}, vol.~9, no.~2, pp. 309--321, 1981.
+J.~Messing et al., "A system for shotgun DNA sequencing," \emph{Nucleic Acids Research}, vol.~9, no.~2, pp. 309--321, 1981.
 
 \bibitem{handelsman04}
 J.~Handelsman, "Metagenomics: Application of Genomics to Uncultured Microorganisms," \emph{Microbiology and Molecular Biology Reviews}, vol.~68, no.~4, pp. 669--685, 2004.
 
-% keep this
-\bibitem{Costello12182009}
-\BIBentryALTinterwordspacing
-E.~K. Costello, C.~L. Lauber, M.~Hamady, N.~Fierer, J.~I. Gordon, and
-  R.~Knight, ``{Bacterial Community Variation in Human Body Habitats Across
-  Space and Time},'' \emph{Science}, vol. 326, no. 5960, pp. 1694--1697, 2009.
-  [Online]. Available:
-  \url{http://www.sciencemag.org/cgi/content/abstract/326/5960/1694}
-\BIBentrySTDinterwordspacing
 
-% keep this
-\bibitem{Qin:2010fk}
-J.~Qin~et al., ``A human gut microbial gene catalogue established by
-  metagenomic sequencing,'' \emph{Nature}, vol. 464, no. 7285, pp. 59--65, Mar
-  2010.
+% MULTIPLE INSTANCE LEARNING
 
-% keep this
-\bibitem{Woese97}
-C.~R. Woese and G.~E. Fox, ``Phylogenetic structure of the prokaryotic domain:
-  the primary kingdoms.'' \emph{Proc Natl Acad Sci U S A}, vol.~74, no.~11, pp.
-  5088--5090, 1977.
-
-% keep this
-\bibitem{Edgar10}
-R.~Edgar, ``Search and clustering orders of magnitude faster than blast,''
-  \emph{Bioinformatics}, vol.~26, no.~19, pp. 2460--2461, 2010.
-
-% keep this
-%\bibitem{hugenholtz2008microbiology}
-%P.~Hugenholtz and G.~Tyson, ``Microbiology: metagenomics,'' \emph{Nature}, vol.
-%  455, no. 7212, pp. 481--483, 2008.
-
-% keep this
-%\bibitem{charuvaka2011evaluation}
-%A.~Charuvaka and H.~Rangwala, ``Evaluation of short read metagenomic
-%  assembly,'' \emph{BMC genomics}, vol.~12, no. Suppl 2, p.~S8, 2011.
-
-% keep this
-\bibitem{schloss2009introducing}
-P.~Schloss, S.~Westcott, T.~Ryabin, J.~Hall, M.~Hartmann, E.~Hollister,
-  R.~Lesniewski, B.~Oakley, D.~Parks, C.~Robinson \emph{et~al.}, ``Introducing
-  mothur: open-source, platform-independent, community-supported software for
-  describing and comparing microbial communities,'' \emph{Applied and
-  environmental microbiology}, vol.~75, no.~23, pp. 7537--7541, 2009.
-
-% keep this
-\bibitem{schloss2005introducing}
-P.~Schloss and J.~Handelsman, ``Introducing dotur, a computer program for
-  defining operational taxonomic units and estimating species richness,''
-  \emph{Applied and environmental microbiology}, vol.~71, no.~3, pp.
-  1501--1506, 2005.
-
-% keep this
-\bibitem{sun2009esprit}
-Y.~Sun, Y.~Cai, L.~Liu, F.~Yu, M.~Farrell, W.~McKendree, and W.~Farmerie,
-  ``Esprit: estimating species richness using large collections of 16s rrna
-  pyrosequences,'' \emph{Nucleic Acids Research}, vol.~37, no.~10, pp.
-  e76--e76, 2009.
-
-% keep this
-\bibitem{bibm2012}
-Z.~Rasheed, H.~Rangwala, and D.~Barbara, ``Lsh-div: Species
-  diversity estimation using locality sensitive hashing,'' in \emph{IEEE
-  International Conference on Bioinformatics and Biomedicine (BIBM)}.\hskip 1em
-  plus 0.5em minus 0.4em\relax Philadelphia, USA: IEEE, October 2012, pp. 1--6,
-  acceptance Rate: 59/299 = 19.93\%.
-
-% keep this
-\bibitem{Li01072006}
-\BIBentryALTinterwordspacing
-W.~Li and A.~Godzik, ``Cd-hit: a fast program for clustering and comparing
-  large sets of protein or nucleotide sequences,'' \emph{Bioinformatics},
-  vol.~22, no.~13, pp. 1658--1659, 2006. [Online]. Available:
-  \url{http://bioinformatics.oxfordjournals.org/content/22/13/1658.abstract}
-\BIBentrySTDinterwordspacing
-
-% keep this
-\bibitem{Hao01032011}
-\BIBentryALTinterwordspacing
-X.~Hao, R.~Jiang, and T.~Chen, ``Clustering 16s rrna for otu prediction: a
-  method of unsupervised bayesian clustering,'' \emph{Bioinformatics}, vol.~27,
-  no.~5, pp. 611--618, 2011. [Online]. Available:
-  \url{http://bioinformatics.oxfordjournals.org/content/27/5/611.abstract}
-\BIBentrySTDinterwordspacing
-
-% keep this
-\bibitem{sdm2013a}
-Z.~Rasheed and H.~Rangwala, ``Mc-minh: Metagenome clustering using minwise
-  based hashing,'' in \emph{SIAM International Conference in Data Mining
-  (SDM)}.\hskip 1em plus 0.5em minus 0.4em\relax Austin, TX: SIAM, May 2013.
-
-\bibitem{cox58}
-D. R.~Cox, "The Regression Analysis of Binary Sequences," \emph{Journal of the Royal Statistical Society}, vol.~20, no.~2, pp. 215--242, 1958.
-
-% keep this
-\bibitem{vap95}
-V.~N. Vapnik, \emph{The Nature of Statistical Learning Theory}.\hskip 1em plus
-  0.5em minus 0.4em\relax Springer Verlag, 1995.
 
 \bibitem{dietterich97}
 T.G.~Dietterich, "Solving the multiple instance problem with axis-parallel rectangles," \emph{Artificial Intelligence}, vol.~89, no.~1, pp. 31--71, 1997.
@@ -154,64 +60,121 @@ O.~Maron and T.~Lozano-Perez, "A framework for multiple-instance learning," in \
 Q.~Zhang and S.~Goldman, "EM-DD: An improved multiple-instance learning technique," in \emph {Advances in neural information processing systems}. Vancouver, BC, Canada: NIPS, 2001.
 
 \bibitem{andrews02}
-S.~Andrews, I.~Tsochantaridis, and T.~Hofmann, "Support vector machines for multiple-instance learning," in \emph {Advances in neural information processing systems}. Vancouver, BC, Canada: NIPS, 2002.
+S.~Andrews et al., "Support vector machines for multiple-instance learning," in \emph {Advances in neural information processing systems}. Vancouver, BC, Canada: NIPS, 2002.
 
 \bibitem{wang06}
-Y.~Chen, J.~Bi, and J.~Wang, "MILES: Multiple-instance learning via embedded instance selection," \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol.~28, no.~12, pp. 1931--1947, 2006.
+Y.~Chen et al., "MILES: Multiple-instance learning via embedded instance selection," \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol.~28, no.~12, pp. 1931--1947, 2006.
 
 \bibitem{amores13}
 J.~Amores, "Multiple instance classification: Review, taxonomy and comparative study," \emph{Artificial Intelligence}, vol.~201, no.~1, pp. 81--105, 2013.
 
 \bibitem{zhou12}
-G.~Liu, J.~Wu, and Z.~Zhou, "Key Instance Detection in Multi-Instance Learning," in \emph{Asian Conference on Machine Learning (ACML)}. Singapore: ACML, November 2012.
+G.~Liu et al., "Key Instance Detection in Multi-Instance Learning," in \emph{Asian Conference on Machine Learning (ACML)}. Singapore: ACML, November 2012.
 
 \bibitem{kotzias15}
-D.~Kotzias, M.~Denil, N~.De Freitas, and P.~Smyth, "From group to individual labels using deep features," in \emph{ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (SIGKDD)}. Sydney, Australia: SIGKDD, August 2015.
+D.~Kotzias et al., "From group to individual labels using deep features," in \emph{ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (SIGKDD)}. Sydney, Australia: SIGKDD, August 2015.
 
-\bibitem{li11}
-P.~Li, A.~Shrivastava, J.~Moore, and A.~Konig, "Hashing algorithms for large-scale learning," in \emph{Advances in neural information processing systems}. Granada, Spain: NIPS, December 2011.
 
-\bibitem{li10}
-P.~Li and C.~Konig, "b-Bit minwise hashing," in \emph{ACM International World Wide Web Conference (WWW)}. Raleigh, NC: WWW, April 2010.
+% CLUSTERING
 
-\bibitem{broder093097}
-A.~Broder, S.~Glassman, M.~Manasse, and G.~Zweig, "Syntactic clustering of the web," \emph{Computer Networks and ISDN Systems}, vol.~29, no.~8, pp. 1157--1166, 1997.
 
-\bibitem{broder061197}
-A.~Broder, "On the resemblance and containment of documents," in \emph{IEEE International Conference on Compression and Complexity of Sequences (SEQUENCES)}. Positano, Solerno, Italy: SEQUENCES, June 1997.
+\bibitem{Edgar10}
+R.~Edgar, ``Search and clustering orders of magnitude faster than blast,''
+  \emph{Bioinformatics}, vol.~26, no.~19, pp. 2460--2461, 2010.
 
-\bibitem{peng05}
-H.~Peng, F.~Long, and C.~Ding, "Feature selection based on mutual information: criteria of max-dependency, max-relevance, and min-redundancy," \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol.~27, no.~8, pp. 1226-1238, 2005.
+\bibitem{Li01072006}
+\BIBentryALTinterwordspacing
+W.~Li and A.~Godzik, ``Cd-hit: a fast program for clustering and comparing
+  large sets of protein or nucleotide sequences,'' \emph{Bioinformatics},
+  vol.~22, no.~13, pp. 1658--1659, 2006. [Online]. Available:
+  \url{http://bioinformatics.oxfordjournals.org/content/22/13/1658.abstract}
+\BIBentrySTDinterwordspacing
 
-\bibitem{qin041012}
-J.~Qin~et al., "A metagenome-wide association study of gut microbiota in type 2 diabetes," \emph{Nature}, vol.~490, no.~7418, pp. 55--60, 2012. 
+\bibitem{schloss2009introducing}
+P.~Schloss et al., ``Introducing
+  mothur: open-source, platform-independent, community-supported software for
+  describing and comparing microbial communities,'' \emph{Applied and
+  environmental microbiology}, vol.~75, no.~23, pp. 7537--7541, 2009.
 
-\bibitem{luo12}
-R.~Luo~et al., "SOAPdenovo2: an empirically improved memory-efficient short-read de novo assembler," \emph{GigaScience}, vol.~1, no.~1, pp. 1--6, 2012. 
+\bibitem{schloss2005introducing}
+P.~Schloss and J.~Handelsman, ``Introducing dotur, a computer program for
+  defining operational taxonomic units and estimating species richness,''
+  \emph{Applied and environmental microbiology}, vol.~71, no.~3, pp.
+  1501--1506, 2005.
 
-\bibitem{joachims08}
-Svmlight support vector machine. [Online]. Available:
-  \url{http://svmlight.joachims.org/}
+\bibitem{sun2009esprit}
+Y.~Sun et al.,
+  ``Esprit: estimating species richness using large collections of 16s rrna
+  pyrosequences,'' \emph{Nucleic Acids Research}, vol.~37, no.~10, pp.
+  e76--e76, 2009.
 
-\bibitem{weka}
-Weka3: Data Mining Software in Java. [Online]. Available: \url{http://www.cs.waikato.ac.nz/ml/weka/}
+\bibitem{bibm2012}
+Z.~Rasheed, H.~Rangwala, and D.~Barbara, ``Lsh-div: Species
+  diversity estimation using locality sensitive hashing,'' in \emph{IEEE
+  International Conference on Bioinformatics and Biomedicine (BIBM)}.\hskip 1em
+  plus 0.5em minus 0.4em\relax Philadelphia, USA: IEEE, October 2012, pp. 1--6,
+  acceptance Rate: 59/299 = 19.93\%.
+
+\bibitem{Hao01032011}
+\BIBentryALTinterwordspacing
+X.~Hao et al., ``Clustering 16s rrna for otu prediction: a
+  method of unsupervised bayesian clustering,'' \emph{Bioinformatics}, vol.~27,
+  no.~5, pp. 611--618, 2011. [Online]. Available:
+  \url{http://bioinformatics.oxfordjournals.org/content/27/5/611.abstract}
+\BIBentrySTDinterwordspacing
+
+\bibitem{sdm2013a}
+Z.~Rasheed and H.~Rangwala, ``Mc-minh: Metagenome clustering using minwise
+  based hashing,'' in \emph{SIAM International Conference in Data Mining
+  (SDM)}.\hskip 1em plus 0.5em minus 0.4em\relax Austin, TX: SIAM, May 2013.
 
 \bibitem{bonder090112}
-M.~Bonder, S.~Abeln, E.~Zaura, and B.~Brandt, "Comparing clustering and pre-processing in taxonomy analysis," \emph{Bioinformatics}, vol.~28, no.~22, pp. 2891--2897, 2012.
+M.~Bonder et al., "Comparing clustering and pre-processing in taxonomy analysis," \emph{Bioinformatics}, vol.~28, no.~22, pp. 2891--2897, 2012.
 
 \bibitem{sun042711}
 Y.~Sun~et al., "A large-scale benchmark study of existing algorithms for taxonomy-independent microbial community analysis," \emph{Bioinformatics}, vol.~13, no.~1, pp. 107--121, 2011.
 
-\bibitem{ncbi}
-National Center for Biotechnology Information. [Online]. Available: \url{http://www.ncbi.nlm.nih.gov/}
 
-\bibitem{doran122013}
-G.~Doran and S.~Ray, "A theoretical and empirical analysis of support vector machine methods for multiple-instance classification," \emph{Machine Learning}, vol.~97, no.~1, pp. 79--102, 2013. Code available online at: \url{https://github.com/garydoranjr/misvm/}
+% ASSEMBLY
+
+
+\bibitem{luo12}
+R.~Luo~et al., "SOAPdenovo2: an empirically improved memory-efficient short-read de novo assembler," \emph{GigaScience}, vol.~1, no.~1, pp. 1--6, 2012. 
 
 \bibitem{peng12}
-Y.~Peng, H. C. M.~Leung, S. M.~Yiu, and F. Y. L.~Chin, "IDBA-UD: a de novo assembler for single-cell and metagenomic sequencing data with highly uneven depth," \emph{Bioinformatics}, vol.~28, no.~11, pp. 1420--1428, 2012.
+Y.~Peng et al., "IDBA-UD: a de novo assembler for single-cell and metagenomic sequencing data with highly uneven depth," \emph{Bioinformatics}, vol.~28, no.~11, pp. 1420--1428, 2012.
 
-\bibitem{argo}
-On-campus research computing. [Online]. Available: \url{http://orc.gmu.edu/research-computing/argo-cluster/argo-hardware-specs/}
+\bibitem{zerbino08}
+D. R.~Zerbino and E.~Birney, "Velvet: Algorithms for de novo short read assembly using de Bruijn graphs," \emph{Genome Research}, pp. 821--829, 2008. doi: 10.1101/gr.074492.107.
+
+\bibitem{namiki12}
+T.~Namiki et al., "MetaVelvet: an extension of Velvet assembler to de novo metagenome assembly from short sequence reads," \emph{Nucleic Acids Research}, vol.~40, no.~20, pp. e155, 2012. doi: 10.1093/nar/gks678.
+
+\bibitem{simpson09}
+J. T.~Simpson et al., "ABySS: A parallel assembler for short read sequence data," \emph{Genome Research}, pp. 1117--1123, 2009. doi: 10.1101/gr.089532.108.
+
+\bibitem{boisvert12}
+S.~Boisvert et al., "Ray Meta: scalable de novo metagenome assembly and profiling," \emph{Genome Research}, 2012. doi: 10.1186/gb-2012-13-12-r122.
+
+
+% SVMs / CLASSIFICATION
+
+
+\bibitem{vap95}
+V.~N. Vapnik, \emph{The Nature of Statistical Learning Theory}.\hskip 1em plus
+  0.5em minus 0.4em\relax Springer Verlag, 1995.
+
+\bibitem{joachims08}
+T.~Joachims, "Making Large-Scale SVM Learning Practical," in \emph{Advances in Kernel Methods - Support Vector Learning}, B. Schölkopf and C. Burges and A. Smola, Ed. Cambridge, MA: MIT Press, 1999., pp. 41-56
+
+
+% DATASET
+
+
+\bibitem{qin041012}
+J.~Qin~et al., "A metagenome-wide association study of gut microbiota in type 2 diabetes," \emph{Nature}, vol.~490, no.~7418, pp. 55--60, 2012. 
+
+\bibitem{peng05}
+H.~Peng et al., "Feature selection based on mutual information: criteria of max-dependency, max-relevance, and min-redundancy," \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol.~27, no.~8, pp. 1226-1238, 2005.
 
 \end{thebibliography}
