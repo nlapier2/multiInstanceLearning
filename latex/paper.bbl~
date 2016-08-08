@@ -60,7 +60,10 @@ O.~Maron and T.~Lozano-Perez, "A framework for multiple-instance learning," in \
 Q.~Zhang and S.~Goldman, "EM-DD: An improved multiple-instance learning technique," in \emph {Advances in neural information processing systems}. Vancouver, BC, Canada: NIPS, 2001.
 
 \bibitem{andrews02}
-S.~Andrews et al., "Support vector machines for multiple-instance learning," in \emph {Advances in neural information processing systems}. Vancouver, BC, Canada: NIPS, 2002.
+S.~Andrews et al., "Support vector machines for multiple-instance learning," in \emph{Advances in neural information processing systems}. Vancouver, BC, Canada: NIPS, 2002.
+
+\bibitem{bunescu07}
+R.~Bunescu and R.~Mooney, "Multiple instance learning for sparse positive bags," in \emph{International Conference on Machine Learning}. Corvallis, Oregon: ICML, 2007.
 
 \bibitem{wang06}
 Y.~Chen et al., "MILES: Multiple-instance learning via embedded instance selection," \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol.~28, no.~12, pp. 1931--1947, 2006.
@@ -137,6 +140,9 @@ Y.~Sun~et al., "A large-scale benchmark study of existing algorithms for taxonom
 
 % ASSEMBLY
 
+
+\bibitem{li10}
+R.~Li et al., "De novo assembly of human genomes with massively parallel short read sequencing," \emph{Genome Research}, pp. 265--272, 2010. doi: 10.1101/gr.097261.109.
 
 \bibitem{luo12}
 R.~Luo~et al., "SOAPdenovo2: an empirically improved memory-efficient short-read de novo assembler," \emph{GigaScience}, vol.~1, no.~1, pp. 1--6, 2012. 

@@ -1,3 +1,6 @@
+"CAMIL": Clustering and Assembly with Multiple Instance Learning
+CAMIL H-BoW and CAMIL D-BoW
+
 Original 60: SRR413*, where * is 556-557, 646-664, 666-682, 684-702, 757-759
 
 Size of all 218 available patients in FASTQ format: 3.7TB - (511+250+626+42) = 2.3TB
@@ -116,3 +119,16 @@ F1 Score: 0.697674418605
 True Positive Rate and False Positive Rate: 1.0 and 0.866666666667
 
 
+--------------------------------
+
+
+Pipeline (CAMIL) - Both H-BoW and D-BoW versions
+MI-SVM: shows why Instance Space (IS) and Standard MIL assumption are bad (also do sbMIL?)
+GICF: avoids standard MIL assumption and learns instance labels, but still IS
+EMD+SVM?: Bag Space (BS) example, show why vocabulary needed in bioinformatics?
+R packages from mgwas paper?: our way of comparing to original paper
+
+Then: compare CAMIL to original paper results and explain why better (de novo, less training data)
+
+Then: show CAMIL instance "labels" better than GICF (CAMIL should have some clusters labeled as clearly bad or good, whereas GICF labels not very differentiated)
+Voting Framework (VF) from key instance detection paper?: like GICF but standard MI assumption

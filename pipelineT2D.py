@@ -13,6 +13,7 @@ import misvm
 
 def parseargs():    # handle user arguments
     parser = argparse.ArgumentParser(description='Classify fasta-format sequence reads')
+    parser.add_argument('--bow', default='d', choices=['d', 'h'], help='Distance (d) or Histogram (h) Bag of Words.')
     parser.add_argument('-c', '--cluster', default='NONE', choices=['kraken', 'uclust'],
                         help='Which clustering algorithm was used')
     parser.add_argument('-d', '--dir', default='NONE', help='You can specify directory of all parameters if shared')
@@ -63,7 +64,7 @@ def parse_kraken(vectors, infile, split):  # generate feature vectors from krake
     return vectors
 
 
-def parse_uclust(vectors, infile, split):  # generate feature vectors from uclust output
+def parse_uclust(vectors, infile, split, bow):  # generate feature vectors from uclust output
     f = open(infile)
     for line in f:
         if line.startswith('H') or line.startswith('S'):
@@ -76,17 +77,24 @@ def parse_uclust(vectors, infile, split):  # generate feature vectors from uclus
                 if veclen < featnum + 1:        # used to expand feature list if needed
                     for j in range(veclen, featnum + 1):
                         vec.append('')
-                if line.startswith('H'):
-                    value = str(float(fields[3])/100.0)   # "value" of feature, i.e. percentage match to cluster seed
-                    if vec[featnum] == '' or float(value) > float(vec[featnum].split(":")[1]):
-                        vec[featnum] = str(featnum) + ":" + value + ' '
-                elif line.startswith('S'):
-                    vec[featnum] = str(featnum) + ":1.0 "
+                if bow == 'd':
+                    if line.startswith('H'):
+                        value = str(float(fields[3])/100.0)   # "value" of feature i.e. percentage match to cluster seed
+                        if vec[featnum] == '' or float(value) > float(vec[featnum].split(":")[1]):
+                            vec[featnum] = str(featnum) + ":" + value + ' '
+                    elif line.startswith('S'):
+                        vec[featnum] = str(featnum) + ":1.0 "
+                elif bow == 'h':
+                    if line.startswith('H') or line.startswith('S'):
+                        if vec[featnum] == '':
+                            vec[featnum] = str(featnum) + ":1.0 "
+                        else:   # add to the tally for this cluster
+                            vec[featnum] = str(featnum) + ":" + str(float(vec[featnum].split(":")[1]) + 1.0) + ' '
     f.close()
     return vectors
 
 
-def parse_cluster(verbose, directory, positive, negative, cluster, infile, mapfile, split):
+def parse_cluster(verbose, directory, positive, negative, cluster, infile, mapfile, split, bow):
     # generate feature vectors from cluster output
     os.chdir(directory)
     if verbose:
@@ -107,7 +115,7 @@ def parse_cluster(verbose, directory, positive, negative, cluster, infile, mapfi
     if cluster == 'kraken':
         vectors = parse_kraken(vectors, infile, split)
     elif cluster == 'uclust':
-        vectors = parse_uclust(vectors, infile, split)
+        vectors = parse_uclust(vectors, infile, split, bow)
     return vectors
 
 
@@ -304,7 +312,7 @@ def main():
             print "Entering input mode..."
         if args.svm != 'misvm':
             vectors = parse_cluster(args.verbose, args.dir, args.positive, args.negative,
-                                    args.cluster, args.input, args.map, args.split)
+                                    args.cluster, args.input, args.map, args.split, args.bow)
             write_train_test(vectors, args.train, args. test)
 
     if args.svm == 'misvm':

@@ -11,6 +11,7 @@
 \citation{perez98}
 \citation{zhang01}
 \citation{andrews02}
+\citation{bunescu07}
 \citation{wang06}
 \citation{amores13}
 \citation{zhou12}
@@ -54,25 +55,19 @@
 \citation{Edgar10}
 \citation{Edgar10}
 \citation{Edgar10}
-\citation{luo12}
-\citation{peng12}
-\citation{qin041012}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}Clustering}{3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces This diagram illustrates the similarity computation between two sequences in UCLUST. Terminal characters are excluded, so the length of the reads is 10. In the first 10 characters of each string, there are 5 matching characters that are in the same position in the string. Thus, the similarity is 5/10 = 50\%.}}{3}}
 \newlabel{uclust-similarity}{{2}{3}}
 \@writefile{toc}{\contentsline {section}{\numberline {III}Methods}{3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Overview}{3}}
+\citation{luo12}
+\citation{peng12}
+\citation{qin041012}
 \citation{Edgar10}
 \citation{bonder090112}
 \citation{sun042711}
 \citation{joachims08}
 \citation{amores13}
-\citation{qin041012}
-\citation{qin041012}
-\citation{peng05}
-\citation{qin041012}
-\citation{qin041012}
-\citation{qin041012}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces This diagram illustrates the entire pipeline. Patient files with FASTQ metagenomic reads are individually assembled using SOAPdenovo2, then combined into one file and clustered with UCLUST. We extract features according to the D-BoW method, and classify the patients using the feature vectors with svm-light.}}{4}}
 \newlabel{pipeline}{{3}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Assembly with SOAPdenovo2}{4}}
@@ -83,26 +78,40 @@
 \newlabel{eqn:prec}{{2}{4}}
 \newlabel{eqn:roc}{{3}{4}}
 \newlabel{eqn:f1}{{4}{4}}
-\newlabel{eqn:roc}{{5}{4}}
-\newlabel{eqn:prec}{{6}{4}}
+\citation{qin041012}
+\citation{qin041012}
+\citation{peng05}
+\citation{qin041012}
+\citation{qin041012}
+\citation{qin041012}
 \citation{luo12}
 \citation{Edgar10}
 \citation{joachims08}
 \citation{qin041012}
+\citation{andrews02}
+\citation{bunescu07}
 \citation{amores13}
 \citation{amores13}
-\bibstyle{IEEEtran}
-\bibdata{./bib/HadoopClustering,./bib/all,./bib/RangwalaRefs,./bib/Rangwala_CV,./bib/anveshi,./bib/disease_state_classifier,./bib/hmp,./bib/lsh,./bib/mgenomics}
+\citation{bunescu07}
+\citation{doran14}
+\citation{kotzias15}
+\citation{amores13}
+\citation{amores13}
+\newlabel{eqn:roc}{{5}{5}}
+\newlabel{eqn:prec}{{6}{5}}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Materials}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Dataset Description}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}Software and Hardware Details}{5}}
 \@writefile{toc}{\contentsline {section}{\numberline {V}Experimental Results}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Experimental Setup}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Results For Bag/Patient Labels}{5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces This diagram illustrates why static instance labels are not sufficient for phenotype prediction. A patient with 6 of the blue microbe or 6 of the green microbe may be healthy, while a patient with 3 of each is sick. Static instance labels cannot capture this relationship. This is also explored by Amores in his MIL taxonomy \cite  {amores13}.}}{5}}
-\newlabel{instance-labels}{{4}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Deriving Instance "Labels"}{5}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Methods Tested}{5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}1}Our Pipeline}{5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}2}MI-SVM and sbMIL}{5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}3}GICF}{5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}4}Original MGWAS Paper: mRMR + SVM}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Results For Bag/Patient Labels}{5}}
+\bibstyle{IEEEtran}
+\bibdata{./bib/HadoopClustering,./bib/all,./bib/RangwalaRefs,./bib/Rangwala_CV,./bib/anveshi,./bib/disease_state_classifier,./bib/hmp,./bib/lsh,./bib/mgenomics}
 \bibcite{turnbaugh_human_2007}{1}
 \bibcite{backhed_host-bacterial_2005}{2}
 \bibcite{messing81}{3}
@@ -111,29 +120,35 @@
 \bibcite{perez98}{6}
 \bibcite{zhang01}{7}
 \bibcite{andrews02}{8}
-\bibcite{wang06}{9}
-\bibcite{amores13}{10}
-\bibcite{zhou12}{11}
-\bibcite{kotzias15}{12}
-\bibcite{Edgar10}{13}
-\bibcite{Li01072006}{14}
-\bibcite{schloss2009introducing}{15}
-\bibcite{schloss2005introducing}{16}
-\bibcite{sun2009esprit}{17}
-\bibcite{bibm2012}{18}
-\bibcite{Hao01032011}{19}
-\bibcite{sdm2013a}{20}
-\bibcite{bonder090112}{21}
-\bibcite{sun042711}{22}
-\bibcite{li10}{23}
-\bibcite{luo12}{24}
-\bibcite{peng12}{25}
-\bibcite{zerbino08}{26}
-\bibcite{namiki12}{27}
-\bibcite{simpson09}{28}
-\bibcite{boisvert12}{29}
-\bibcite{vap95}{30}
-\bibcite{joachims08}{31}
-\bibcite{qin041012}{32}
-\bibcite{peng05}{33}
+\bibcite{bunescu07}{9}
+\bibcite{wang06}{10}
+\bibcite{amores13}{11}
+\bibcite{zhou12}{12}
+\bibcite{kotzias15}{13}
+\bibcite{doran14}{14}
+\bibcite{Edgar10}{15}
+\bibcite{Li01072006}{16}
+\bibcite{schloss2009introducing}{17}
+\bibcite{schloss2005introducing}{18}
+\bibcite{sun2009esprit}{19}
+\bibcite{bibm2012}{20}
+\bibcite{Hao01032011}{21}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces This diagram illustrates why static instance labels are not sufficient for phenotype prediction. A patient with 6 of the blue microbe or 6 of the green microbe may be healthy, while a patient with 3 of each is sick. Static instance labels cannot capture this relationship. This is also explored by Amores in his MIL taxonomy \cite  {amores13}.}}{6}}
+\newlabel{instance-labels}{{4}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Deriving Instance "Labels"}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion}{6}}
 \@writefile{toc}{\contentsline {section}{References}{6}}
+\bibcite{sdm2013a}{22}
+\bibcite{bonder090112}{23}
+\bibcite{sun042711}{24}
+\bibcite{li10}{25}
+\bibcite{luo12}{26}
+\bibcite{peng12}{27}
+\bibcite{zerbino08}{28}
+\bibcite{namiki12}{29}
+\bibcite{simpson09}{30}
+\bibcite{boisvert12}{31}
+\bibcite{vap95}{32}
+\bibcite{joachims08}{33}
+\bibcite{qin041012}{34}
+\bibcite{peng05}{35}

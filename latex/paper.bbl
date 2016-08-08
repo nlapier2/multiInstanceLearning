@@ -60,7 +60,10 @@ O.~Maron and T.~Lozano-Perez, "A framework for multiple-instance learning," in \
 Q.~Zhang and S.~Goldman, "EM-DD: An improved multiple-instance learning technique," in \emph {Advances in neural information processing systems}. Vancouver, BC, Canada: NIPS, 2001.
 
 \bibitem{andrews02}
-S.~Andrews et al., "Support vector machines for multiple-instance learning," in \emph {Advances in neural information processing systems}. Vancouver, BC, Canada: NIPS, 2002.
+S.~Andrews et al., "Support vector machines for multiple-instance learning," in \emph{Advances in neural information processing systems}. Vancouver, BC, Canada: NIPS, 2002.
+
+\bibitem{bunescu07}
+R.~Bunescu and R.~Mooney, "Multiple instance learning for sparse positive bags," in \emph{International Conference on Machine Learning}. Corvallis, Oregon: ICML, 2007.
 
 \bibitem{wang06}
 Y.~Chen et al., "MILES: Multiple-instance learning via embedded instance selection," \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol.~28, no.~12, pp. 1931--1947, 2006.
@@ -73,6 +76,9 @@ G.~Liu et al., "Key Instance Detection in Multi-Instance Learning," in \emph{Asi
 
 \bibitem{kotzias15}
 D.~Kotzias et al., "From group to individual labels using deep features," in \emph{ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (SIGKDD)}. Sydney, Australia: SIGKDD, August 2015.
+
+\bibitem{doran14}
+G.~Doran and S.~Ray, "A Theoretical and Empirical Analysis of Support Vector Machine Methods for Multiple-Instance Classification," \emph{Machine Learning}, vol.~97, no.~1, pp. 79--102, 2014.
 
 
 % CLUSTERING
