@@ -77,6 +77,9 @@ G.~Liu et al., "Key Instance Detection in Multi-Instance Learning," in \emph{Asi
 \bibitem{kotzias15}
 D.~Kotzias et al., "From group to individual labels using deep features," in \emph{ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (SIGKDD)}. Sydney, Australia: SIGKDD, August 2015.
 
+\bibitem{doran14}
+G.~Doran and S.~Ray, "A Theoretical and Empirical Analysis of Support Vector Machine Methods for Multiple-Instance Classification," \emph{Machine Learning}, vol.~97, no.~1, pp. 79--102, 2014.
+
 
 % CLUSTERING
 
@@ -112,7 +115,7 @@ Y.~Sun et al.,
   e76--e76, 2009.
 
 \bibitem{bibm2012}
-Z.~Rasheed, H.~Rangwala, and D.~Barbara, ``Lsh-div: Species
+Z.~Rasheed et al., ``Lsh-div: Species
   diversity estimation using locality sensitive hashing,'' in \emph{IEEE
   International Conference on Bioinformatics and Biomedicine (BIBM)}.\hskip 1em
   plus 0.5em minus 0.4em\relax Philadelphia, USA: IEEE, October 2012, pp. 1--6,
@@ -174,7 +177,7 @@ V.~N. Vapnik, \emph{The Nature of Statistical Learning Theory}.\hskip 1em plus
 T.~Joachims, "Making Large-Scale SVM Learning Practical," in \emph{Advances in Kernel Methods - Support Vector Learning}, B. Schölkopf and C. Burges and A. Smola, Ed. Cambridge, MA: MIT Press, 1999., pp. 41-56
 
 
-% DATASET
+% MGWAS DATASET AND METHODS
 
 
 \bibitem{qin041012}
@@ -182,5 +185,17 @@ J.~Qin~et al., "A metagenome-wide association study of gut microbiota in type 2 
 
 \bibitem{peng05}
 H.~Peng et al., "Feature selection based on mutual information: criteria of max-dependency, max-relevance, and min-redundancy," \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol.~27, no.~8, pp. 1226-1238, 2005.
+
+\bibitem{zhu10}
+W.~Zhu et al., "Ab initio gene identification in metagenomic sequences," \emph{Nucleic Acids Research}, vol.~38, no.~12, pp. e132, 2010. doi: 10.1093/nar/gkq275.
+
+\bibitem{besemer99}
+J.~Besemer and M.~Borodovsky, "Heuristic approach to deriving models for gene finding," \emph{Nucleic Acids Research}, vol.~27, no.~19, pp. 3911--3920, 1999.
+
+\bibitem{qin030410}
+J.~Qin et al., "A human gut microbial gene catalogue established by metagenomic sequencing," \emph{Nature}, vol.~464, no.~7285, pp. 59--65, 2010.
+
+\bibitem{kanehisa00}
+M.~Kanehisa and S.~Goto, "KEGG: Kyoto Encyclopedia of Genes and Genomes," \emph{Nucleic Acids Research}, vol.~28, no.~1, pp. 27--30, 2000.
 
 \end{thebibliography}

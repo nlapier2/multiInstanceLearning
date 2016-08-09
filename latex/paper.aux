@@ -7,6 +7,7 @@
 \@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}}
 \citation{dietterich97}
 \citation{dietterich97}
+\citation{amores13}
 \citation{dietterich97}
 \citation{perez98}
 \citation{zhang01}
@@ -19,13 +20,14 @@
 \citation{amores13}
 \citation{amores13}
 \citation{amores13}
-\citation{zerbino08}
-\citation{namiki12}
+\citation{amores13}
+\citation{amores13}
+\citation{amores13}
+\citation{amores13}
 \@writefile{toc}{\contentsline {section}{\numberline {II}Background}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Multiple Instance Learning}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Assembly}{2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces This diagram illustrates a basic de Bruijn graph, as explained in the text. Notice the double arrow from TAT to ATT, allowing a path to go through that route twice. Thus, the longest contig that can be created by following a path is GTATTATTGGA, which is what we want.}}{2}}
-\newlabel{de-bruijn}{{1}{2}}
+\citation{zerbino08}
+\citation{namiki12}
 \citation{luo12}
 \citation{peng12}
 \citation{zerbino08}
@@ -52,14 +54,15 @@
 \citation{bibm2012}
 \citation{bonder090112}
 \citation{sun042711}
-\citation{Edgar10}
-\citation{Edgar10}
-\citation{Edgar10}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Assembly}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces This diagram illustrates a basic de Bruijn graph, as explained in the text. Notice the double arrow from TAT to ATT, allowing a path to go through that route twice. Thus, the longest contig that can be created by following a path is GTATTATTGGA, which is what we want.}}{3}}
+\newlabel{de-bruijn}{{1}{3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}Clustering}{3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces This diagram illustrates the similarity computation between two sequences in UCLUST. Terminal characters are excluded, so the length of the reads is 10. In the first 10 characters of each string, there are 5 matching characters that are in the same position in the string. Thus, the similarity is 5/10 = 50\%.}}{3}}
 \newlabel{uclust-similarity}{{2}{3}}
-\@writefile{toc}{\contentsline {section}{\numberline {III}Methods}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Overview}{3}}
+\citation{Edgar10}
+\citation{Edgar10}
+\citation{Edgar10}
 \citation{luo12}
 \citation{peng12}
 \citation{qin041012}
@@ -68,16 +71,13 @@
 \citation{sun042711}
 \citation{joachims08}
 \citation{amores13}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces This diagram illustrates the entire pipeline. Patient files with FASTQ metagenomic reads are individually assembled using SOAPdenovo2, then combined into one file and clustered with UCLUST. We extract features according to the D-BoW method, and classify the patients using the feature vectors with svm-light.}}{4}}
-\newlabel{pipeline}{{3}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}Methods}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Overview}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Assembly with SOAPdenovo2}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Clustering with UCLUST}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-D}}Feature Extraction}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-E}}Classification and Evaluation Metrics}{4}}
 \newlabel{eqn:acc}{{1}{4}}
-\newlabel{eqn:prec}{{2}{4}}
-\newlabel{eqn:roc}{{3}{4}}
-\newlabel{eqn:f1}{{4}{4}}
 \citation{qin041012}
 \citation{qin041012}
 \citation{peng05}
@@ -88,15 +88,11 @@
 \citation{Edgar10}
 \citation{joachims08}
 \citation{qin041012}
-\citation{andrews02}
-\citation{bunescu07}
-\citation{amores13}
-\citation{amores13}
-\citation{bunescu07}
-\citation{doran14}
-\citation{kotzias15}
-\citation{amores13}
-\citation{amores13}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces This diagram illustrates the entire pipeline. Patient files with FASTQ metagenomic reads are individually assembled using SOAPdenovo2, then combined into one file and clustered with UCLUST. We extract features according to the D-BoW method, and classify the patients using the feature vectors with svm-light.}}{5}}
+\newlabel{pipeline}{{3}{5}}
+\newlabel{eqn:prec}{{2}{5}}
+\newlabel{eqn:roc}{{3}{5}}
+\newlabel{eqn:f1}{{4}{5}}
 \newlabel{eqn:roc}{{5}{5}}
 \newlabel{eqn:prec}{{6}{5}}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Materials}{5}}
@@ -104,12 +100,41 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}Software and Hardware Details}{5}}
 \@writefile{toc}{\contentsline {section}{\numberline {V}Experimental Results}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Experimental Setup}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Methods Tested}{5}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}1}Our Pipeline}{5}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}2}MI-SVM and sbMIL}{5}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}3}GICF}{5}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}4}Original MGWAS Paper: mRMR + SVM}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Results For Bag/Patient Labels}{5}}
+\citation{andrews02}
+\citation{bunescu07}
+\citation{amores13}
+\citation{amores13}
+\citation{bunescu07}
+\citation{doran14}
+\citation{kotzias15}
+\citation{kotzias15}
+\citation{kotzias15}
+\citation{luo12}
+\citation{zhu10}
+\citation{besemer99}
+\citation{qin041012}
+\citation{qin030410}
+\citation{kanehisa00}
+\citation{powell12}
+\citation{qin041012}
+\citation{peng05}
+\citation{qin041012}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Methods Tested}{6}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}1}CAMIL - Our Pipeline}{6}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}2}MISVM and sbMIL}{6}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}3}GICF}{6}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}4}Original MGWAS Paper}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Results For Bag/Patient Labels}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Comparison of the performance of various methods on the MGWAS dataset. }}{6}}
+\newlabel{tab:comp}{{I}{6}}
+\citation{amores13}
+\citation{amores13}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces This diagram illustrates why static instance labels are not sufficient for phenotype prediction. A patient with 6 of the blue microbe or 6 of the green microbe may be healthy, while a patient with 3 of each is sick. Static instance labels cannot capture this relationship. This is also explained by Amores in his MIL taxonomy \cite  {amores13}.}}{7}}
+\newlabel{instance-labels}{{4}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Deriving Instance "Labels"}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces This diagram illustrates the distribution of the instance weights assigned by CAMIL D-BoW. The Y-Axis shows the weights, while the X-Axis shows the ranking of the clusters by weight. Clearly, there are a relatively small number of clusters that have disproportionately large weights, while there is a smaller number of clusters with smaller weights.}}{7}}
+\newlabel{instance-scatter}{{5}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion}{7}}
 \bibstyle{IEEEtran}
 \bibdata{./bib/HadoopClustering,./bib/all,./bib/RangwalaRefs,./bib/Rangwala_CV,./bib/anveshi,./bib/disease_state_classifier,./bib/hmp,./bib/lsh,./bib/mgenomics}
 \bibcite{turnbaugh_human_2007}{1}
@@ -133,11 +158,6 @@
 \bibcite{sun2009esprit}{19}
 \bibcite{bibm2012}{20}
 \bibcite{Hao01032011}{21}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces This diagram illustrates why static instance labels are not sufficient for phenotype prediction. A patient with 6 of the blue microbe or 6 of the green microbe may be healthy, while a patient with 3 of each is sick. Static instance labels cannot capture this relationship. This is also explored by Amores in his MIL taxonomy \cite  {amores13}.}}{6}}
-\newlabel{instance-labels}{{4}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Deriving Instance "Labels"}{6}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion}{6}}
-\@writefile{toc}{\contentsline {section}{References}{6}}
 \bibcite{sdm2013a}{22}
 \bibcite{bonder090112}{23}
 \bibcite{sun042711}{24}
@@ -152,3 +172,9 @@
 \bibcite{joachims08}{33}
 \bibcite{qin041012}{34}
 \bibcite{peng05}{35}
+\bibcite{zhu10}{36}
+\bibcite{besemer99}{37}
+\bibcite{qin030410}{38}
+\bibcite{kanehisa00}{39}
+\bibcite{powell12}{40}
+\@writefile{toc}{\contentsline {section}{References}{8}}

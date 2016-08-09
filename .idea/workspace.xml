@@ -46,10 +46,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pipelineT2D.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pipelineT2D.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pipelineT2D.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1319149" vertical-offset="933" max-vertical-offset="6048">
+            <state vertical-scroll-proportion="0.0" vertical-offset="933" max-vertical-offset="6048">
               <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
               <folding />
             </state>
@@ -66,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plotter.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="plotter.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/plotter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="478" max-vertical-offset="3078">
-              <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.49421966" vertical-offset="162" max-vertical-offset="3078">
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding>
                 <element signature="e#49#64#0" expanded="true" />
               </folding>
@@ -89,8 +89,8 @@
         <option value="$PROJECT_DIR$/bulkNCBIDownload.py" />
         <option value="$PROJECT_DIR$/clusterRep.py" />
         <option value="$PROJECT_DIR$/gicf.py" />
-        <option value="$PROJECT_DIR$/plotter.py" />
         <option value="$PROJECT_DIR$/pipelineT2D.py" />
+        <option value="$PROJECT_DIR$/plotter.py" />
       </list>
     </option>
   </component>
@@ -357,16 +357,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plotter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="478" max-vertical-offset="3078">
-          <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
-          <folding>
-            <element signature="e#49#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bulkNCBIDownload.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="954">
@@ -387,9 +377,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pipelineT2D.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1319149" vertical-offset="933" max-vertical-offset="6048">
+        <state vertical-scroll-proportion="0.0" vertical-offset="933" max-vertical-offset="6048">
           <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plotter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49421966" vertical-offset="162" max-vertical-offset="3078">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="e#49#64#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
