@@ -163,7 +163,41 @@ F1 Score = 2 * 1 * 0.667 / (1 + 0.667) = 0.8002
 --------------------------------
 
 
-- Complete the description for the original mRMR + SVM method in the paper
-- Describe the results table and explain why it makes sense which algorithms did better or worse
-- Describe the SVM instance "labels" and explain why they are better than the GICF labels
+#$ -q all-LoPri.q
 
+D-BoW final performance (even split):
+Accuracy on test set: 87.43% (160 correct, 23 incorrect, 183 total)
+Precision/recall on test set: 83.84%/92.22%
+F1 Score = 2*.8384*.9222 / (.8384+.9222) = 87.83%
+Leave-one-out estimate of the error: error=16.30%
+Leave-one-out estimate of the recall: recall=90.22%
+Leave-one-out estimate of the precision: precision=79.81%
+7 minutes and 59 seconds
+
+H-BoW final performance (even split):
+Accuracy on test set: 93.99% (172 correct, 11 incorrect, 183 total)
+Precision/recall on test set: 98.77%/88.89%
+F1 Score = 2*.9877*.8889 / (.9877+.8889) = 93.57%
+Leave-one-out estimate of the error: error=11.96%
+Leave-one-out estimate of the recall: recall=80.43%
+Leave-one-out estimate of the precision: precision=94.87%
+7 minutes and 21 seconds
+
+
+D-BoW no feature engineering:
+Accuracy on test set: 86.34% (158 correct, 25 incorrect, 183 total)
+Precision/recall on test set: 80.95%/94.44%
+F1 Score = 2*.8095*.9444 / (.8095+.9444) = 87.18%
+Leave-one-out estimate of the error: error=17.93%
+Leave-one-out estimate of the recall: recall=88.04%
+Leave-one-out estimate of the precision: precision=78.64%
+9 minutes and 13 seconds
+
+H-BoW no feature engineering:
+Accuracy on test set: 90.71% (166 correct, 17 incorrect, 183 total)
+Precision/recall on test set: 98.67%/82.22%
+F1 Score = 2*.9867*.8222 / (.9867+.8222) = 89.70%
+Leave-one-out estimate of the error: error=10.87%
+Leave-one-out estimate of the recall: recall=80.43%
+Leave-one-out estimate of the precision: precision=97.37%
+8 minutes, 49 seconds

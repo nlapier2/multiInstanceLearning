@@ -30,6 +30,7 @@ def parseargs():    # handle user arguments
     parser.add_argument('--svm', default='', help='Path to svm_light home folder, OR specify "misvm" ')
     parser.add_argument('--train', default='NONE', help='Path to svm training data set')
     parser.add_argument('--test', default='NONE', help='Path to svm test data set')
+    parser.add_argument('--testlist', default='NONE', help='Path to file with list of patients to be put in test set.')
     parser.add_argument('-v', '--verbose', default=False, action='store_true', help='Verbose output')
     parser.add_argument('--write', default='NONE', help='Write arrays to outfile (k-mers only) and exit')
     args = parser.parse_args()
@@ -119,22 +120,33 @@ def parse_cluster(verbose, directory, positive, negative, cluster, infile, mapfi
     return vectors
 
 
-def write_train_test(vectors, train, test):     # write training and test files for SVM
+def write_train_test(vectors, train, test, testset):     # write training and test files for SVM
     tr = open(train, 'w')
     te = open(test, 'w')
     counter = 0     # every Nth patient will be put into the test set instead of the train set
-    for key, value in vectors.iteritems():
-        counter = (counter + 1) % 2
-        if counter != 0:
-            if value[0].startswith('1'):
-                for j in range(1, len(value)):      # feature engineering loop
-                    if value[j] != '':
-                        parts = value[j].split(":")
-                        value[j] = parts[0] + ":" + str(float(parts[1]) * 0.9) + ' '    # apply multiplier to features
+    if testset == 'NONE':
+        for key, value in vectors.iteritems():
+            counter = (counter + 1) % 2
+            if counter != 0:
+                '''if value[0].startswith('1'):
+                    for j in range(1, len(value)):      # feature engineering loop
+                        if value[j] != '':
+                            parts = value[j].split(":")
+                            value[j] = parts[0] + ":" + str(float(parts[1]) * 0.9) + ' '   # apply feature multiplier'''
 
-            tr.write((''.join(value)) + '\n')   # write to training set
-        else:
-            te.write((''.join(value)) + '\n')   # write to test set
+                tr.write((''.join(value)) + '\n')   # write to training set
+            else:
+                te.write((''.join(value)) + '\n')   # write to test set
+    else:
+        testitems = []
+        setfile = open(testset, 'r')
+        for line in setfile:
+            testitems.append(line.strip())
+        for key, value in vectors.iteritems():
+            if key not in testitems:
+                tr.write((''.join(value)) + '\n')   # write to training set
+            else:
+                te.write((''.join(value)) + '\n')   # write to test set
     tr.close()
     te.close()
 
@@ -237,10 +249,13 @@ def execute_misvm(verbose, write, directory, output, positive, negative, cluster
         print "Reading input: " + infile
     f = open(infile)
     vec = []
+    cur_tag = ''
+    prev_tag = ''
     for line in f:
         if line.startswith('>'):    # this is a defline, not a read
             fields = line[1:].rstrip().split(' ')       # fields in fasta lines
             tag = fields[0].split(split[:1])[int(split[1:])]   # gets the tag that matches a patient in the mapping file
+            cur_tag = tag
             vec = vectors.get(tag)          # the vector associated with this patient tag
         elif vec is not None:   # this is read corresponding to the patient vector associated with the previous defline
             #             for i in range(4**kmer):    # possible nucleotide strings of length k = 4^k
@@ -253,6 +268,15 @@ def execute_misvm(verbose, write, directory, output, positive, negative, cluster
                     break
                 read_kmers[kmer_index(line[i-kmer:i])] += 1.0  # get index of k-mer and increment appropriate list index
             vec.append(read_kmers)  # append the k-mer representation of this read to the patient bag
+        if prev_tag != cur_tag and prev_tag != '' and write != 'NONE':  # if we are now looking at a new patient's reads
+            if verbose:
+                print "Writing reads for " + prev_tag
+            w = open(write, 'a')
+            w.write(str(labels[prev_tag]) + ":" + str(vectors[prev_tag]) + '\n')    # write the patient's reads
+            w.close()
+            vectors[prev_tag] = []  # eliminate the memory usage of these already-written patient reads
+        prev_tag = cur_tag
+
     f.close()
     empty = []
     for v in vectors:
@@ -262,11 +286,7 @@ def execute_misvm(verbose, write, directory, output, positive, negative, cluster
         del vectors[v]          # remove all patients with no reads from dict
         del labels[v]           # and the associated patient class label
 
-    if write != 'NONE':     # if requested, write vectors and labels to a file
-        w = open(write, 'w')
-        for i in vectors:
-            w.write(str(labels[i]) + ":" + str(vectors[i]) + '\n')
-        w.close()
+    if write != 'NONE':     # vectors have already been written, so time to exit now
         if verbose:
             print "Done writing. Exiting..."
         sys.exit()
@@ -313,7 +333,7 @@ def main():
         if args.svm != 'misvm':
             vectors = parse_cluster(args.verbose, args.dir, args.positive, args.negative,
                                     args.cluster, args.input, args.map, args.split, args.bow)
-            write_train_test(vectors, args.train, args. test)
+            write_train_test(vectors, args.train, args. test, args.testset)
 
     if args.svm == 'misvm':
         try:

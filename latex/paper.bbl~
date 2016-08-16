@@ -198,4 +198,7 @@ J.~Qin et al., "A human gut microbial gene catalogue established by metagenomic 
 \bibitem{kanehisa00}
 M.~Kanehisa and S.~Goto, "KEGG: Kyoto Encyclopedia of Genes and Genomes," \emph{Nucleic Acids Research}, vol.~28, no.~1, pp. 27--30, 2000.
 
+\bibitem{powell12}
+S.~Powell et al., "eggNOG v3.0: orthologous groups covering 1133 organisms at 41 different taxonomic ranges," \emph{Nucleic Acids Research}, vol.~40, no.~D1, pp. D284--D289, 2012. doi: 10.1093/nar/gkr1060.
+
 \end{thebibliography}
