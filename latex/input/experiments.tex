@@ -6,7 +6,15 @@ The 367 patient files were downloaded from NCBI and converted to FASTQ format us
 
 \subsection{Methods Tested}
 
-This section provides an overview of the different methods that we compared our pipeline to. Our pipeline uses clustering, whereas the other methods do not. Instead, those methods directly compare individual instances instead of clusters. In order to do this, sequence reads were represented as counts of k-mers. k-mers are nucleotide strings of length k. Since there are four possible nucleotides, the number of possible k-mers is \(4^k\). For instance, if k=3, there are \(4^3\) = 64 possible k-mers, which are AAA, AAC, AAG, AAT, ACA, ACC, ..., TTT. For a string "ATACGATA", the count for the k-mers is 2 for ATA, 1 for TAC, ACG, CGA, and GAT, and 0 for everything else. We wrote a script to represent the reads as vectors representing the k-mer counts in the string, and these vectors were used by the other methods. We tested possible k values from 1 to 6; since the number of possible k-mers is exponential in k, higher values for k quickly become impractical in both run time and memory usage. From experimental validation, we found a k-mer value of 3 to be the most effective. Converting the reads from their original string form to k-mer vectors with k=3 took 24 hours, 8 minutes, and 49 seconds.
+This section provides an overview of the different methods that we compared our pipeline to. Our pipeline uses clustering, whereas the other methods do not. Instead, those methods directly compare individual reads instead of clusters. In order to do this, sequence reads were represented as counts of k-mers. k-mers are nucleotide strings of 
+length k. Since there are four possible nucleotides, the number
+of possible k-mers are \(4^k\). 
+%For instance, if k=3, there are \(4^3\) = 64 possible k-mers, which are AAA, AAC, AAG, AAT, ACA, ACC, ..., TTT. 
+%For a string "ATACGATA", the count for the k-mers is 2 for ATA, 1 for TAC, ACG, CGA, and GAT, and 0 for everything else. 
+We wrote a script to represent the reads/contigs as vectors representing the k-mer counts in the string, and these feature 
+vectors were used by the other methods. We tested possible k values 
+from 1 to 6; since the number of possible k-mers is 
+exponential in k, higher values for k quickly become impractical in both run time and memory usage. From experimental validation, we found a k-mer value of 3 to be the most effective. Converting the reads from their original string form to k-mer vectors with k=3 took 24 hours, 8 minutes, and 49 seconds.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

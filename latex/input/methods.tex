@@ -55,10 +55,10 @@ single metric and is the harmonic mean of precision and recall, given by:
 F1-Score = 2 * (Precision * Recall)/ (Precision + Recall). \label{eqn:f1}
 \end{equation}
 
-Finally, we also use the Area Under Curve of the Receiver Operating Characteristic (AUC-ROC), which measures the performance of the classifier as the decision boundary threshold is moved. The SVM classifier generally predicts a group label to be negative if the predicted label for that group was less than 0 and predicts a group label to be positive otherwise. The AUC-ROC measures the performance of the classifier as the threshold is varied to more or less than 0. In effect, it measures how far off incorrect predictions were from being correct. AUC-ROC plots True Positive Rate versus False Positive Rate, given by:
+Finally, we also use the Area Under Curve of the Receiver Operating Characteristic (AUC-ROC), which measures the performance of the classifier as the decision boundary threshold is moved. The SVM classifier generally predicts a group label to be negative if the predicted label for that group was less than 0 and predicts a group label to be positive otherwise. The AUC-ROC measures the performance of the classifier as the threshold is varied to more or less than 0. In effect, it measures how far off incorrect predictions were from being correct. AUC-ROC plots True Positive Rate (TPR) versus False Positive Rate (FPR), given by:
 \begin{equation}
-True Positive Rate = Recall = TP / (TP + FN). \label{eqn:roc}
+TPR  = TP / (TP + FN). \label{eqn:roc}
 \end{equation}
 \begin{equation}
-False Positive Rate = FP / (FP + TN). \label{eqn:prec}
+FPR = FP / (FP + TN). \label{eqn:prec}
 \end{equation}

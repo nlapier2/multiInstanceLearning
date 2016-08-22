@@ -1,0 +1,9 @@
+Nathan
+1) Remove Table 1 on Training Set Results. 
+
+2) First Add the results with the subset. 
+
+3) Then Add Results with the full set stating MISVM, etc not feasible.
+
+4) Materials has some repetion on processing of Qin's data which can be reduced.
+
