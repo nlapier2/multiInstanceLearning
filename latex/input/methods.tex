@@ -3,12 +3,12 @@
 \begin{figure*}[t]
 \centering
 \includegraphics[scale=0.5]{./mil-metagenomics-pipeline.png}
-\caption{This diagram illustrates the entire pipeline. Patient files with FASTQ metagenomic reads are individually assembled using SOAPdenovo2, then combined into one file and clustered with UCLUST. We extract features according to the D-BoW method, and classify the patients using the feature vectors with svm-light.} \label{pipeline}
+\caption{This diagram illustrates the entire CAMIL pipeline. Patient files with FASTQ metagenomic reads are individually assembled using SOAPdenovo2, then combined into one file and clustered with UCLUST. We extract features according to either the D-BoW or H-BoW method, and classify the patients using the feature vectors with svm-light.} \label{pipeline}
 \end{figure*}
 
 \subsection{Overview}
 
-Our proposed pipeline involves a number of steps, which serve a variety of purposes. For each patient file, we assembled the sequence reads, which served the dual purpose of generating larger contigs that contain more functional biological information and reducing the dataset size by discarding reads that could not be assembled. The clustering step assigns the contigs to certain clusters, which represent functionally similar microbes, and thus establish classes of instances that can be used as features for the classifier. We  applied our feature extraction method, which uses the D-BoW method of measuring the closest distance from a patient's reads to each cluster center. Finally, we used an SVM-based classifier to predict patient phenotype, and used several metrics to assess its accuracy. We used the SVM's decision boundary to infer information about which clusters of instances were most or least indicative of the phenotype, discussed further in the Results section. Aside from the patient labels, this process is entirely de novo, and does not consult any external databases. An illustration of this pipeline can be seen in Figure \ref{pipeline} on page \pageref{pipeline}.
+Our proposed pipeline involves a number of steps, which serve a variety of purposes. For each patient file, we assembled the sequence reads, which served the dual purpose of generating larger contigs that contain more functional biological information and reducing the dataset size by discarding reads that could not be assembled. The clustering step assigns the contigs to certain clusters, which represent functionally similar microbes, and thus establish classes of instances that can be used as features for the classifier. We  applied our feature extraction method, which uses the D-BoW method of measuring the closest distance from a patient's reads to each cluster center. Finally, we used an SVM-based classifier to predict patient phenotype, and used several metrics to assess its accuracy. We used the SVM's decision boundary to infer information about which clusters of instances were most or least indicative of the phenotype, discussed further in the Results section. Aside from the patient labels, this process is entirely de novo, and does not consult any external databases. An illustration of the pipeline is shown in Figure \ref{pipeline} on page \pageref{pipeline}.
 
 \subsection{Assembly with SOAPdenovo2}
 
@@ -20,7 +20,7 @@ We used UCLUST \cite{Edgar10}, which has been shown to be among the simplest, fa
 
 \subsection{Feature Extraction}
 
-Our feature extraction operation followed the D-BoW method. For each patient, we initialized a vector with length equal to the number of clusters. The value for each place in that patient's feature vector would then be set to the closest percentage match (0.4 to 1) of the reads from that patient to the relevant cluster seed. For instance, if there are three clusters of reads, and patient A has the cluster seed for cluster 1, no reads from cluster 2, and a read with 70\% match to cluster 3, their feature vector would be~~A = [1.0~~~0.0~~~0.7]. This is illustrated in Figure \ref{pipeline}. We implemented this feature extraction method in Python.
+We test both the Distance-based and Histogram-based feature extraction methods within the CAMIL pipeline. For each patient, we initialized a vector with length equal to the number of clusters. The value for each scalar in that patient's feature vector would then represent either the read that matched most closely to that cluster centroid (Distance-based), or the number of reads from that cluster that were present (Histogram-based. An example of this is illustrated as a part of Figure \ref{pipeline}. We implemented this feature extraction method in Python.
 
 \subsection{Classification and Evaluation Metrics}
 

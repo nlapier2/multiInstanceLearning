@@ -1,13 +1,22 @@
 "CAMIL": Clustering and Assembly with Multiple Instance Learning
 CAMIL H-BoW and CAMIL D-BoW
+#$ -q all-LoPri.q
 
 Original 60: SRR413*, where * is 556-557, 646-664, 666-682, 684-702, 757-759
 
-Size of all 218 available patients in FASTQ format: 3.7TB - (511+250+626+42) = 2.3TB
-Gotten with du -sh. Average patient file size: 10.82GB
-After assembly: 17.9GB total size
-Cluster run time: 10 hours, 51 minutes, 29 seconds
-SVM-light run time: 10 minutes, 17 seconds
+Size of all 367 patient files in FASTQ format: 4.9TB = (4900 - (690+42+626+250)) GB = 3292 GB = 3.29 TB
+Gotten with du -sh. Average patient file size: (3292 / 367) GB = 8.97 GB
+After assembly: 25.18 GB total size
+
+367 patients: 182 diabetic, 185 healthy
+344 patients: 170 diabetic, 174 healthy
+23 patients: 12 diabetic, 11 healthy
+
+Cluster run time: 14 hours, 7 minutes, 44 seconds
+SVM-light run time: 9 minutes, 13 seconds for D-BoW; 8 minutes, 49 seconds for H-BoW
+Write vectors run time: 24 hours, 8 minutes, 49 seconds
+
+GICF ideal parameters: 5 iterations, 0.0005 learning rate, 0.01 mini batch size (top k = 0.9)
 
 --------------------------------
 
@@ -191,7 +200,7 @@ F1 Score = 2*.8095*.9444 / (.8095+.9444) = 87.18%
 Leave-one-out estimate of the error: error=17.93%
 Leave-one-out estimate of the recall: recall=88.04%
 Leave-one-out estimate of the precision: precision=78.64%
-9 minutes and 13 seconds
+9 minutes, 13 seconds
 
 H-BoW no feature engineering:
 Accuracy on test set: 90.71% (166 correct, 17 incorrect, 183 total)
@@ -201,3 +210,40 @@ Leave-one-out estimate of the error: error=10.87%
 Leave-one-out estimate of the recall: recall=80.43%
 Leave-one-out estimate of the precision: precision=97.37%
 8 minutes, 49 seconds
+
+
+--------------------------------
+
+>>> plt.subplot(111)
+<matplotlib.axes._subplots.AxesSubplot object at 0x7fa53abb4710>
+>>> plt.ylabel("Cluster weight")
+<matplotlib.text.Text object at 0x7fa51c450d90>
+>>> a[:10]
+[-0.000333, -0.000291, -0.000239, -0.000215, -0.00019, -0.000189, -0.000188, -0.000182, -0.000164, -0.000158]
+>>> a[-10:]
+[0.000147, 0.000153, 0.000166, 0.00017, 0.000174, 0.000191, 0.000242, 0.000248, 0.000341, 0.000374]
+>>> plt.xlim(0,4000)
+(0, 4000)
+>>> plt.ylim(-0.0004, 0.0004)
+(-0.0004, 0.0004)
+>>> for i in range(len(a)):
+...     plt.scatter(i, a[i])
+>>> plt.savefig('scatter.png')
+
+
+
+>>> c = []
+>>> for i in range(len(a)):
+...   c.append(i)
+... 
+>>> d = []
+>>> for i in range(len(a)):
+...   d.append([c[i], a[i]])
+... 
+>>> d.sort(key=lambda x: x[1])
+>>> print d[0]
+[561, -0.000333]
+>>> print d[3917]
+[749, 0.000374]
+
+

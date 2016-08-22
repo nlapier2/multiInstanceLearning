@@ -24,43 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="bulkNCBIDownload.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bulkNCBIDownload.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="504" max-vertical-offset="1242">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding>
-                <element signature="e#50#65#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bulkAssembler.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bulkAssembler.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="483" max-vertical-offset="2052">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pipelineT2D.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pipelineT2D.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pipelineT2D.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7803468" vertical-offset="4518" max-vertical-offset="6408">
-              <caret line="288" column="14" selection-start-line="288" selection-start-column="14" selection-end-line="288" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gicf.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gicf.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.7419355" vertical-offset="6274" max-vertical-offset="6948">
-              <caret line="360" column="27" selection-start-line="360" selection-start-column="27" selection-end-line="360" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3232" max-vertical-offset="7758">
+              <caret line="210" column="42" selection-start-line="210" selection-start-column="42" selection-end-line="210" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -69,10 +37,44 @@
       <file leaf-file-name="plotter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plotter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2268" max-vertical-offset="3078">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1401" max-vertical-offset="3078">
+              <caret line="165" column="10" selection-start-line="165" selection-start-column="10" selection-end-line="165" selection-end-column="10" />
               <folding>
                 <element signature="e#49#64#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gicf.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gicf.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1815" max-vertical-offset="7326">
+              <caret line="190" column="0" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="aucroc.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aucroc.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="640" max-vertical-offset="2034">
+              <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="57" selection-end-column="18" />
+              <folding>
+                <element signature="e#52#67#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="seedPrinter.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/seedPrinter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.17872341" vertical-offset="0" max-vertical-offset="936">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding>
+                <element signature="e#51#66#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -88,15 +90,17 @@
         <option value="$PROJECT_DIR$/bBitMinwiseHashingSequenceClustering.py" />
         <option value="$PROJECT_DIR$/bulkNCBIDownload.py" />
         <option value="$PROJECT_DIR$/clusterRep.py" />
-        <option value="$PROJECT_DIR$/gicf.py" />
         <option value="$PROJECT_DIR$/plotter.py" />
+        <option value="$PROJECT_DIR$/aucroc.py" />
+        <option value="$PROJECT_DIR$/gicf.py" />
         <option value="$PROJECT_DIR$/pipelineT2D.py" />
+        <option value="$PROJECT_DIR$/seedPrinter.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="108" />
-    <option name="y" value="64" />
+    <option name="x" value="105" />
+    <option name="y" value="36" />
     <option name="width" value="1402" />
     <option name="height" value="836" />
   </component>
@@ -285,7 +289,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="108" y="64" width="1402" height="836" extended-state="0" />
+    <frame x="105" y="36" width="1402" height="836" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -337,7 +341,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1242">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#50#65#0" expanded="true" />
+            <element signature="e#50#65#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -349,30 +353,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gicf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.7419355" vertical-offset="6274" max-vertical-offset="6948">
-          <caret line="360" column="27" selection-start-line="360" selection-start-column="27" selection-end-line="360" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plotter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2268" max-vertical-offset="3078">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <element signature="e#49#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bulkNCBIDownload.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="504" max-vertical-offset="1242">
           <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
-            <element signature="e#50#65#0" expanded="true" />
+            <element signature="e#50#65#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -385,11 +371,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/gicf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1815" max-vertical-offset="7326">
+          <caret line="190" column="0" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pipelineT2D.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7803468" vertical-offset="4518" max-vertical-offset="6408">
-          <caret line="288" column="14" selection-start-line="288" selection-start-column="14" selection-end-line="288" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3232" max-vertical-offset="7758">
+          <caret line="210" column="42" selection-start-line="210" selection-start-column="42" selection-end-line="210" selection-end-column="42" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plotter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="3078">
+          <caret line="165" column="10" selection-start-line="165" selection-start-column="10" selection-end-line="165" selection-end-column="10" />
+          <folding>
+            <element signature="e#49#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aucroc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="640" max-vertical-offset="2034">
+          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="57" selection-end-column="18" />
+          <folding>
+            <element signature="e#52#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/seedPrinter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17872341" vertical-offset="0" max-vertical-offset="936">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="e#51#66#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

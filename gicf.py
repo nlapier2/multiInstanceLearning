@@ -28,7 +28,7 @@ def logistic(w, x):     # implementation of the classifier for the instances; cu
     if dot > 709:    # prevent math overflows
         return 1
     if dot < -709:   # prevent math overflows
-        return -1
+        return 0
     return 1 / (1 + math.exp(-dot))
 
 
@@ -234,7 +234,7 @@ def validate(verbose, w, data, k):     # apply the weights determined by gradien
     return accuracy, precision, tpr_recall, fpr, f1_score, predicted_actual
 
 
-def grid_search(verbose, w, data, train, test, res, limit, settings):
+def grid_search(verbose, w, data, train, test, res, limit, settings, testset):
     # linear grid search to set learning rate, lambda, and mini batch size parameters
     if verbose:
         print "Entering grid search to select best parameters for gradient descent."
@@ -244,12 +244,25 @@ def grid_search(verbose, w, data, train, test, res, limit, settings):
     tr = open(train, 'w')
     te = open(test, 'w')
     num = 0     # count of the number of groups
+    testitems = []
+    if testset != 'NONE':
+        setfile = open(testset, 'r')
+        for line in setfile:
+            testitems.append(int(line.strip()))
+        setfile.close()
+
     for line in f:
         num += 1
-        if num % test_split == 0:
-            te.write(line + '\n')
+        if testset != 'NONE':
+            if num in testitems:
+                te.write(line + '\n')
+            else:
+                tr.write(line + '\n')
         else:
-            tr.write(line + '\n')
+            if num % test_split == 0:
+                te.write(line + '\n')
+            else:
+                tr.write(line + '\n')
         if num == limit:
             break
     f.close()
@@ -259,9 +272,9 @@ def grid_search(verbose, w, data, train, test, res, limit, settings):
     if settings == 'NONE':
         rate = [0.0001]  # , 0.001]  # , 0.01, 0.1]
         l = [float(num)]  # [float(num) * 0.1, float(num), float(num) * 10]
-        top_k = [0.8]
-        batch_size = [0.1]  # [num * 4]  # [num * 4, num * 10, num * 100]
-        iterations = [30]  # , 10, 100, 1000]
+        top_k = [0.9]
+        batch_size = [0.01]  # [num * 4]  # [num * 4, num * 10, num * 100]
+        iterations = [3]  # , 10, 100, 1000]
     else:
         rate = settings[0]
         l = settings[1]
@@ -308,6 +321,13 @@ def grid_search(verbose, w, data, train, test, res, limit, settings):
     r.write("F1 Score: " + str(results[4]) + '\n')
     r.write("True Positive Rate and False Positive Rate: " + str(results[2]) + " and " + str(results[3]) + "\n")
     r.close()
+    ro = open(res + '_ordered', 'w')
+    pred_act = results[5]
+    pred_act.sort(key=lambda x: x[0])   # sort by predicted label
+    print pred_act
+    for line in range(len(pred_act)):  # loop to write actual labels in order of predicted value for that label
+        ro.write(str(pred_act[len(pred_act) - line - 1][1]) + '\n')
+    ro.close()
 
     return accuracy, parameters, results, new_w
 
@@ -329,6 +349,7 @@ def parseargs():    # handle user arguments
     parser.add_argument('--results', default='results', help='Where to write results to.')
     parser.add_argument('--settings', default='NONE', help='Parameter settings can be input.')
     parser.add_argument('--test', default='test.dat', help='Where to write test data to.')
+    parser.add_argument('--testset', default='NONE', help='Path to file with list of patients to be put in test set.')
     parser.add_argument('--train', default='train.dat', help='Where to write training data to.')
     parser.add_argument('-v', '--verbose', default=False, action='store_true', help='Verbose output')
     args = parser.parse_args()
@@ -378,7 +399,7 @@ def main():
         break
     infile.close()
 
-    grid_search(args.verbose, w, args.infile, args.train, args.test, args.results, limit, settings)
+    grid_search(args.verbose, w, args.infile, args.train, args.test, args.results, limit, settings, args.testset)
     print "GICF program execution time: " + str(time.time() - start) + " seconds"
 
 
