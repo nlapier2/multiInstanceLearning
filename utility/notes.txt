@@ -247,3 +247,10 @@ Leave-one-out estimate of the precision: precision=97.37%
 [749, 0.000374]
 
 
+--------------------------------
+
+
+- get rid of table on training data
+- for table on 23 test patients, randomly select 5 or 10 different subsets of 23 and average the results
+- add table on subset of instances, so we can compare MISVM and sbMIL, along with explanation
+

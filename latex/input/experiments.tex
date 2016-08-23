@@ -2,7 +2,7 @@
 
 \subsection{Experimental Setup}
 
-The 367 patient files were downloaded from NCBI and converted to FASTQ format using the SRA toolkit, and labeled according to the Supplementary Tables of the MGWAS paper \cite{qin041012}, as described in the Materials section. Out of the 367 patients, 182 were diabetic and 185 were healthy controls. Each read was assembled with SOAPdenovo2, with the k-mer length set to 51, reads cut off after 100 base pairs (original length of 180 base pairs), and the average insert size set to 350 in accordance with the reported average insert size reported in the MGWAS study \cite{qin041012}. Assembly for each file took 7-30 minutes, depending on the file size. The assembly of the patient files is embarrassingly parallel, so the assembly of each file could be done at the same time. Combining the files into one file took 2 minutes and 35 seconds. Assembly was used for all of the classification methods tested, because the combining of individual reads and reduction in total data size made classification feasible.
+Each read was assembled with SOAPdenovo2, with the k-mer length set to 51, reads cut off after 100 base pairs (original length of 180 base pairs), and the average insert size set to 350 in accordance with the reported average insert size reported in the MGWAS study \cite{qin041012}. Assembly for each file took 7-30 minutes, depending on the file size. The assembly of the patient files is embarrassingly parallel, so the assembly of each file could be done at the same time. Combining the files into one file took 2 minutes and 35 seconds. Assembly was used for all of the classification methods tested, because the combining of individual reads and reduction in total data size made classification feasible.
 
 \subsection{Methods Tested}
 
@@ -41,12 +41,40 @@ The methods in the original paper are neither MIL-based, nor are they entirely d
 
 \begin{table*}[t]
 \begin{center} 
+%\hfill
 \begin{minipage}{0.4\textwidth}
-\caption{Performance on training set.}
+\caption{Performance with even train/test split.} 
+\label{tab:even-comp}
+\begin{tabular}{|c|ccc|}\hline
+Method & Accuracy & F1-Score & AUC-ROC\\\hline
+MISVM & --- & --- & ---\\\hline
+sbMIL & --- & --- & ---\\\hline
+GICF & 63.04 & 68.33 & 66.19\\\hline %59.24,63.05,66.19
+CAMIL D-BoW & 86.34 & 87.18 & 95.93\\\hline
+CAMIL H-BoW & \bf{90.71} & \bf{89.70} & \bf{97.63}\\\hline
+\end{tabular}
+\end{minipage}
+\bigskip
+\begin{minipage}{0.4\textwidth}
+\caption{Classification time with even train/test split.} 
+\label{tab:time-comp}
+\begin{tabular}{|c|c|}\hline
+Method & Classification Time\\\hline
+MISVM & ---\\\hline
+sbMIL & ---\\\hline
+GICF & 8 hours, 44 minutes, 27 seconds\\\hline
+CAMIL D-BoW & \bf{6 minutes, 58 seconds}\\\hline
+CAMIL H-BoW & 7 minutes, 56 seconds\\\hline
+\end{tabular}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\caption{Performance on subset of instances.}
 \label{tab:train-comp}
 \begin{tabular}{|c|ccc|}\hline
 Method & Accuracy & F1-Score & AUC-ROC\\\hline
-mRMR + SVM & 73.26 & 76.65 & 80.77\\\hline 
+MISVM & 50.8 & ? & ?\\\hline
+sbMIL & 50.8 & ? & ?\\\hline
+GICF & ? & ? & ?\\\hline
 CAMIL D-BoW & 90.70 & 90.91 & 97.45\\\hline
 CAMIL H-BoW & \bf{94.19} & \bf{93.87} & \bf{97.87}\\\hline
 \end{tabular}
@@ -56,38 +84,12 @@ CAMIL H-BoW & \bf{94.19} & \bf{93.87} & \bf{97.87}\\\hline
 \label{tab:test-comp}
 \begin{tabular}{|c|ccc|}\hline
 Method & Accuracy & F1-Score & AUC-ROC\\\hline
-%MISVM & 50.00 & 50.00 & 50.00\\\hline
-%sbMIL & 50.00 & 50.00 & 50.00\\\hline
+MISVM & --- & --- & ---\\\hline
+sbMIL & --- & --- & ---\\\hline
 GICF & 73.91 & 75.00 & 78.03\\\hline
 mRMR + SVM & 82.61 & 82.76 & 87.12\\\hline 
 CAMIL D-BoW & 91.30 & 92.31 & \bf{100.00}\\\hline
 CAMIL H-BoW & \bf{100.00} & \bf{100.00} & \bf{100.00}\\\hline
-\end{tabular}
-\bigskip
-\end{minipage}
-%\hfill
-\begin{minipage}{0.4\textwidth}
-\caption{Performance with even train/test split.} 
-\label{tab:even-comp}
-\begin{tabular}{|c|ccc|}\hline
-Method & Accuracy & F1-Score & AUC-ROC\\\hline
-%MISVM & 50.00 & 50.00 & 50.00\\\hline
-%sbMIL & 50.00 & 50.00 & 50.00\\\hline
-GICF & 63.04 & 68.33 & 66.19\\\hline %59.24,63.05,66.19
-CAMIL D-BoW & 86.34 & 87.18 & 95.93\\\hline
-CAMIL H-BoW & \bf{90.71} & \bf{89.70} & \bf{97.63}\\\hline
-\end{tabular}
-\end{minipage}
-\begin{minipage}{0.4\textwidth}
-\caption{Classification time with even train/test split.} 
-\label{tab:time-comp}
-\begin{tabular}{|c|c|}\hline
-Method & Classification Time\\\hline
-%MISVM & 1 hour\\\hline
-%sbMIL & 1 hour\\\hline
-GICF & 8 hours, 44 minutes, 27 seconds\\\hline
-CAMIL D-BoW & \bf{6 minutes, 58 seconds}\\\hline
-CAMIL H-BoW & 7 minutes, 56 seconds\\\hline
 \end{tabular}
 \end{minipage}
 \end{center}
@@ -113,26 +115,16 @@ Since the train/test split in Table \ref{tab:test-comp} is so imbalanced, we wan
 
 Finally, Table \ref{tab:time-comp} shows the classification time of GICF and CAMIL. mRMR + SVM was not included because the runtime of that method was not reported in the MGWAS paper. CAMIL took significantly less time than GICF for two main reasons: (i) GICF requires representing each read as an array of length 64 (for k-mer length 3), while CAMIL reduces the data size with clustering and feature extraction; (ii) GICF requires expensive pairwise comparisons between each pair of instances in a mini-batch.
 
-MISVM and sbMIL require computing a kernel matrix of size N*N, where N = the number of instances. Since this dataset involved millions of instances, these methods crashed with memory errors, even when we used only 10\% of the reads. We were able to run these methods when using only 1\% of the reads from each patient, and they achieved only 50\% accuracy, no better than a random guess. This makes sense, as they make the standard MIL assumption, which doesn't make sense in the context of phenotype prediction, in which even healthy patients can host a small number of pathogens. Additionally, they are instance space methods that do not leverage bag-level information. The performance of these two methods serves to illustrate why many of the classic MIL algorithms with standard assumptions will not be effective in this domain. GICF performs better than MISVM and sbMIL (albeit with more data), which makes sense given the fact that it follows the collective assumption. It also has the benefit of calculating instance labels, which we explore further in the next section. However, GICF is still an instance space method, so it makes sense that it performs worse than CAMIL.
+MISVM and sbMIL require computing a kernel matrix of size N*N, where N = the number of instances. Since this dataset involved millions of instances, these methods crashed with memory errors, even when we used only 1\% of the reads. This is why they are shown as ``---" in the results tables. We were able to run these methods when using only 0.1\% of the reads from each patient, and they achieved only 50.8\% accuracy, barely better than a random guess. This makes sense, as they make the standard MIL assumption, which doesn't make sense in the context of phenotype prediction, in which even healthy patients can host a small number of pathogens. Additionally, they are instance space methods that do not leverage bag-level information. The performance of these two methods serves to illustrate why many of the classic MIL algorithms with standard assumptions will not be effective in this domain. GICF performs better than MISVM and sbMIL (albeit with more data), which makes sense given the fact that it follows the collective assumption. It also has the benefit of calculating instance labels, which we explore further in the next section. However, GICF is still an instance space method, so it makes sense that it performs worse than CAMIL.
 
 The method used in the original paper is the only one tested here that is not an MIL method, and the only one that is not entirely unsupervised apart from the patient labels. Given that the methods from this paper were not de novo, it makes sense that they would outperform many of the unsupervised MIL methods. However, CAMIL still significantly outperformed the results reported in the original paper. We believe that this is due to the following reasons: (i) the clustering process puts similar contigs into groups that are useful features for the classifier, and (ii) instead of attempting to select the most significant features before performing classification, we allow the classifier itself to determine the most significant features from the entire pool of features.
 
-\subsection{Deriving Instance ``Labels"}
-
-\begin{figure}[t]
-\centering
-\includegraphics[scale=0.5]{./instance-labels.png}
-\caption{This diagram illustrates why static instance labels are not sufficient for phenotype prediction. A patient with 6 of the blue microbe or 6 of the green microbe may be healthy, while a patient with 3 of each is sick. Static instance labels cannot capture this relationship. This is also explained by Amores in his MIL taxonomy \cite{amores13}.} \label{instance-labels}
-\end{figure}
+\subsection{Cluster-level ``Labels"}
 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.4]{./instance-scatter.png}
 \caption{This diagram illustrates the distribution of the instance weights assigned by CAMIL H-BoW. The Y-Axis shows the weights, while the X-Axis shows the ranking of the clusters by weight. Clearly, there are a relatively small number of clusters that have disproportionately large weights or small weights, while the vast majority of the 3918 clusters have weights close to 0.} \label{instance-scatter}
 \end{figure}
-
-One of the benefits of using Multiple Instance Learning methods is that we can attempt to discover instance ``labels". In fact, we did not attempt to apply static, unchanging labels to individual reads or clusters, since organisms are affected by their interactions with each other. For instance, a patient with X amount of microbe A or X amount of microbe B may be healthy, but with X/2 amount of microbe A and X/2 amount of microbe B they may be sick. This simple example is illustrated in Figure \ref{instance-labels}.
-
-However, we can infer from the SVM decision boundary which clusters appear to be most relevant to the disease diagnosis. Since feature vectors are multiplied by the weight vector of the decision boundary to determine the label of the patient, we can assume that clusters with the highest weights in the weight vector are most relevant to the disease diagnosis. For instance, if the \emph{i}th scalar in the weight vector is has the highest value of any of the weights, then cluster \emph{i} is likely to play a major role in the disease pathology. Similarly, the most negative weights in the weight vector indicate clusters whose presence in a patient indicates that they likely do not have the disease. Because the data is metagenomic, the clusters represent both phylogenetic and functional similarity, so identifying the most relevant clusters can help discover more about the pathology of the disease. For Type 2 Diabetes, which is a complex phenotype and a disease that is both common and deadly, this is potentially quite valuable.
 
 In the original MGWAS paper, the authors identify 50 important gene markers with mRMR that are used for their classifier. Conversely, CAMIL uses all of the data to train and test the classifier, resulting in 3918 clusters, and subsequently identifies significant clusters based on the classification results. Figure \ref{instance-scatter} is a visual display of the cluster weights determined by CAMIL, using the 344 patient training set and 23 patient test set. Clearly, there are a few clusters with disproportionately high or low weights, while most clusters have weights near 0. Concretely, the lowest cluster weight is -0.000333, the highest is 0.000374, the mean is 0.000008, and the median is 0.000006. Intuitively, this appears to make sense, as there should be a relatively small number of key clusters whose presence is actually indicative of type 2 diabetes, while most other clusters are not particularly relevant in this case and whose weights are just noise. Thus, the weights obtained by this method appear to be plausible. In contrast, the labels obtained by GICF were barely differentiated from each other at all.
