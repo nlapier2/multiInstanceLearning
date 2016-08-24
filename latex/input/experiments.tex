@@ -28,7 +28,7 @@ MISVM \cite{andrews02} and sbMIL \cite{bunescu07} are two of the classic Multipl
 
 \subsubsection{GICF}
 
-The Group-Instance Cost Function (GICF) is a method proposed by Kotzias et al. that learns instance labels in addition to group labels \cite{kotzias15}. The cost function uses a kernel that measures similarity between instances and a penalty on the difference between instance labels to generate instance labels \cite{kotzias15}. It then sets the group label to be the average instance label of all instances in that group, using a penalty on the difference between the predicted group label and the actual group label \cite{kotzias15}. Ideally, this would cause instances that are similar to each other to have similar predicted labels, and predicted group labels to correspond closely to reality. Unlike MISVM and sbMIL, GICF explicitly does not hold the standard MIL assumption, instead favoring the collective assumption. However, because this method compares only individual instances and not entire bags, and treats bag labels simply as aggregations of instance labels, GICF is still an Instance Space method.
+The Group-Instance Cost Function (GICF) is a method proposed by Kotzias et al. that learns instance labels in addition to group labels \cite{kotzias15}. The cost function uses a kernel that measures similarity between instances and a penalty on the difference between instance labels to generate instance labels \cite{kotzias15}. It then sets the group label to be the average instance label of all instances in that group, using a penalty on the difference between the predicted group label and the actual group label \cite{kotzias15}. Ideally, this would cause instances that are similar to each other to have similar predicted labels, and predicted group labels to correspond closely to reality. Unlike MISVM and sbMIL, GICF explicitly does not hold the standard MIL assumption, instead favoring the collective assumption. However, because this method compares only individual instances and not entire bags, and treats bag labels simply as aggregations of instance labels, GICF is still an Instance Space method. We implemented GICF in Python.
 
 \subsubsection{Original MGWAS Paper}
 
@@ -39,10 +39,9 @@ The methods in the original paper are neither MIL-based, nor are they entirely d
 
 \subsection{Results For Bag/Patient Labels}
 
-\begin{table*}[t]
+\begin{table}[h]
 \begin{center} 
 %\hfill
-\begin{minipage}{0.4\textwidth}
 \caption{Performance with even train/test split.} 
 \label{tab:even-comp}
 \begin{tabular}{|c|ccc|}\hline
@@ -53,69 +52,59 @@ GICF & 63.04 & 68.33 & 66.19\\\hline %59.24,63.05,66.19
 CAMIL D-BoW & 86.34 & 87.18 & 95.93\\\hline
 CAMIL H-BoW & \bf{90.71} & \bf{89.70} & \bf{97.63}\\\hline
 \end{tabular}
-\end{minipage}
-\bigskip
-\begin{minipage}{0.4\textwidth}
-\caption{Classification time with even train/test split.} 
+\end{center}
+\end{table}
+
+\begin{table}[h]
+\begin{center}
+\caption{Classification time and memory usage with even train/test split.} 
 \label{tab:time-comp}
-\begin{tabular}{|c|c|}\hline
-Method & Classification Time\\\hline
-MISVM & ---\\\hline
-sbMIL & ---\\\hline
-GICF & 8 hours, 44 minutes, 27 seconds\\\hline
-CAMIL D-BoW & \bf{6 minutes, 58 seconds}\\\hline
-CAMIL H-BoW & 7 minutes, 56 seconds\\\hline
+\begin{tabular}{|c|cc|}\hline
+Method & Classification Time & Memory Usage\\\hline
+MISVM & --- & Memory Error\\\hline
+sbMIL & --- & Memory Error\\\hline
+GICF & 8 hours, 44 mins, 27 secs & 2.646 GB\\\hline
+CAMIL D-BoW & \bf{6 minutes, 58 seconds} & \bf{545.293 MB}\\\hline
+CAMIL H-BoW & 7 minutes, 56 seconds & 546.297 MB\\\hline
 \end{tabular}
-\end{minipage}
-\begin{minipage}{0.4\textwidth}
-\caption{Performance on subset of instances.}
-\label{tab:train-comp}
+\end{center}
+\end{table}
+
+In the original MGWAS paper, the authors use 344 patients as a training set and 23 as a test set. However, when comparing to other MIL algorithms, we wished to have a more balanced training vs. test set split. We put 184 patients in the training set and 183 in the test set. Since this used a different training set than the one in the MGWAS paper, we do not compare our results to theirs here. Table \ref{tab:even-comp} shows the comparison of results between CAMIL, GICF, MISVM, and sbMIL, while Table \ref{tab:time-comp} compares the classification time and memory usage. CAMIL methods significantly outperform GICF, with the H-BoW variant of CAMIL slightly outperforming the D-BoW variant. CAMIL took significantly less time than GICF for two main reasons: (i) GICF requires representing each read as an array of length 64 (for k-mer length 3), while CAMIL reduces the data size with clustering and feature extraction; (ii) GICF requires expensive pairwise comparisons between each pair of instances in a mini-batch. MISVM and sbMIL require computing a kernel matrix of size N*N, where N = the number of instances. Since this dataset involved millions of instances, these methods crashed with memory errors. This is why they are shown as ``---" in the results tables.
+
+\begin{table}[h]
+\begin{center}
+\caption{Performance on subset of instances with even train/test split.}
+\label{tab:subset-comp}
 \begin{tabular}{|c|ccc|}\hline
 Method & Accuracy & F1-Score & AUC-ROC\\\hline
 MISVM & 50.8 & ? & ?\\\hline
 sbMIL & 50.8 & ? & ?\\\hline
-GICF & ? & ? & ?\\\hline
-CAMIL D-BoW & 90.70 & 90.91 & 97.45\\\hline
-CAMIL H-BoW & \bf{94.19} & \bf{93.87} & \bf{97.87}\\\hline
+GICF & 64.67 & 66.95 & 65.56\\\hline
+CAMIL D-BoW & \bf{84.15} & \bf{85.13} & \bf{90.86}\\\hline
+CAMIL H-BoW & 74.32 & 68.46 & 83.49\\\hline
 \end{tabular}
-\end{minipage}
-\begin{minipage}{0.4\textwidth}
+\end{center}
+\end{table}
+
+We wanted to compare MISVM and sbMIL to GICF and CAMIL, so we used a subset of the instances for each patient so that MISVM and sbMIL would not crash. They could only be run on 0.1\% of the reads for each patient, and even then took over 32.5 GB of memory. The results are shown in Table \ref{tab:subset-comp}. MISVM and sbMIL also only achieved 50.8\% accuracy, only slightly better than a random guess. GICF and CAMIL, while experiencing a performance drop due to the massive information loss, still performed much better, with the CAMIL methods outperforming GICF again. CAMIL D-BoW outperformed CAMIL H-BoW this time, because the distance calculations are less affected by having fewer reads than the histogram method of counting the number of reads from each cluster for each patient.
+
+\begin{table}[h]
+\begin{center}
 \caption{Performance with 23 patient test set.} 
 \label{tab:test-comp}
 \begin{tabular}{|c|ccc|}\hline
 Method & Accuracy & F1-Score & AUC-ROC\\\hline
-MISVM & --- & --- & ---\\\hline
-sbMIL & --- & --- & ---\\\hline
-GICF & 73.91 & 75.00 & 78.03\\\hline
-mRMR + SVM & 82.61 & 82.76 & 87.12\\\hline 
-CAMIL D-BoW & 91.30 & 92.31 & \bf{100.00}\\\hline
-CAMIL H-BoW & \bf{100.00} & \bf{100.00} & \bf{100.00}\\\hline
+mRMR + SVM & 80.00 & 81.20 & 82.30\\\hline 
+CAMIL D-BoW & 91.62 & 91.89 & \bf{98.03}\\\hline
+CAMIL H-BoW & \bf{95.59} & \bf{95.20} & 97.93\\\hline
 \end{tabular}
-\end{minipage}
 \end{center}
-\end{table*}
+\end{table}
 
-%\begin{table}[t]
-%\begin{center}
+Finally, Table \ref{tab:test-comp} compares CAMIL to the method used by Qin et al., mRMR + SVM. For this comparison, we randomly selected 23 patients for the test set 10 times, and averaged the results of each method for all 10 test sets. 23 patients were used because the test set used by Qin et al. contained 23 patients \cite{qin041012}. Table \ref{tab:test-comp} shows that CAMIL significantly outperformed mRMR + SVM, with the H-BoW variant of CAMIL slightly outperforming the D-BoW variant. The results held for the original 23 patient test set, where CAMIL H-BoW actually achieved 100\% accuracy.
 
-%\end{center}
-%\end{table}
-
-%\begin{table}[t]
-%\begin{center}
-
-%\end{center}
-%\end{table}
-
-In the original MGWAS paper, the authors use 344 patients as a training set and 23 as a test set. However, in their reported AUC-ROC reflects the performance of of the mRMR + SVM approach on the 344 patients whose data was used to generate the gene markers that were used for classification. Essentially, they tested the performance of their approach on the training data. We thus applied our CAMIL pipeline in the same manner, using the same 344 patients as both the training and test set. The results are shown in Table \ref{tab:train-comp}, which demonstrates that both CAMIL variants significantly outperformed the mRMR + SVM approach in all metrics by about 14-17\%, with the CAMIL H-BoW version performing the best. Since this is not a typical way of assessing classification performance, we ran several other experiments, discussed below. 
-
-The MGWAS authors also provided the calculated labels for the 23 patients in the test set in their supplementary tables \cite{qin041012}, although they did not explicitly report the AUC-ROC on the test set. However, based on the reported patient labels, we were able to calculate all of the relevant metrics. Table \ref{tab:test-comp} shows the performance of the various algorithms, including GICF, on the test set. GICF was outperformed by mRMR + SVM, which was in turn outperformed by CAMIL D-BoW, which was in turn outperformed by CAMIL H-BoW, which got perfect results.
-
-Since the train/test split in Table \ref{tab:test-comp} is so imbalanced, we wanted to evaluate CAMIL with more balanced training and test sets. Since this was no longer using the same training set as the original MGWAS paper, we could not evaluate mRMR + SVM. Table \ref{tab:even-comp} shows the performance of CAMIL and GICF with an even split between the training and test sets. CAMIL methods significantly outperform GICF, with the H-BoW variant of CAMIL slightly outperforming the D-BoW variant. 
-
-Finally, Table \ref{tab:time-comp} shows the classification time of GICF and CAMIL. mRMR + SVM was not included because the runtime of that method was not reported in the MGWAS paper. CAMIL took significantly less time than GICF for two main reasons: (i) GICF requires representing each read as an array of length 64 (for k-mer length 3), while CAMIL reduces the data size with clustering and feature extraction; (ii) GICF requires expensive pairwise comparisons between each pair of instances in a mini-batch.
-
-MISVM and sbMIL require computing a kernel matrix of size N*N, where N = the number of instances. Since this dataset involved millions of instances, these methods crashed with memory errors, even when we used only 1\% of the reads. This is why they are shown as ``---" in the results tables. We were able to run these methods when using only 0.1\% of the reads from each patient, and they achieved only 50.8\% accuracy, barely better than a random guess. This makes sense, as they make the standard MIL assumption, which doesn't make sense in the context of phenotype prediction, in which even healthy patients can host a small number of pathogens. Additionally, they are instance space methods that do not leverage bag-level information. The performance of these two methods serves to illustrate why many of the classic MIL algorithms with standard assumptions will not be effective in this domain. GICF performs better than MISVM and sbMIL (albeit with more data), which makes sense given the fact that it follows the collective assumption. It also has the benefit of calculating instance labels, which we explore further in the next section. However, GICF is still an instance space method, so it makes sense that it performs worse than CAMIL.
+MISVM and sbMIL performed the worst overall. This makes sense, as they make the standard MIL assumption, which doesn't make sense in the context of phenotype prediction, in which even healthy patients can host a small number of pathogens. Additionally, they are instance space methods that do not leverage bag-level information. The performance of these two methods serves to illustrate why many of the classic MIL algorithms with standard assumptions will not be effective in this domain. GICF performs better than MISVM and sbMIL (albeit with more data), which makes sense given the fact that it follows the collective assumption. It also has the benefit of calculating instance labels, which we explore further in the next section. However, GICF is still an instance space method, so it makes sense that CAMIL outperformed it.
 
 The method used in the original paper is the only one tested here that is not an MIL method, and the only one that is not entirely unsupervised apart from the patient labels. Given that the methods from this paper were not de novo, it makes sense that they would outperform many of the unsupervised MIL methods. However, CAMIL still significantly outperformed the results reported in the original paper. We believe that this is due to the following reasons: (i) the clustering process puts similar contigs into groups that are useful features for the classifier, and (ii) instead of attempting to select the most significant features before performing classification, we allow the classifier itself to determine the most significant features from the entire pool of features.
 

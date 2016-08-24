@@ -131,12 +131,6 @@ def write_train_test(vectors, train, test, testset, trainastest):     # write tr
         for key, value in vectors.iteritems():
             counter = (counter + 1) % 2
             if counter != 0:
-                '''if value[0].startswith('1'):
-                    for j in range(1, len(value)):      # feature engineering loop
-                        if value[j] != '':
-                            parts = value[j].split(":")
-                            value[j] = parts[0] + ":" + str(float(parts[1]) * 0.9) + ' '   # apply feature multiplier'''
-
                 tr.write((''.join(value)) + '\n')   # write to training set
                 if trainastest == 'True':
                     te.write((''.join(value)) + '\n')   # write to test set
@@ -194,23 +188,29 @@ def execute_svm(verbose, directory, train, test, model, prediction, svm, output)
             subprocess.call(shlex.split('./'+svm+'svm_classify '+test+' '+model+' '+prediction), stdout=outfile)
 
 
-def order_labels(testlabels, predictions):
+def order_labels(testlabels, predictions, classifier):
     pred_act = []   # predicted vs. actual label
-    f = open(predictions, 'r')
-    linecount = 0
-    for line in f:
-        line = line.strip()
-        if linecount >= 2:
-            pred_act.append([float(line), testlabels[linecount-2]])
-        linecount += 1
-    f.close()
+    if classifier == 'svmlight':
+        f = open(predictions, 'r')
+        linecount = 0
+        for line in f:
+            line = line.strip()
+            if linecount >= 2:
+                pred_act.append([float(line), testlabels[linecount-2]])
+            linecount += 1
+        f.close()
+    elif classifier == 'misvm':
+        for i in range(len(testlabels)):
+            pred_act.append([float(predictions[i]), float(testlabels[i])])
 
-    # a.sort(key=lambda x: x[1])
     pred_act.sort(key=lambda x: x[0])   # sort by predicted label
     print pred_act
-    outfile = open(predictions + '_ordered', 'w')
+    if classifier == 'svmlight':
+        outfile = open(predictions + '_ordered', 'w')
+    else:
+        outfile = open('predictions_ordered', 'w')
     for line in range(len(pred_act)):  # loop to write actual labels in order of predicted value for that label
-        outfile.write(str(pred_act[len(pred_act) - line - 1][1]) + '\n')
+        outfile.write(str(int(pred_act[len(pred_act) - line - 1][1])) + '\n')
     outfile.close()
 
     return testlabels, predictions
@@ -253,6 +253,7 @@ def misvm_classify(verbose, output, vectors, labels):
         classifier.fit(train_bags, train_labels)
         predictions = classifier.predict(test_bags)
         accuracies[algorithm] = numpy.average(test_labels == numpy.sign(predictions))
+        order_labels(test_labels, predictions, 'misvm')
     for algorithm, accuracy in accuracies.items():
         print '\n%s Accuracy: %.1f%%' % (algorithm, 100 * accuracy)
     if output != 'NONE':
@@ -423,7 +424,7 @@ def main():
     else:
         # run SVM on given or generated train and test files
         execute_svm(args.verbose, args.dir, args.train, args.test, args.model, args.predictions, args.svm, args.output)
-        order_labels(testlabels, args.predictions)
+        order_labels(testlabels, args.predictions, 'svmlight')
     if args.verbose:
         print "Program execution time: " + str(time.time() - start) + " seconds"
 

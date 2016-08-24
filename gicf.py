@@ -138,11 +138,16 @@ def descent(verbose, rate, l, top_k, batch_size, iterations, w, data):
             else:
                 labels.append(1)
             group = listify(splits[1])
-            cutoff = int(top_k * len(group))     # use only top (100 * (1 - top_k))% of reads
-            for i in range(cutoff, len(group)):
-                if random.random() > chance:
-                    cost_data[len(labels)-1].append(group[i])   # append appropriate instance to mini batch dataset
+            if len(group) < 1000:   # if group is small enough, just do full batch gradient descent
+                for i in range(len(group)):
+                    cost_data[len(labels)-1].append(group[i])
                     instances += 1.0
+            else:
+                cutoff = int(top_k * len(group))     # use only top (100 * (1 - top_k))% of reads
+                for i in range(cutoff, len(group)):
+                    if random.random() > chance:
+                        cost_data[len(labels)-1].append(group[i])   # append appropriate instance to mini batch dataset
+                        instances += 1.0
         d.close()
 
         # find value of derivative of cost function using weights w, then use learning rate to find adjustment amount
