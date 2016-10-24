@@ -6,8 +6,7 @@ Each bag of reads was assembled with SOAPdenovo2, which took 7-30 minutes per fi
 
 \subsection{Methods Tested}
 
-This section provides an overview of the different methods that we compared our pipeline to. Our pipeline uses clustering, whereas the other methods do not. Instead, those methods directly compare individual reads instead of clusters. In order to do this, sequence reads were represented as counts of k-mers. k-mers are nucleotide strings of 
-length k. Since there are four possible nucleotides, the number of possible k-mers is \(4^k\). 
+This section provides an overview of the different methods that we compared our pipeline to. Our pipeline uses clustering, whereas the other methods do not. Instead, those methods directly compare individual reads instead of clusters. In order to do this, sequence reads were represented as counts of k-mers. %k-mers are nucleotide strings of length k. Since there are four possible nucleotides, the number of possible k-mers is \(4^k\). 
 %For instance, if k=3, there are \(4^3\) = 64 possible k-mers, which are AAA, AAC, AAG, AAT, ACA, ACC, ..., TTT. 
 %For a string "ATACGATA", the count for the k-mers is 2 for ATA, 1 for TAC, ACG, CGA, and GAT, and 0 for everything else. 
 We wrote a script to represent the reads/contigs as vectors representing the k-mer counts in the string, and these feature 
@@ -19,7 +18,7 @@ exponential in k, higher values for k quickly become impractical in both run tim
 
 \subsubsection{CAMIL - Our Pipeline}
 
-We implemented two different versions of the pipeline in Python: one that uses D-BoW feature extraction, and one that uses H-BoW feature extraction. These results are denoted as ``CAMIL D-BoW" and ``CAMIL H-BoW", respectively, in the results tables and graphs. Clustering for the pipeline with UCLUST took 14 hours, 7 minutes, 44 seconds. Without the assembly step reducing the size of the data, clustering would not have been feasible.
+We implemented two different versions of the pipeline in Python: one that uses D-BoW feature extraction, and one that uses H-BoW feature extraction. These results are denoted as ``CAMIL D-BoW" and ``CAMIL H-BoW", respectively, in the results tables and graphs. Clustering for the pipeline with UCLUST took 14 hours, 7 minutes, 44 seconds. All 367 patients were clustered together in order to keep the features consistent.
 
 \subsubsection{MISVM and sbMIL}
 
@@ -103,7 +102,7 @@ CAMIL H-BoW & \bf{95.59} & \bf{95.20} & 97.93\\\hline
 \end{center}
 \end{table}
 
-Finally, Table \ref{tab:test-comp} compares CAMIL to the method used by Qin et al., mRMR + SVM. For this comparison, we averaged the results of 10 trials in which we selected 23 patients randomly out of the 367 to serve as the test set, with the other 344 of the training set. 23 patients were used because the test set used by Qin et al. contained 23 patients \cite{qin041012}. Table \ref{tab:test-comp} shows that CAMIL significantly outperformed mRMR + SVM, with the H-BoW variant of CAMIL slightly outperforming the D-BoW variant. The results held for the original 23 patient test set, where CAMIL H-BoW actually achieved 100\% accuracy.
+Finally, Table \ref{tab:test-comp} compares CAMIL to the method used by Qin et al., mRMR + SVM. We use 23 patients in the test set here because that is what Qin et al. did \cite{qin041012}. We averaged the results of 10 trials in which we selected 23 patients randomly out of the 367 to serve as the test set, with the other 344 of the training set. Table \ref{tab:test-comp} shows that CAMIL significantly outperformed mRMR + SVM, with the H-BoW variant of CAMIL slightly outperforming the D-BoW variant. The results held for the original 23 patient test set used by Qin et al., where CAMIL H-BoW actually achieved 100\% accuracy.
 
 The method used in the original paper is the only one tested here that is not an MIL method, and the only one that is not entirely unsupervised apart from the patient labels. Given that the methods from this paper were not de novo, it makes sense that they would outperform many of the unsupervised MIL methods. However, CAMIL still significantly outperformed the results reported in the original paper. We believe that this is due to the following reasons: (i) the clustering process puts similar contigs into groups that are useful features for the classifier, and (ii) instead of attempting to select the most significant features before performing classification, we allow the classifier itself to determine the most significant features from the entire pool of features.
 

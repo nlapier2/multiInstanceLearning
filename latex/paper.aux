@@ -33,6 +33,7 @@
 \citation{namiki12}
 \citation{simpson09}
 \citation{boisvert12}
+\citation{qin041012}
 \@writefile{toc}{\contentsline {section}{\numberline {II}Background}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Multiple Instance Learning}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Assembly}{2}}
@@ -46,46 +47,48 @@
 \citation{schloss2005introducing}
 \citation{Hao01032011}
 \citation{sdm2013a}
-\citation{bibm2012}
-\citation{amores13}
-\citation{amores13}
-\citation{amores13}
 \citation{qin041012}
 \citation{peng12}
-\citation{li10}
-\citation{zerbino08}
-\citation{zerbino08}
-\citation{li10}
-\citation{zerbino08}
 \citation{qin041012}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}Clustering}{3}}
-\@writefile{toc}{\contentsline {section}{\numberline {III}Methods}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Overview}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Assembly with SOAPdenovo2}{3}}
+\citation{qin041012}
 \citation{bonder090112}
 \citation{sun042711}
 \citation{Edgar10}
 \citation{Edgar10}
 \citation{Edgar10}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}Clustering}{3}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}Methods}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Overview}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Assembly with SOAPdenovo2}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Clustering with UCLUST}{3}}
+\citation{amores13}
 \citation{joachims08}
 \citation{amores13}
 \citation{amores13}
 \citation{amores13}
+\citation{amores13}
+\citation{amores13}
+\citation{qin041012}
+\citation{qin041012}
+\citation{qin041012}
+\citation{qin041012}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces This diagram illustrates the entire CAMIL pipeline. Patient files with FASTQ metagenomic reads are individually assembled using SOAPdenovo2, then combined into one file and clustered with UCLUST. We extract features according to either the D-BoW or H-BoW method, and classify the patients using the feature vectors with svm-light.}}{4}}
 \newlabel{pipeline}{{1}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Clustering with UCLUST}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-D}}Feature Extraction and Classification}{4}}
+\newlabel{feature-extraction}{{\unhbox \voidb@x \hbox {III-D}}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces This diagram illustrates why static instance labels are not sufficient for phenotype prediction. A patient with 6 of the blue microbe or 6 of the green microbe may be healthy, while a patient with 3 of each is sick. Static instance labels cannot capture this relationship. This is also explained by Amores in his MIL taxonomy \cite  {amores13}.}}{4}}
 \newlabel{instance-labels}{{2}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-D}}Feature Extraction and Classification}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-E}}Deriving Instance ``Labels"}{4}}
 \newlabel{deriving-instances}{{\unhbox \voidb@x \hbox {III-E}}{4}}
-\citation{qin041012}
-\citation{qin041012}
-\citation{qin041012}
-\citation{qin041012}
 \citation{luo12}
 \citation{Edgar10}
 \citation{joachims08}
+\citation{andrews02}
+\citation{bunescu07}
+\citation{amores13}
+\citation{amores13}
+\citation{bunescu07}
+\citation{doran14}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Materials}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Dataset Description}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}Evaluation Metrics}{5}}
@@ -99,12 +102,8 @@
 \@writefile{toc}{\contentsline {section}{\numberline {V}Experimental Results}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Experimental Setup}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Methods Tested}{5}}
-\citation{andrews02}
-\citation{bunescu07}
-\citation{amores13}
-\citation{amores13}
-\citation{bunescu07}
-\citation{doran14}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}1}CAMIL - Our Pipeline}{5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}2}MISVM and sbMIL}{5}}
 \citation{kotzias15}
 \citation{kotzias15}
 \citation{kotzias15}
@@ -121,8 +120,6 @@
 \citation{qin041012}
 \citation{peng05}
 \citation{qin041012}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}1}CAMIL - Our Pipeline}{6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}2}MISVM and sbMIL}{6}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}3}GICF}{6}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {V-B}4}Original MGWAS Paper}{6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Results For Bag/Patient Labels}{6}}
@@ -130,18 +127,18 @@
 \newlabel{tab:even-comp}{{I}{6}}
 \@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Classification time and memory usage with even train/test split.}}{6}}
 \newlabel{tab:time-comp}{{II}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Performance on subset of instances with even train/test split.}}{6}}
+\newlabel{tab:subset-comp}{{III}{6}}
 \citation{qin041012}
-\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Performance on subset of instances with even train/test split.}}{7}}
-\newlabel{tab:subset-comp}{{III}{7}}
+\bibstyle{IEEEtran}
+\bibdata{./bib/HadoopClustering,./bib/all,./bib/RangwalaRefs,./bib/Rangwala_CV,./bib/anveshi,./bib/disease_state_classifier,./bib/hmp,./bib/lsh,./bib/mgenomics}
+\bibcite{turnbaugh_human_2007}{1}
 \@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Performance with 23 patient test set.}}{7}}
 \newlabel{tab:test-comp}{{IV}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-D}}Cluster-level ``Labels"}{7}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces This diagram illustrates the distribution of the instance weights assigned by CAMIL H-BoW. The Y-Axis shows the weights, while the X-Axis shows the ranking of the clusters by weight. Clearly, there are a relatively small number of clusters that have disproportionately large weights or small weights, while the vast majority of the 3918 clusters have weights close to 0.}}{7}}
 \newlabel{instance-scatter}{{3}{7}}
 \@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion}{7}}
-\bibstyle{IEEEtran}
-\bibdata{./bib/HadoopClustering,./bib/all,./bib/RangwalaRefs,./bib/Rangwala_CV,./bib/anveshi,./bib/disease_state_classifier,./bib/hmp,./bib/lsh,./bib/mgenomics}
-\bibcite{turnbaugh_human_2007}{1}
 \bibcite{backhed_host-bacterial_2005}{2}
 \bibcite{messing81}{3}
 \bibcite{handelsman04}{4}

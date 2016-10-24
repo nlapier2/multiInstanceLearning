@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.7.14)  24 AUG 2016 17:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.24)  24 OCT 2016 15:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **paper.tex
 (./paper.tex
-LaTeX2e <2011/06/27>
-Babel <3.9h> and hyphenation patterns for 4 languages loaded.
+LaTeX2e <2016/02/01>
+Babel <3.9q> and hyphenation patterns for 5 language(s) loaded.
 (./IEEEtran.cls
 Document Class: IEEEtran 2012/11/21 V1.8c by Harald Hanche-Olsen and Anders Chr
 istensen
@@ -93,22 +93,22 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 \c@IEEEbiography=\count90
 \@IEEEtranrubishbin=\box26
 ) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks15
 )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+Package: graphics 2016/01/03 v1.0q Standard LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: pdftex.def on input line 91.
+Package graphics Info: Driver file: pdftex.def on input line 95.
 
 (/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
@@ -236,26 +236,27 @@ Overfull \hbox (23.94641pt too wide) in paragraph at lines 5--6
 File: ./instance-labels.png Graphic file (type png)
 
 <use ./instance-labels.png>
-Package pdftex.def Info: ./instance-labels.png used on input line 38.
+Package pdftex.def Info: ./instance-labels.png used on input line 37.
 (pdftex.def)             Requested size: 150.56212pt x 64.23984pt.
-) [4 <./mil-metagenomics-pipeline.png> <./instance-labels.png>] (./input/materi
-als.tex
+) (./input/materials.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--3
 [][][]\OT1/ptm/m/n/8 http://trace.ncbi.nlm.nih.gov/Traces/study/?acc=SRP008047,
 
  []
 
-) (./input/experiments.tex [5]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[6] <./instance-scatter.png, id=34, 578.16pt x 433.62pt>
+[4 <./mil-metagenomics-pipeline.png> <./instance-labels.png>])
+(./input/experiments.tex [5] [6]
+<./instance-scatter.png, id=33, 578.16pt x 433.62pt>
 File: ./instance-scatter.png Graphic file (type png)
 
 <use ./instance-scatter.png>
-Package pdftex.def Info: ./instance-scatter.png used on input line 114.
+Package pdftex.def Info: ./instance-scatter.png used on input line 113.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
-) (./input/conclusion.tex) [7 <./instance-scatter.png>] (./paper.bbl
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) (./input/conclusion.tex) (./paper.bbl [7 <./instance-scatter.png>]
 Underfull \hbox (badness 4120) in paragraph at lines 100--104
 []\OT1/ptm/m/n/8 P. Schloss et al., ``In-tro-duc-ing mothur: open-source, platf
 orm-
@@ -287,25 +288,24 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2276 strings out of 494985
- 36129 string characters out of 6180356
- 101634 words of memory out of 5000000
- 5461 multiletter control sequences out of 15000+600000
+ 2278 strings out of 494910
+ 36159 string characters out of 6179836
+ 101170 words of memory out of 5000000
+ 5538 multiletter control sequences out of 15000+600000
  41460 words of font info for 75 fonts, out of 8000000 for 9000
  39 hyphenation exceptions out of 8191
  37i,8n,24p,1695b,250s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
-rw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8
-a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (8 pages, 207788 bytes).
+f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
+/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (8 pages, 199726 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
- 46 compressed objects within 1 object stream
+ 67 PDF objects out of 1000 (max. 8388607)
+ 43 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
