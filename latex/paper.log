@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.24)  24 OCT 2016 15:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.24)  27 OCT 2016 08:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -256,7 +256,7 @@ Package pdftex.def Info: ./instance-scatter.png used on input line 113.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) (./input/conclusion.tex) (./paper.bbl [7 <./instance-scatter.png>]
+) (./input/conclusion.tex) [7 <./instance-scatter.png>] (./paper.bbl
 Underfull \hbox (badness 4120) in paragraph at lines 100--104
 []\OT1/ptm/m/n/8 P. Schloss et al., ``In-tro-duc-ing mothur: open-source, platf
 orm-
@@ -302,7 +302,7 @@ fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (8 pages, 199726 bytes).
+Output written on paper.pdf (8 pages, 200138 bytes).
 PDF statistics:
  67 PDF objects out of 1000 (max. 8388607)
  43 compressed objects within 1 object stream
