@@ -114,12 +114,12 @@ Y.~Sun et al.,
   pyrosequences,'' \emph{Nucleic Acids Research}, vol.~37, no.~10, pp.
   e76--e76, 2009.
 
-\bibitem{bibm2012}
-Z.~Rasheed et al., ``Lsh-div: Species
-  diversity estimation using locality sensitive hashing,'' in \emph{IEEE
-  International Conference on Bioinformatics and Biomedicine (BIBM)}.\hskip 1em
-  plus 0.5em minus 0.4em\relax Philadelphia, USA: IEEE, October 2012, pp. 1--6,
-  acceptance Rate: 59/299 = 19.93\%.
+%\bibitem{bibm2012}
+%Z.~Rasheed et al., ``Lsh-div: Species
+%  diversity estimation using locality sensitive hashing,'' in \emph{IEEE
+%  International Conference on Bioinformatics and Biomedicine (BIBM)}.\hskip 1em
+%  plus 0.5em minus 0.4em\relax Philadelphia, USA: IEEE, October 2012, pp. 1--6,
+%  acceptance Rate: 59/299 = 19.93\%.
 
 \bibitem{Hao01032011}
 \BIBentryALTinterwordspacing
@@ -159,8 +159,8 @@ D. R.~Zerbino and E.~Birney, ``Velvet: Algorithms for de novo short read assembl
 \bibitem{namiki12}
 T.~Namiki et al., ``MetaVelvet: an extension of Velvet assembler to de novo metagenome assembly from short sequence reads," \emph{Nucleic Acids Research}, vol.~40, no.~20, pp. e155, 2012. doi: 10.1093/nar/gks678.
 
-\bibitem{simpson09}
-J. T.~Simpson et al., ``ABySS: A parallel assembler for short read sequence data," \emph{Genome Research}, pp. 1117--1123, 2009. doi: 10.1101/gr.089532.108.
+%\bibitem{simpson09}
+%J. T.~Simpson et al., ``ABySS: A parallel assembler for short read sequence data," \emph{Genome Research}, pp. 1117--1123, 2009. doi: 10.1101/gr.089532.108.
 
 \bibitem{boisvert12}
 S.~Boisvert et al., ``Ray Meta: scalable de novo metagenome assembly and profiling," \emph{Genome Research}, 2012. doi: 10.1186/gb-2012-13-12-r122.

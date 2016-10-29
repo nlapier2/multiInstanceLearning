@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.24)  27 OCT 2016 08:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.24)  28 OCT 2016 16:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -245,27 +245,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--3
  []
 
 [4 <./mil-metagenomics-pipeline.png> <./instance-labels.png>])
-(./input/experiments.tex [5] [6]
-<./instance-scatter.png, id=33, 578.16pt x 433.62pt>
-File: ./instance-scatter.png Graphic file (type png)
+(./input/experiments.tex [5]
 
-<use ./instance-scatter.png>
-Package pdftex.def Info: ./instance-scatter.png used on input line 113.
-(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+[6] <./instance-scatter.png, id=33, 578.16pt x 433.62pt>
+File: ./instance-scatter.png Graphic file (type png)
+
+<use ./instance-scatter.png>
+Package pdftex.def Info: ./instance-scatter.png used on input line 115.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
 ) (./input/conclusion.tex) [7 <./instance-scatter.png>] (./paper.bbl
 Underfull \hbox (badness 4120) in paragraph at lines 100--104
 []\OT1/ptm/m/n/8 P. Schloss et al., ``In-tro-duc-ing mothur: open-source, platf
 orm-
- []
-
-
-Underfull \hbox (badness 1990) in paragraph at lines 163--164
-[]\OT1/ptm/m/n/8 J. T. Simp-son et al., ``ABySS: A par-al-lel as-sem-bler for s
-hort
  []
 
 Missing character: There is no Ã in font ptmr7t!
@@ -288,13 +284,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2278 strings out of 494910
- 36159 string characters out of 6179836
- 101170 words of memory out of 5000000
- 5538 multiletter control sequences out of 15000+600000
+ 2276 strings out of 494910
+ 36138 string characters out of 6179836
+ 104162 words of memory out of 5000000
+ 5536 multiletter control sequences out of 15000+600000
  41460 words of font info for 75 fonts, out of 8000000 for 9000
  39 hyphenation exceptions out of 8191
- 37i,8n,24p,1695b,250s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,8n,24p,2231b,250s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/
@@ -302,7 +298,7 @@ fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
 /utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (8 pages, 200138 bytes).
+Output written on paper.pdf (8 pages, 200011 bytes).
 PDF statistics:
  67 PDF objects out of 1000 (max. 8388607)
  43 compressed objects within 1 object stream

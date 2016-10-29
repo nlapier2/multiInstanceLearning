@@ -42,3 +42,119 @@ The method used in the original paper is the only one tested here that is not an
 Edited version:
 Finally, Table \ref{tab:test-comp} compares CAMIL to the method used by Qin et al., mRMR + SVM. We initially tested CAMIL on the same 23 patient test set that Qin et al. used, for which CAMIL H-BoW had 100\% accuracy and AUC, while mRMR + SVM had 0.81 AUC as reported by Qin et al. \cite{qin041012}. We know CAMIL is not 100\% accurate, so we validated it by averaging the results of 10 independent trials in which we selected 23 patients randomly out of the 367 to serve as the test set, with the other 344 of the training set. Table \ref{tab:test-comp} shows that CAMIL significantly outperformed mRMR + SVM on these trials, with the H-BoW variant of CAMIL slightly outperforming the D-BoW variant.
 Unlike the other MIL methods, Qin et al. use reference genomes to inform their classifier, so it makes sense that their method performs better than the MIL methods that only use de novo techniques. However, CAMIL still significantly outperformed the results reported in the MGWAS paper. We believe that the primary reason for this is that Qin et al. relied on alignments of sequences to reference genomes and attempted to select the 50 most significant genes for the phenotype before building the classifier. There are two primary problems with this approach: (i) many microbes found in the gut do not exist in reference databases and would thus be unusable for their classifier, and (ii) by only using 50 genes to inform the classifier, a lot of potentially valuable data is left out. CAMIL avoids these issues by using as much data as can be assembled and not relying on reference databases. The tradeoff is that we don't know exactly what genes are being used by the classifier to form the decision boundary. We also believe that the clustering process of putting similar contigs into groups forms useful features for the classifier.
+
+
+-----------------------------
+
+
+Original Table 1:
+\begin{table}[h]
+\begin{center} 
+%\hfill
+\caption{Performance with even train/test split.} 
+\label{tab:even-comp}
+\begin{tabular}{|c|ccc|}\hline
+Method & Accuracy & F1-Score & AUC-ROC\\\hline
+MISVM & --- & --- & ---\\\hline
+sbMIL & --- & --- & ---\\\hline
+GICF & 63.04 & 68.33 & 66.19\\\hline %59.24,63.05,66.19
+CAMIL D-BoW & 86.34 & 87.18 & 95.93\\\hline
+CAMIL H-BoW & \bf{90.71} & \bf{89.70} & \bf{97.63}\\\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Edited version:
+\begin{table}[h]
+\begin{center} 
+%\hfill
+\caption{Performance with even train/test split.} 
+\label{tab:even-comp}
+\begin{tabular}{|c|ccccc|}\hline
+Method & Accuracy & F1-Score & AUC-ROC & CV Acc. & CV F1\\\hline
+MISVM & --- & --- & --- & --- & ---\\\hline
+sbMIL & --- & --- & --- & --- & ---\\\hline
+GICF & 63.04 & 68.33 & 66.19 & --- & ---\\\hline %59.24,63.05,66.19
+CAMIL D-BoW & 86.34 & 87.18 & 95.93 & 82.07 & 83.07\\\hline
+CAMIL H-BoW & \bf{90.71} & \bf{89.70} & \bf{97.63} & \bf{89.13} & \bf{88.09}\\\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Added to paragraph explanation:
+We also performed Leave One Out Cross Validation for the Accuracy and F1-Score metrics (denoted in the table as CV Acc. and CV F1, respectively). CAMIL's cross validation results were slightly worse than its test set results but still significantly outperformed GICF. Cross validation results for GICF and GICF-cluster were infeasible to calculate due to extremely long computaion time. 
+
+
+-----------------------------
+
+
+Not using qsub, execution time:
+CAMIL H-BoW: 5 minutes, 25 seconds
+CAMIL D-BoW: 5 minutes, 33 seconds
+GICF (1 read per cluster): 24 minutes, 51 seconds; Accuracy: 0.793103448276; F1 Score: 0.823529411765; AUC-ROC:  0.82380952381; Memory: 500.07MB
+
+
+-----------------------------
+
+
+Also added to explanation of tables 1 and 2:
+We attempted to improve on GICF's results by selecting only one read from each cluster for each patient and discarding the other reads.  This significantly reduced the computation time and improved results, showing how important the clustering step is. These results are listed as ``GICF-Cluster" in the tables above. Even with this step, CAMIL was faster and more effective than GICF-Cluster, demonstrating the effectiveness of our feature extraction method.
+
+Edited table 1:
+Edited version:
+\begin{table}[h]
+\begin{center} 
+%\hfill
+\caption{Performance with even train/test split.} 
+\label{tab:even-comp}
+\begin{tabular}{|c|ccccc|}\hline
+Method & Accuracy & F1-Score & AUC-ROC & CV Acc. & CV F1\\\hline
+MISVM & --- & --- & --- & --- & ---\\\hline
+sbMIL & --- & --- & --- & --- & ---\\\hline
+GICF & 63.04 & 68.33 & 66.19 & --- & ---\\\hline %59.24,63.05,66.19
+GICF-Cluster & 79.31 & 82.35 & 82.38 & --- & ---\\\hline
+CAMIL D-BoW & 86.34 & 87.18 & 95.93 & 82.07 & 83.07\\\hline
+CAMIL H-BoW & \bf{90.71} & \bf{89.70} & \bf{97.63} & \bf{89.13} & \bf{88.09}\\\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Original table 2: 
+\begin{table}[h]
+\begin{center}
+\caption{Classification time and memory usage with even train/test split.} 
+\label{tab:time-comp}
+\begin{tabular}{|c|cc|}\hline
+Method & Classification Time & Memory Usage\\\hline
+MISVM & --- & Memory Error\\\hline
+sbMIL & --- & Memory Error\\\hline
+GICF & 8 hours, 44 mins, 27 secs & 2.646 GB\\\hline
+CAMIL D-BoW & \bf{6 minutes, 58 seconds} & \bf{545.293 MB}\\\hline
+CAMIL H-BoW & 7 minutes, 56 seconds & 546.297 MB\\\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Edited table 2:
+\begin{table}[h]
+\begin{center}
+\caption{Classification time and memory usage with even train/test split.} 
+\label{tab:time-comp}
+\begin{tabular}{|c|cc|}\hline
+Method & Classification Time & Memory Usage\\\hline
+MISVM & --- & Memory Error\\\hline
+sbMIL & --- & Memory Error\\\hline
+GICF & 8 hours, 44 mins, 27 secs & 2.646 GB\\\hline
+GICF-Cluster & 24 minutes, 51 secs & \bf{500.07 MB}\\\hline 
+CAMIL D-BoW & 5 minutes, 33 seconds & 545.293 MB\\\hline
+CAMIL H-BoW & \bf{5 minutes, 25 seconds} & 546.297 MB\\\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+-----------------------------
+
+
+Removed from methods deiscussion of UCLUST:
+Thus, each \emph{centroid} defines the center of a cluster, and the distance T defines the radius of the cluster, such that any point that has a similarity of greater than T to the centroid is within the radius and is thus part of the cluster. UCLUST is a heuristic algorithm that has several optimizations to improve speed, thus condition (i) above is not always guaranteed \cite{Edgar10}. 
