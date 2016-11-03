@@ -25,7 +25,10 @@ def parseargs():    # handle user arguments
 def main():
     args = parseargs()
     if args.test:
-        subprocess.call(shlex.split(args.path + ' -X 3 -Z SRR390728'))
+        if args.dlpath == 'NONE':
+            print "Error: to test download, specify location of fastq-dump with --dlpath"
+            sys.exit()
+        subprocess.call(shlex.split(args.dlpath + ' -X 3 -Z SRR390728'))
         sys.exit()
     if args.start == 'NONE':
         print "Error: SRA run number to start on must be specified with --start"
