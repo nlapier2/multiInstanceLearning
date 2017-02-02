@@ -13,10 +13,12 @@ import misvm
 
 def parseargs():    # handle user arguments
     parser = argparse.ArgumentParser(description='Classify fasta-format sequence reads')
+    parser.add_argument('--bow', default='d', choices=['d', 'h'], help='Distance (d) or Histogram (h) Bag of Words.')
     parser.add_argument('-c', '--cluster', default='NONE', choices=['kraken', 'uclust'],
                         help='Which clustering algorithm was used')
     parser.add_argument('-d', '--dir', default='NONE', help='You can specify directory of all parameters if shared')
     parser.add_argument('-i', '--input', default='NONE', help='Path to clustering output file to be classified')
+    parser.add_argument('-k', '--kmer', default=4, help='Length of k-mers to use in MISVM representation.')
     parser.add_argument('--map', default='NONE', help='Path to mapping file to be used')
     parser.add_argument('--model', default='model', help='Path to place SVM model file')
     parser.add_argument('--negative', default='NONE', help='negative state to be classified (i.e. Encephalopathy, etc.')
@@ -27,8 +29,12 @@ def parseargs():    # handle user arguments
     parser.add_argument('--split', default='.0', help='Characters to split patient tag on.')
     parser.add_argument('--svm', default='', help='Path to svm_light home folder, OR specify "misvm" ')
     parser.add_argument('--train', default='NONE', help='Path to svm training data set')
+    parser.add_argument('--trainastest', default='False', choices=['True', 'False'], help='Use train data for test set')
     parser.add_argument('--test', default='NONE', help='Path to svm test data set')
+    parser.add_argument('--testset', default='NONE', help='Path to file with list of patients to be put in test set.')
+    parser.add_argument('--vectors', default='NONE', help='Path to file with feature vectors.')
     parser.add_argument('-v', '--verbose', default=False, action='store_true', help='Verbose output')
+    parser.add_argument('--write', default='NONE', help='Write arrays to outfile (k-mers only) and exit')
     args = parser.parse_args()
     return args
 
@@ -61,7 +67,7 @@ def parse_kraken(vectors, infile, split):  # generate feature vectors from krake
     return vectors
 
 
-def parse_uclust(vectors, infile, split):  # generate feature vectors from uclust output
+def parse_uclust(vectors, infile, split, bow):  # generate feature vectors from uclust output
     f = open(infile)
     for line in f:
         if line.startswith('H') or line.startswith('S'):
@@ -74,17 +80,24 @@ def parse_uclust(vectors, infile, split):  # generate feature vectors from uclus
                 if veclen < featnum + 1:        # used to expand feature list if needed
                     for j in range(veclen, featnum + 1):
                         vec.append('')
-                if line.startswith('H'):
-                    value = str(float(fields[3])/100.0)   # "value" of feature, i.e. percentage match to cluster seed
-                    if vec[featnum] == '' or float(value) > float(vec[featnum].split(":")[1]):
-                        vec[featnum] = str(featnum) + ":" + value + ' '
-                elif line.startswith('S'):
-                    vec[featnum] = str(featnum) + ":1.0 "
+                if bow == 'd':
+                    if line.startswith('H'):
+                        value = str(float(fields[3])/100.0)   # "value" of feature i.e. percentage match to cluster seed
+                        if vec[featnum] == '' or float(value) > float(vec[featnum].split(":")[1]):
+                            vec[featnum] = str(featnum) + ":" + value + ' '
+                    elif line.startswith('S'):
+                        vec[featnum] = str(featnum) + ":1.0 "
+                elif bow == 'h':
+                    if line.startswith('H') or line.startswith('S'):
+                        if vec[featnum] == '':
+                            vec[featnum] = str(featnum) + ":1.0 "
+                        else:   # add to the tally for this cluster
+                            vec[featnum] = str(featnum) + ":" + str(float(vec[featnum].split(":")[1]) + 1.0) + ' '
     f.close()
     return vectors
 
 
-def parse_cluster(verbose, directory, positive, negative, cluster, infile, mapfile, split):
+def parse_cluster(verbose, directory, positive, negative, cluster, infile, mapfile, split, bow):
     # generate feature vectors from cluster output
     os.chdir(directory)
     if verbose:
@@ -98,32 +111,63 @@ def parse_cluster(verbose, directory, positive, negative, cluster, infile, mapfi
             vectors[fields[3]] = ['1 ']
         elif negative == "NONE" or fields[7] == negative:
             vectors[fields[3]] = ['-1 ']
+    m.close()
 
     if verbose:
         print "Reading input: " + infile
     if cluster == 'kraken':
         vectors = parse_kraken(vectors, infile, split)
     elif cluster == 'uclust':
-        vectors = parse_uclust(vectors, infile, split)
+        vectors = parse_uclust(vectors, infile, split, bow)
     return vectors
 
 
-def write_train_test(vectors, train, test):     # write training and test files for SVM
+def write_train_test(vectors, train, test, testset, trainastest):     # write training and test files for SVM
     tr = open(train, 'w')
     te = open(test, 'w')
     counter = 0     # every Nth patient will be put into the test set instead of the train set
-    for key, value in vectors.iteritems():
-        counter = (counter + 1) % 2
-        if counter != 0:
-            if value[0].startswith('1'):
-                for j in range(1, len(value)):      # feature engineering loop
-                    if value[j] != '':
-                        parts = value[j].split(":")
-                        value[j] = parts[0] + ":" + str(float(parts[1]) * 0.9) + ' '    # apply multiplier to features
-
-            tr.write((''.join(value)) + '\n')   # write to training set
-        else:
-            te.write((''.join(value)) + '\n')   # write to test set
+    testlabels = []     # labels of the test examples
+    if testset == 'NONE':
+        for key, value in vectors.iteritems():
+            counter = (counter + 1) % 2
+            if counter != 0:
+                tr.write((''.join(value)) + '\n')   # write to training set
+                if trainastest == 'True':
+                    te.write((''.join(value)) + '\n')   # write to test set
+                    if value[0] == '1 ':
+                        testlabels.append(1)
+                    elif value[0] == '-1 ':
+                        testlabels.append(-1)
+            elif trainastest == 'False':
+                te.write((''.join(value)) + '\n')   # write to test set
+                if value[0] == '1 ':
+                    testlabels.append(1)
+                elif value[0] == '-1 ':
+                    testlabels.append(-1)
+    else:
+        testitems = []
+        setfile = open(testset, 'r')
+        for line in setfile:
+            testitems.append(line.strip())
+        setfile.close()
+        for key, value in vectors.iteritems():
+            if key not in testitems:
+                tr.write((''.join(value)) + '\n')   # write to training set
+                if trainastest == 'True':
+                    te.write((''.join(value)) + '\n')   # write to test set
+                    if value[0] == '1 ':
+                        testlabels.append(1)
+                    elif value[0] == '-1 ':
+                        testlabels.append(-1)
+            elif trainastest == 'False':
+                te.write((''.join(value)) + '\n')   # write to test set
+                if value[0] == '1 ':
+                    testlabels.append(1)
+                elif value[0] == '-1 ':
+                    testlabels.append(-1)
+    tr.close()
+    te.close()
+    return testlabels
 
 
 def execute_svm(verbose, directory, train, test, model, prediction, svm, output):
@@ -144,6 +188,34 @@ def execute_svm(verbose, directory, train, test, model, prediction, svm, output)
             subprocess.call(shlex.split('./'+svm+'svm_classify '+test+' '+model+' '+prediction), stdout=outfile)
 
 
+def order_labels(testlabels, predictions, classifier):
+    pred_act = []   # predicted vs. actual label
+    if classifier == 'svmlight':
+        f = open(predictions, 'r')
+        linecount = 0
+        for line in f:
+            line = line.strip()
+            if linecount >= 2:
+                pred_act.append([float(line), testlabels[linecount-2]])
+            linecount += 1
+        f.close()
+    elif classifier == 'misvm':
+        for i in range(len(testlabels)):
+            pred_act.append([float(predictions[i]), float(testlabels[i])])
+
+    pred_act.sort(key=lambda x: x[0])   # sort by predicted label
+    print pred_act
+    if classifier == 'svmlight':
+        outfile = open(predictions + '_ordered', 'w')
+    else:
+        outfile = open('predictions_ordered', 'w')
+    for line in range(len(pred_act)):  # loop to write actual labels in order of predicted value for that label
+        outfile.write(str(int(pred_act[len(pred_act) - line - 1][1])) + '\n')
+    outfile.close()
+
+    return testlabels, predictions
+
+
 def misvm_classify(verbose, output, vectors, labels):
     # perform the actual misvm classification
     if verbose:
@@ -151,10 +223,10 @@ def misvm_classify(verbose, output, vectors, labels):
     bags = [numpy.array(vectors[v], dtype=float) for v in vectors]      # numpy-format matrix for use in misvm
     labels = numpy.array([labels[l] for l in labels], dtype=float)      # numpy-format labels for use in misvm
     # Spilt dataset into train and test sets
-    train_bags = []  # bags[midpoint:]  # []  # bags[10:]
-    train_labels = []  # labels[midpoint:]  # []  # labels[10:]
-    test_bags = []  # bags[:midpoint]  # []  # bags[:10]
-    test_labels = []  # labels[:midpoint]  # []  # labels[:10]
+    train_bags = []
+    train_labels = []
+    test_bags = []
+    test_labels = []
     for i in range(len(labels)):
         if i % 2 == 0:
             train_bags.append(bags[i])
@@ -169,9 +241,11 @@ def misvm_classify(verbose, output, vectors, labels):
         sys.stdout = open(output, 'w')
     # establish classifiers
     classifiers = {
-        'sbMIL': misvm.sbMIL(kernel='linear', eta=0.1, C=1.0),
-        'SIL': misvm.SIL(kernel='linear', C=1.0),
-        'MISVM': misvm.MISVM(kernel='linear', C=1.0, max_iters=100),
+        'sbMIL': misvm.sbMIL(kernel='rbf', eta=0.1, C=1.0),
+        # 'SIL': misvm.SIL(kernel='rbf', C=1.0),
+        'MISVM': misvm.MISVM(kernel='rbf', C=1.0, max_iters=100),
+        # 'NSK': misvm.NSK(kernel='rbf', C=1.0),
+        # 'STK': misvm.STK(kernel='rbf', C=1.0),
     }
     # Train/Evaluate classifiers
     accuracies = {}
@@ -179,13 +253,37 @@ def misvm_classify(verbose, output, vectors, labels):
         classifier.fit(train_bags, train_labels)
         predictions = classifier.predict(test_bags)
         accuracies[algorithm] = numpy.average(test_labels == numpy.sign(predictions))
+        order_labels(test_labels, predictions, 'misvm')
     for algorithm, accuracy in accuracies.items():
         print '\n%s Accuracy: %.1f%%' % (algorithm, 100 * accuracy)
     if output != 'NONE':
         sys.stdout = sys.__stdout__     # reset stdout to normal
 
 
-def execute_misvm(verbose, directory, output, positive, negative, cluster, infile, mapfile, split):
+def kmer_index(kmer):
+    # evaluate the index in the feature vector for the given kmer, treated as a base-4 number
+    index = 0
+    for i in range(len(kmer)):
+        # evaluate string as a base-4 number, with a=0, c=1, g=2, t=3
+        if kmer[i] == 'C':
+            index += 4**i
+        elif kmer[i] == 'G':
+            index += 4**i * 2
+        elif kmer[i] == 'T':
+            index += 4**i * 3
+    return index
+
+
+def listify(line):      # makes a string representing a 2-d list into an actual 2-d list
+    line = list(filter(None, line.split('[')))
+    for i in range(len(line)):
+        line[i] = line[i].strip().strip(',').strip().strip(']').split(', ')
+        for j in range(len(line[i])):
+            line[i][j] = float(line[i][j])
+    return line
+
+
+def execute_misvm(verbose, write, directory, output, positive, negative, cluster, infile, mapfile, kmer, split, vecs):
     # execute misvm, assuming it has been properly installed
     if cluster == 'kraken':
         print 'Kraken MISVM option not currently supported.'
@@ -195,6 +293,20 @@ def execute_misvm(verbose, directory, output, positive, negative, cluster, infil
         print "Reading map: " + mapfile
     vectors = {}        # dict that holds patient matrices to be used for misvm
     labels = {}         # dict that holds labels for patients ("bags")
+    if vecs != 'NONE':
+        if verbose:
+            print 'Reading vectors file: ' + vecs
+        m = open(mapfile)
+        v = open(vecs)
+        for line in m:
+            vecline = v.next().split(':')
+            fields = line.split('\t')
+            vectors[fields[3]] = listify(vecline[1])
+            labels[fields[3]] = float(vecline[0])
+        m.close()
+        v.close()
+        misvm_classify(verbose, output, vectors, labels)    # perform the actual misvm classification
+        return
     m = open(mapfile)
     for line in m:
         fields = line.split('\t')
@@ -204,30 +316,62 @@ def execute_misvm(verbose, directory, output, positive, negative, cluster, infil
         elif negative == "NONE" or fields[7] == negative:
             vectors[fields[3]] = []     # initialize matrix for patient
             labels[fields[3]] = -1.0    # assign label for patient
+    m.close()
 
     if verbose:
         print "Reading input: " + infile
     f = open(infile)
+    vec = []
+    cur_tag = ''
+    prev_tag = ''
     for line in f:
-        if line.startswith('H') or line.startswith('S'):
-            fields = line.split('\t')       # fields in clustering output lines
-            tag = fields[8].split(split[:1])[int(split[1:])]   # gets the tag that matches a patient in the mapping file
+        if line.startswith('>'):    # this is a defline, not a read
+            fields = line[1:].rstrip().split(' ')       # fields in fasta lines
+            tag = fields[0].split(split[:1])[int(split[1:])]   # gets the tag that matches a patient in the mapping file
+            cur_tag = tag
             vec = vectors.get(tag)          # the vector associated with this patient tag
-            if vec is not None:
-                vec.append([float(fields[1])])  # for each read, append a 1-element list with cluster number
-                if len(vec) < 1:
-                    vec.append([float(fields[1])])  # for each read, append a 1-element list with cluster number
+        elif vec is not None:   # this is read corresponding to the patient vector associated with the previous defline
+            #             for i in range(4**kmer):    # possible nucleotide strings of length k = 4^k
+            #    vectors[fields[3]].append(0.0)
+            read_kmers = []     # list of k-mer counts for the read
+            for i in range(4**kmer):    # possible nucleotide strings of length k = 4^k
+                read_kmers.append(0.0)
+            for i in range(kmer, len(line)):  # slide window of length k across the read
+                if line[i] != 'A' and line[i] != 'C' and line[i] != 'G' and line[i] != 'T':  # reached end of line
+                    break
+                read_kmers[kmer_index(line[i-kmer:i])] += 1.0  # get index of k-mer and increment appropriate list index
+            vec.append(read_kmers)  # append the k-mer representation of this read to the patient bag
+        if prev_tag != cur_tag and prev_tag != '' and write != 'NONE':  # if we are now looking at a new patient's reads
+            if verbose:
+                print "Writing reads for " + prev_tag
+            w = open(write, 'a')
+            w.write(str(labels[prev_tag]) + ":" + str(vectors[prev_tag]) + '\n')    # write the patient's reads
+            w.close()
+            vectors[prev_tag] = []  # eliminate the memory usage of these already-written patient reads
+        prev_tag = cur_tag
+
     f.close()
+    empty = []
     for v in vectors:
-        if not vectors[v]:
-            vectors[v] = [[0.0]]
+        if not vectors[v]:      # if patient has no reads
+            empty.append(v)
+    for v in empty:
+        del vectors[v]          # remove all patients with no reads from dict
+        del labels[v]           # and the associated patient class label
+
+    if write != 'NONE':     # vectors have already been written, so time to exit now
+        if verbose:
+            print "Done writing. Exiting..."
+        sys.exit()
+
     misvm_classify(verbose, output, vectors, labels)    # perform the actual misvm classification
 
 
 def main():
     start = time.time()
     args = parseargs()
-    if (args.input == "NONE" or args.map == "NONE") and (args.train == "NONE" or args.test == "NONE"):
+    if ((args.input == "NONE" and args.vectors == "NONE") or args.map == "NONE") \
+            and (args.train == "NONE" or args.test == "NONE"):
             print "You must specify input and map files or training and test files. Use -h for help. Exiting..."
             sys.exit()
     # make sure all output files go in the specified results directory
@@ -239,7 +383,10 @@ def main():
         args.model = args.result_dir + args.model
     if not args.predictions.startswith('/'):
         args.predictions = args.result_dir + args.predictions
+    if not args.write.startswith('/') and args.write != 'NONE':
+        args.write = args.result_dir + args.write
 
+    testlabels = []
     if args.input != "NONE":    # go into input mode, taking clustering output file and breaking into train and test
         if args.cluster == "NONE":
             print "You must specify which clustering algorithm was used. Choices: kraken, uclust. " \
@@ -260,15 +407,24 @@ def main():
             print "Entering input mode..."
         if args.svm != 'misvm':
             vectors = parse_cluster(args.verbose, args.dir, args.positive, args.negative,
-                                    args.cluster, args.input, args.map, args.split)
-            write_train_test(vectors, args.train, args. test)
+                                    args.cluster, args.input, args.map, args.split, args.bow)
+            testlabels = write_train_test(vectors, args.train, args. test, args.testset, args.trainastest)
 
     if args.svm == 'misvm':
-        execute_misvm(args.verbose, args.dir, args.output,
-                      args.positive, args.negative, args.cluster, args.input, args.map, args.split)
+        try:
+            kmer = int(args.kmer)
+        except ValueError:
+            print "Error: Alpha must be a natural number (positive integer)."
+            sys.exit()
+        if kmer < 1:
+            print "Error: Alpha must be a natural number (positive integer)."
+            sys.exit()
+        execute_misvm(args.verbose, args.write, args.dir, args.output,
+                      args.positive, args.negative, args.cluster, args.input, args.map, kmer, args.split, args.vectors)
     else:
         # run SVM on given or generated train and test files
         execute_svm(args.verbose, args.dir, args.train, args.test, args.model, args.predictions, args.svm, args.output)
+        order_labels(testlabels, args.predictions, 'svmlight')
     if args.verbose:
         print "Program execution time: " + str(time.time() - start) + " seconds"
 

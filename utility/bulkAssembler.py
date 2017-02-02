@@ -38,18 +38,19 @@ def assemble(args, kmer):
     for cur in range(start, end + 1):
         directory = args.out + 'SRR' + str(cur) + '/'     # directory to output assembly of this file to
         path = args.path + 'SRR' + str(cur) + args.extension         # path to current fastx file
-        if args.verbose:
-            print 'Calling: mkdir ' + directory
-        os.mkdir(directory)
-        os.chdir(directory)
-        if args.verbose:
-            print 'Making config file for SRR' + str(cur)
-        write_conf(config, path)
-        if args.verbose:
-            print 'Calling: ' + args.location + ' all -s ' + config + ' -K ' + str(kmer) + \
-                  '-R -V -o graph_prefix 1>all.log 2>all.err'
-        subprocess.call(shlex.split(args.location + ' all -s ' + config + ' -K ' + str(kmer) +
-                                    '-R -V -o graph_prefix 1>all.log 2>all.err'))
+        if args.combine == 'NO':
+            if args.verbose:
+                print 'Calling: mkdir ' + directory
+            os.mkdir(directory)
+            os.chdir(directory)
+            if args.verbose:
+                print 'Making config file for SRR' + str(cur)
+            write_conf(config, path)
+            if args.verbose:
+                print 'Calling: ' + args.location + ' all -s ' + config + ' -K ' + str(kmer) + \
+                      '-R -V -o graph_prefix 1>all.log 2>all.err'
+            subprocess.call(shlex.split(args.location + ' all -s ' + config + ' -K ' + str(kmer) +
+                                        '-R -V -o graph_prefix 1>all.log 2>all.err'))
         if args.verbose:
             print 'Dumping scaffolds into bulk contig file...'
         scaffolds = open(directory+'graph_prefix.scafSeq', 'r')
@@ -72,6 +73,7 @@ def parseargs():    # handle user arguments
     parser.add_argument('--assembler', default='soap', help='Which assembler to use. Default: "soap" (soapDenovo2).')
     parser.add_argument('--kmer', default=63, help='Kmer value to use for the assembler. Default: 63')
     parser.add_argument('--out', default='./', help='Output directory. Default is current directory.')
+    parser.add_argument('--combine', default='NO',help='Do not perform assembly, just combine assembled files.')
     parser.add_argument('-v', '--verbose', default=False, action='store_true', help='Verbose output')
     args = parser.parse_args()
     return args

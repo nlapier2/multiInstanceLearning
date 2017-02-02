@@ -20,7 +20,7 @@ def main():
         print 'Map file must be specified with --map. Aborting...'
         sys.exit()
     try:
-        size = args.size
+        size = int(args.size)
     except ValueError:
         print 'Size must be a positive integer. Aborting...'
         sys.exit()
